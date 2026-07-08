@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Faro",
+    "tagline": "Copiloto de Portafolio con IA",
+    "disclaimer": "Faro es una herramienta educativa de análisis, no un asesor de inversiones. Nada de esto es asesoría de inversión."
+  },
+  "nav": {
+    "dashboard": "Tablero",
+    "chat": "Copiloto",
+    "scenarios": "Escenarios",
+    "digest": "Resumen",
+    "settings": "Configuración"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "comingSoon": "Próximamente — esta pantalla llega en un hito posterior.",
+    "language": "Idioma"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "legal": "Documentos legales",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Uso",
+    "disclaimer": "Aviso Legal de Inversión",
+    "provider": "Proveedor de IA",
+    "providerAnthropic": "Claude (API de Anthropic)",
+    "providerOllama": "Modelo local (Ollama)"
+  },
+  "pages": {
+    "dashboardTitle": "Tablero",
+    "chatTitle": "Copiloto",
+    "scenariosTitle": "Escenarios",
+    "digestTitle": "Resumen diario"
+  }
+}

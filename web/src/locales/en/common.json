@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Faro",
+    "tagline": "AI Portfolio Copilot",
+    "disclaimer": "Faro is an educational analytics tool, not an investment adviser. Nothing here is investment advice."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "chat": "Copilot",
+    "scenarios": "Scenarios",
+    "digest": "Digest",
+    "settings": "Settings"
+  },
+  "common": {
+    "loading": "Loading…",
+    "comingSoon": "Coming soon — this screen lands in a later milestone.",
+    "language": "Language"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "legal": "Legal documents",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "disclaimer": "Investment Disclaimer",
+    "provider": "AI provider",
+    "providerAnthropic": "Claude (Anthropic API)",
+    "providerOllama": "Local model (Ollama)"
+  },
+  "pages": {
+    "dashboardTitle": "Dashboard",
+    "chatTitle": "Copilot",
+    "scenariosTitle": "Scenarios",
+    "digestTitle": "Daily digest"
+  }
+}

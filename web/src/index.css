@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-950 text-ink font-body antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+  /* Financial figures align in tables/cards */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
