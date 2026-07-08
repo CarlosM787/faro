@@ -1,0 +1,17 @@
+{
+  "title": "Copilot",
+  "subtitle": "Ask about your portfolio — every number comes from the quant engine.",
+  "placeholder": "e.g. How risky is my portfolio?",
+  "send": "Send",
+  "thinking": "Analyzing…",
+  "toolCall": "Computed",
+  "provider": "Model: {{name}}",
+  "error": "The copilot is unavailable. If you're running without an API key, make sure Ollama is running (ollama serve) with the qwen2.5:7b model pulled.",
+  "suggestions": {
+    "risk": "How risky is my portfolio?",
+    "concentration": "What's my biggest risk?",
+    "scenario": "What if NVDA drops 20%?",
+    "benchmark": "Am I beating the S&P 500?"
+  },
+  "disclaimerShort": "Educational — not investment advice."
+}

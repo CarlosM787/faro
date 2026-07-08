@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { Disclaimer } from "./components/Disclaimer";
 import { Sidebar } from "./components/Sidebar";
+import { ChatPage } from "./features/chat/ChatPage";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
 import { SettingsPage } from "./features/settings/SettingsPage";
 
@@ -25,7 +26,7 @@ export default function App() {
         <main className="flex-1 p-6 lg:p-10">
           <Routes>
             <Route path="/" element={<DashboardPage />} />
-            <Route path="/chat" element={<Placeholder titleKey="pages.chatTitle" />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/scenarios" element={<Placeholder titleKey="pages.scenariosTitle" />} />
             <Route path="/digest" element={<Placeholder titleKey="pages.digestTitle" />} />
             <Route path="/settings" element={<SettingsPage />} />

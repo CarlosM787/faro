@@ -1,0 +1,17 @@
+{
+  "title": "Copiloto",
+  "subtitle": "Pregunta sobre tu portafolio — cada número viene del motor cuantitativo.",
+  "placeholder": "p. ej. ¿Qué tan riesgoso es mi portafolio?",
+  "send": "Enviar",
+  "thinking": "Analizando…",
+  "toolCall": "Calculado",
+  "provider": "Modelo: {{name}}",
+  "error": "El copiloto no está disponible. Si no configuraste una clave API, asegúrate de que Ollama esté corriendo (ollama serve) con el modelo qwen2.5:7b descargado.",
+  "suggestions": {
+    "risk": "¿Qué tan riesgoso es mi portafolio?",
+    "concentration": "¿Cuál es mi mayor riesgo?",
+    "scenario": "¿Qué pasa si NVDA cae 20%?",
+    "benchmark": "¿Le estoy ganando al S&P 500?"
+  },
+  "disclaimerShort": "Educativo — no es asesoría de inversión."
+}
