@@ -42,4 +42,5 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 - [x] LLM provider layer (Anthropic primary, Ollama fallback) + tool-use agent + chat UI (streaming, guardrails) (2026-07-08)
 - [x] Scenario engine + page (price shocks; shared with agent tools) (2026-07-08)
 - [x] Daily digest generation (2026-07-08)
-- [ ] Recruiter-grade README + live demo deployment
+- [x] Recruiter-grade README + grounding spot-check (28→4→2 across iterations; docs/GROUNDING-CHECK.md) (2026-07-08)
+- [ ] User steps: install Docker Desktop (compose test), add ANTHROPIC_API_KEY to .env, push to GitHub (CI badge), screenshots/GIF for README, deploy website to faroquant.com
