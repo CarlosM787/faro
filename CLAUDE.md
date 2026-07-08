@@ -43,5 +43,5 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 - [x] Scenario engine + page (price shocks; shared with agent tools) (2026-07-08)
 - [x] Daily digest generation (2026-07-08)
 - [x] Recruiter-grade README + grounding spot-check (28→4→2 across iterations; docs/GROUNDING-CHECK.md) (2026-07-08)
-- [x] Docker acceptance test, GitHub push (CI green), faroquant.com DNS + Pages deploy, PWA installability, landing-page redesign (2026-07-08)
-- [ ] User steps remaining: add ANTHROPIC_API_KEY to .env (then re-run grounding eval on Claude), README screenshots/GIF, enable Enforce-HTTPS on Pages once the cert is issued, publish Substack article
+- [x] Docker acceptance test, GitHub push (CI green), faroquant.com DNS + Pages deploy + HTTPS enforced, PWA installability, landing-page redesign + mobile verification (2026-07-08)
+- [ ] User steps remaining: add ANTHROPIC_API_KEY to .env (then re-run grounding eval on Claude), README screenshots/GIF, publish Substack article (final draft ready in docs/SUBSTACK-ARTICLE.md)
