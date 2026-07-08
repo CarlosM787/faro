@@ -2,10 +2,14 @@ import { useTranslation } from "react-i18next";
 
 /** One-tap persisted EN⇄ES toggle — same pill style as the marketing site. */
 export function LangToggle() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const lang = i18n.resolvedLanguage ?? "en";
   return (
-    <div className="inline-flex overflow-hidden rounded-full border border-navy-800" role="group" aria-label="Language">
+    <div
+      className="inline-flex overflow-hidden rounded-full border border-navy-800"
+      role="group"
+      aria-label={t("common.language")}
+    >
       {(["en", "es"] as const).map((l) => (
         <button
           key={l}

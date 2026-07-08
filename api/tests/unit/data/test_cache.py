@@ -70,6 +70,25 @@ def test_no_data_anywhere_raises(tmp_path) -> None:  # type: ignore[no-untyped-d
         cache.get_history("TEST", START, END)
 
 
+def test_cache_write_failure_never_fails_the_request(tmp_path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    """OneDrive/Windows file locks may block cache writes — data must still flow.
+
+    Simulates a persistently locked cache directory: every parquet write raises.
+    The request must succeed anyway (fetch succeeded; caching is best-effort).
+    """
+    import pandas as pd
+
+    def blocked(*args, **kwargs):  # type: ignore[no-untyped-def]
+        raise PermissionError("file locked by sync client")
+
+    monkeypatch.setattr(pd.DataFrame, "to_parquet", blocked)
+    cache = PriceCache([FakeProvider()], tmp_path, max_age_hours=24)
+
+    result = cache.get_history("TEST", START, END)  # must not raise
+    assert len(result.closes) == 8 and not result.stale
+    assert not list(tmp_path.glob("*.parquet"))  # nothing cached — and that's fine
+
+
 def test_wider_range_forces_refetch(tmp_path) -> None:  # type: ignore[no-untyped-def]
     """Regression: a fresh cache for a SHORT range must not satisfy a LONGER one."""
     provider = FakeProvider()

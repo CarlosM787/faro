@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faro — AI Portfolio Copilot</title>
-<meta name="description" content="Faro is an open-source AI portfolio copilot: institutional-grade risk analytics computed from first principles, explained by an AI that can't make numbers up. English y español.">
+<meta name="description" content="Faro is an open-source AI portfolio copilot: institutional-grade risk analytics computed from first principles, explained by an AI that has to show its work — unsupported numbers are detected and flagged. English y español.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -107,11 +107,11 @@ const T = {
   en: {
     "nav.features":"Features","nav.how":"How it works",
     "hero.badge":"OPEN SOURCE · RUNS FREE ON YOUR MACHINE · ENGLISH & ESPAÑOL",
-    "hero.h1":'Portfolio analytics that <em>can\'t</em> make numbers up.',
-    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then lets an AI copilot explain them in plain English or Spanish. The AI only speaks numbers it got from the tested quant engine. No bank logins, no cloud required.",
+    "hero.h1":'Portfolio analytics where the AI <em>shows its work</em>.',
+    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then lets an AI copilot explain them in plain English or Spanish. Every number the AI states is verified against the tested quant engine — unsupported figures are flagged. No bank logins, no cloud required.",
     "hero.cta1":"Get it on GitHub","hero.cta2":"See how it works",
     "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against reference values — not imported from a black box. Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration.",
-    "f2.h":"A copilot grounded by design","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is traceable to a computation, never hallucinated.",
+    "f2.h":"A copilot grounded by design","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is checked against a computation, and unsupported numbers are flagged.",
     "f3.h":"Truly bilingual","f3.p":"The whole app — dashboard, copilot chat, digests — works in English and Spanish with one tap. Ask in either language; get answers in yours.",
     "f4.h":"Daily digests","f4.p":"One click: what moved your portfolio, your biggest risk contributors, and upcoming earnings for your holdings — summarized by the copilot from computed data.",
     "f5.h":"Private & replicable","f5.p":"Your data stays in a local database on your machine. Clone → docker compose up → running in 5 minutes. Powered by Claude, with a free local-model fallback.",
@@ -129,11 +129,11 @@ const T = {
   es: {
     "nav.features":"Funciones","nav.how":"Cómo funciona",
     "hero.badge":"CÓDIGO ABIERTO · GRATIS EN TU COMPUTADORA · ENGLISH & ESPAÑOL",
-    "hero.h1":'Análisis de portafolio que <em>no puede</em> inventar números.',
-    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. La IA solo dice números que obtuvo del motor cuantitativo probado. Sin conectar tu banco, sin nube obligatoria.",
+    "hero.h1":'Análisis de portafolio donde la IA <em>muestra su trabajo</em>.',
+    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice la IA se verifica contra el motor cuantitativo probado — las cifras sin respaldo se marcan. Sin conectar tu banco, sin nube obligatoria.",
     "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona",
     "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada con pruebas contra valores de referencia — no importada de una caja negra. Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración.",
-    "f2.h":"Un copiloto anclado por diseño","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra es rastreable a un cálculo, nunca inventada.",
+    "f2.h":"Un copiloto anclado por diseño","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra se verifica contra un cálculo, y los números sin respaldo se marcan.",
     "f3.h":"Verdaderamente bilingüe","f3.p":"Toda la aplicación — tablero, chat del copiloto, resúmenes — funciona en español e inglés con un toque. Pregunta en cualquiera de los dos idiomas; recibe la respuesta en el tuyo.",
     "f4.h":"Resúmenes diarios","f4.p":"Un clic: qué movió tu portafolio, tus mayores fuentes de riesgo y los próximos reportes de resultados de tus posiciones — resumido por el copiloto a partir de datos calculados.",
     "f5.h":"Privado y replicable","f5.p":"Tus datos se quedan en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Impulsado por Claude, con un modelo local gratuito como alternativa.",

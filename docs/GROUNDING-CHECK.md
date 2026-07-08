@@ -1,4 +1,4 @@
-# Grounding spot-check — "the copilot can't make numbers up," measured
+# Grounding spot-check — "unsupported numbers are detected and surfaced," measured
 
 **What this is:** a repeatable eval (`api/scripts/grounding_check.py`) that fires 20 portfolio questions at the live copilot — 14 English, 6 Spanish, including two "should I buy/sell?" refusal probes — then extracts every numeric token from each answer and verifies it traces to a tool result from that turn. Any unmatched number is a violation. Exit code is non-zero if any answer contains one.
 

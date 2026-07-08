@@ -3,7 +3,7 @@
     "totalValue": "Valor del portafolio",
     "totalPnl": "Ganancia/Pérdida total",
     "dayChange": "Cambio del día",
-    "staleData": "Mostrando datos en caché — los proveedores de datos no responden",
+    "staleData": "Usando datos de mercado en caché del {{date}} — algunos precios pueden estar desactualizados (proveedores no disponibles).",
     "asOf": "Datos al {{date}}",
     "totalValueInfo": "Valor de mercado actual de todas las posiciones al último cierre diario.",
     "totalPnlInfo": "Ganancia o pérdida frente a lo que pagaste (costo), en dólares y porcentaje.",

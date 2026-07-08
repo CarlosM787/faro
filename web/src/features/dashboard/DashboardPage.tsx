@@ -90,7 +90,11 @@ export function DashboardPage() {
 
       {metrics?.stale && (
         <div className="rounded-lg border border-beam/40 bg-beam/10 px-4 py-2 text-sm text-beam">
-          {t("header.staleData")}
+          {t("header.staleData", {
+            date: new Date(metrics.as_of).toLocaleDateString(
+              i18n.resolvedLanguage === "es" ? "es-MX" : "en-US",
+            ),
+          })}
         </div>
       )}
 

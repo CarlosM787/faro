@@ -22,7 +22,7 @@ Self-hosted AI portfolio analytics: enter your holdings → institutional-grade 
 4. **Dashboard (React)** — portfolio value & P/L, allocation donut, risk metric cards, drawdown & performance charts vs. benchmark, correlation heatmap.
 5. **AI Copilot chat** (the AI showcase) — LLM agent with **tool-use only** access to the quant engine; **Claude (Anthropic API) as the primary model**, Ollama as the free keyless fallback for tests and replication (see TECH-NOTES):
    - Tools: `get_portfolio_summary`, `get_metric` (any metric above), `get_position_detail`, `run_price_shock_scenario` (e.g. "NVDA −20%", "market −10%"), `compare_to_benchmark`
-   - Answers must cite the computed numbers it retrieved; the agent never invents figures
+   - Answers must cite the computed numbers retrieved from tools; a grounding checker flags any figure that does not trace to a tool result
    - Refuses personalized financial advice ("should I buy X?") with a friendly educational reframe
    - Streaming responses; conversation history per portfolio
 6. **Daily digest** (Cortex-style) — one-click generated brief: what moved the portfolio, biggest risk contributors, notable metric changes, upcoming earnings dates for holdings.

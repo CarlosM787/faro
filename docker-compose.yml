@@ -1,3 +1,5 @@
+name: faro # stable project/image names regardless of the folder name
+
 services:
   api:
     build: ./api

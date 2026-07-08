@@ -3,7 +3,7 @@
 Post-response verification (docs/TECH-NOTES.md guardrail #2): extract numeric
 tokens from the assistant's final text and check each against the numbers the
 tools actually returned. Violations are logged (and surfaced in dev) — this is
-the measurable "the agent can't make numbers up" claim.
+the measurable claim: unsupported numbers are detected and surfaced.
 """
 
 import contextlib

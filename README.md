@@ -4,7 +4,7 @@
 
 # Faro — AI Portfolio Copilot
 
-**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that can't make numbers up.** Fully bilingual (English / Español). Self-hosted; runs free without any API key.
+**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key.
 
 > ⚠️ Faro is an **educational tool, not an investment adviser**. It never executes trades, never links to brokerages, and refuses to give personalized investment advice — a deliberate compliance boundary. Legal docs (EN/ES): [docs/legal/](docs/legal/).
 
@@ -14,7 +14,7 @@
 
 The #1 failure mode of LLM finance apps is **hallucinated numbers**. Faro demonstrates the architecture that fixes it:
 
-> A deterministic, unit-tested quant engine underneath; an LLM agent on top whose **only** source of numbers is calling that engine's tools. Every figure in every answer traces to a computation — and a post-response **grounding checker** verifies it (see `agent/guardrails.py` and `scripts/grounding_check.py`).
+> A deterministic, unit-tested quant engine underneath; an LLM agent on top whose **only** sanctioned source of numbers is calling that engine's tools. A post-response **grounding checker** verifies every figure in every answer against the tool outputs and flags any that don't trace to a computation (see `agent/guardrails.py` and `scripts/grounding_check.py` — the claim is *detected and surfaced*, and it's measured, not assumed).
 
 The dashboard and the copilot call the **same service layer** — one engine, two consumers — so their numbers can never disagree.
 
@@ -75,7 +75,7 @@ No key? Install [Ollama](https://ollama.com), run `ollama pull qwen2.5:7b`, and 
 ```bash
 cd api && pip install -e ".[dev]"
 uvicorn faro_api.main:app --reload      # http://localhost:8000 (docs at /docs)
-ruff check . && mypy && pytest          # 56 tests
+ruff check . && mypy && pytest          # 68 tests
 
 cd web && npm install
 npm run dev                             # http://localhost:5173 (proxies /api)

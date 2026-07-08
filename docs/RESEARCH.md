@@ -29,7 +29,7 @@ The #1 failure mode of LLM finance apps is hallucinated numbers. The architectur
 
 1. "I built an AI portfolio analytics copilot: FastAPI quant engine, React dashboard, Claude agent with tool-use."
 2. "Every metric is implemented from the formula and unit-tested — here's my VaR test against a known distribution." (MSF)
-3. "The agent can't make up numbers — it must call the engine; here's the tool schema and an eval showing grounded answers." (AI engineering)
+3. "The agent must call the engine for every figure, and a grounding checker flags any number that does not trace to a tool result — here is the tool schema and the eval." (AI engineering)
 4. "CI runs the full test suite; it's Dockerized; here's the live demo link." (Raytheon rigor)
 5. "I scoped out execution/advice deliberately — compliance boundary." (judgment)
 
