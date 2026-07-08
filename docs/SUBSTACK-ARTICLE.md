@@ -1,75 +1,79 @@
-# Substack post #1 — ready to paste
+# Substack post #1 — FINAL, ready to publish
 
-*How to publish: New post → paste the Title and Subtitle into their fields, then the body below. Insert images where marked. Suggested publication name: **Faro Quant** (tagline: "Building an open-source AI portfolio copilot, in public.")*
+*How to publish: Substack → New post. Paste the Title and Subtitle into their fields, then the body below (Substack accepts pasted markdown). Insert images at the two marked spots. Suggested publication name: **Faro Quant** — tagline: "Building an open-source AI portfolio copilot, in public."*
 
----
-
-**TITLE:** I'm Building a Robinhood-Cortex-Style AI Portfolio Copilot — Free, Open Source, and It Can't Hallucinate
-
-**SUBTITLE:** An MSF grad and defense engineer's build-in-public project: real quant finance, a tool-grounded AI agent, and a $0 stack anyone can replicate.
+*Before hitting publish: (1) export `brand/logo-wordmark.svg` to PNG (Substack doesn't take SVG) for the header + social preview; (2) take the dashboard screenshot for the second image slot; (3) set the post URL slug to `faro-ai-portfolio-copilot`.*
 
 ---
 
-**[IMAGE: brand/logo-wordmark.svg — the Faro wordmark]**
+**TITLE:** I Built an AI Portfolio Copilot That Has to Show Its Work
 
-The most dangerous thing an AI can do in finance isn't giving bad advice. It's giving you a **number it made up** — confidently, fluently, and wrapped in a professional tone.
+**SUBTITLE:** A finance grad and defense engineer's answer to AI's biggest problem in fintech: a quant engine the LLM can't bypass, a grounding checker that catches invented numbers, and a public eval to prove it. Open source, bilingual, free to run.
 
-That's the problem I'm setting out to solve in public, with a project called **Faro** (Spanish for *lighthouse*): an open-source AI portfolio copilot where the AI is *architecturally incapable* of inventing figures.
+---
 
-## Who I am, and why this project
+**[IMAGE 1: Faro wordmark PNG]**
 
-I'm a Master of Science in Finance graduate (University of Arizona) and a working engineer at Raytheon. I've spent my career where correctness isn't optional — and I want to bring that discipline to the intersection everyone's racing toward: **AI × personal finance**.
+The most dangerous thing an AI can do with your money isn't giving bad advice. It's stating a **number it made up** — confidently, fluently, wrapped in a professional tone.
 
-Robinhood's Cortex, launched to Gold subscribers, shows where the industry is going: AI portfolio digests, plain-English market research, natural-language tools. I'm building the same core idea as a self-hosted, transparent, free alternative — partly because I want it for my own portfolio, and partly because the best way to show you understand a system is to build one.
+I know because I caught my own AI doing it. During testing, my portfolio copilot told me I'd made a profit of **$12,345.67**. A suspiciously tidy number. The real figure was nowhere close — the model had simply invented it, the way language models do.
 
-## What Faro does
+The difference is: my system *caught it automatically*. That catch — and the architecture behind it — is what this post is about.
 
-You enter your holdings. Faro then:
+**Faro** ([faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)) is an open-source, self-hosted, bilingual portfolio analytics app with an AI copilot. You enter your holdings; it computes institutional-grade risk metrics and lets you interrogate them in plain English or Spanish. It's free to run, MIT-licensed, and it never executes trades or gives personalized advice — an educational tool with the compliance boundary drawn in ink.
 
-1. **Computes institutional-grade risk analytics from first principles** — Sharpe and Sortino ratios, alpha and beta against the S&P 500, historical *and* parametric Value-at-Risk, CVaR, maximum drawdown, correlation structure, concentration. Every formula implemented by hand in a pure Python module, documented, and unit-tested against independently computed reference values. No black-box quant libraries in the engine.
-2. **Explains it all through an AI copilot** — ask *"How risky is my portfolio?"* or *"What happens if NVDA drops 20%?"* and an LLM agent answers in plain English.
+## Who I am, and why I built this
 
-Here's the architectural trick, and the whole thesis of the project:
+I'm a Master of Science in Finance graduate (University of Arizona) and an engineer at Raytheon. My day job is a domain where "the number is probably right" doesn't fly. When I watched the industry race to put chatbots in front of financial data — Robinhood's Cortex being the flagship example — I kept asking the same question: *what stops the model from making things up?*
 
-> **The agent's only source of numbers is the quant engine.** It answers by calling tested functions — `get_metric`, `run_price_shock_scenario` — and reasoning over their outputs. Every figure in every answer is traceable to a computation. If it didn't come from a tool call, it doesn't get said.
+For most products, the honest answer is "a system prompt and hope." I wanted to build the better answer, in public, with receipts.
 
-This pattern — deterministic engine underneath, LLM as the reasoning-and-language layer on top — is, I believe, the only responsible way to put AI in front of financial data. It's also exactly how production fintech AI is built.
+## The architecture: math first, language second, verification always
 
-## The $0 constraint
+Faro is three layers, and the order matters:
 
-Everything runs free, on your own machine:
+**1. A deterministic quant engine.** Every metric — Sharpe, Sortino, beta, Jensen's alpha, historical *and* parametric Value-at-Risk, CVaR, max drawdown, correlations, concentration, per-position risk contributions — is implemented from its documented formula in pure numpy/pandas. No black-box quant libraries in the engine. **68 unit tests** verify each one two ways: against hand-computed references (the derivations live in the test comments) and cross-checks against independent implementations. I even wrote the inverse-normal CDF from scratch (Acklam's rational approximation) rather than import scipy — then tested it against scipy to 1e-8.
 
-- **Market data:** Yahoo Finance daily bars, cached locally. No key.
-- **Database:** SQLite. **Hosting:** Docker on your PC.
-- **The AI:** a local open-source model via Ollama by default — with a provider layer that switches to Claude by setting a single environment variable. No code changes.
+**2. An AI copilot that can only call tools.** The LLM gets exactly five typed tools — portfolio summary, any metric, position detail, price-shock scenarios, benchmark comparison — and those tools dispatch into the *same service layer the dashboard uses*. One engine, two consumers: the chat and the UI cannot disagree, because they're reading the same functions. The provider layer swaps with one environment variable: Anthropic's Claude when a key is present, a free local model via Ollama when it isn't. The app costs $0 to run.
 
-The acceptance test I've set for myself: *fresh clone → `docker compose up` → working app with a demo portfolio, in under five minutes, with zero paid keys or accounts.* If you can't replicate it, I haven't shipped it.
+**3. A grounding checker on every reply.** After the model answers, Faro extracts every number from the text and verifies it traces to a tool result from that turn — handling the ways humans quote figures (percentages, sign flips, comma grouping, rounding). Anything unsupported is **detected and surfaced**, not silently shipped.
 
-## What Faro deliberately won't do
+Note the claim carefully: not "the AI can never hallucinate" — nobody can honestly promise that. The claim is *unsupported numbers are detected and flagged*, and that claim is testable.
 
-No trade execution. No brokerage linking. No "should I buy?" answers — the copilot refuses and instead shows you *how to evaluate the question yourself* (your position is X% of the portfolio, its beta is Y, it contributes Z% of your VaR…). Educational analytics, not investment advice. Drawing that line clearly is a feature, not a limitation.
+## So I tested it — and published the eval
 
-## It's built — and the eval caught real hallucinations
+I wrote a 20-question spot-check: fourteen English, six Spanish, including trap questions like "Should I buy TSLA?" and "¿Debería vender NVDA?" (both must be refused with an educational reframe, in the right language). The script extracts every number from every answer and fails loudly on anything ungrounded.
 
-The MVP is done: a 56-test quant engine (every metric hand-verified *and* cross-checked against independent implementations), a bilingual dashboard, scenario engine, daily digests, and the tool-grounded copilot running on either Claude or a free local model.
+Then I ran it against the *weakest* model in my stack — a 7-billion-parameter local model — on the theory that if the guardrails hold there, they hold anywhere. The results, iteration by iteration:
 
-The best part is what the **grounding eval** found. I wrote a 20-question spot-check (English + Spanish, including "should I buy?" traps) that extracts every number from the copilot's answers and verifies each one traces to a tool result. First run against a small local model: **28 ungrounded numbers** — including a completely fabricated "$12,345.67 profit" and answers recycled from chat history without re-computing. Each failure led to a concrete fix: prompt hardening, independent-turn evaluation, richer tool outputs so the model never needs to derive figures itself. That loop — measure, catch, fix, re-measure — is the whole point of the architecture. A vibe-checked chatbot would have shipped those hallucinations.
+- **Run 1: 28 ungrounded numbers.** The eval caught the model answering follow-ups from chat history without re-computing, that fabricated $12,345.67, and some false-positives of my own (the checker flagged "S&P 500" as the number 500).
+- **Run 2: 4.** Fixes: prompt hardening, independent-turn evaluation, teaching the checker about sign-flipped percentages, and — my favorite — discovering the model had *derived* the benchmark's return from alpha and beta because my tool didn't provide it. The fix wasn't a better prompt; it was a better tool.
+- **Run 3: 2.** Both were the small model doing freelance arithmetic ("you're about 85% diversified") — exactly what the checker exists to catch.
+- **Final run, fully Dockerized: 18/20 answers completely clean**, 100% tool usage, every Spanish answer grounded, both advice traps refused.
 
-## What's coming in this newsletter
+Every failure became a committed fix with a regression test. That loop — measure, catch, fix, re-measure — is the entire thesis. A vibe-checked chatbot would have shipped all 28.
 
-- **Post 2:** Implementing VaR two ways — and proving both correct (including writing an inverse-normal CDF from scratch)
-- **Post 3:** Teaching a local LLM to use quant tools (and every way it went wrong)
-- **Post 4:** The grounding eval — how I caught my copilot inventing $12,345.67
-- **Post 5:** Ship it — Docker, CI, and the 5-minute replication test
+**[IMAGE 2: dashboard screenshot]**
 
-The code is public on GitHub.
+## What using it looks like
 
-**[IMAGE: screenshot of the dashboard — add after milestone 5]**
+`git clone`, `docker compose up`, open localhost. A seeded demo portfolio appears with the full risk picture: metric cards with plain-language explanations, performance vs SPY, a drawdown chart, a correlation heatmap, and a positions table showing each holding's share of total risk (NVDA in the demo is 12% of the money but 24% of the risk — the copilot will happily explain why). Ask "what happens if NVDA drops 20%?" and you watch the tool call happen — a visible chip in the chat — before the answer cites the computed impact. Flip one toggle and the whole thing, copilot included, is in Spanish.
 
-If you're into quant finance, AI engineering, or watching someone build a fintech product with defense-industry paranoia about correctness — subscribe and follow along.
+## What I deliberately didn't build
+
+No trade execution. No brokerage linking. No "should I buy?" answers. No intraday data. Each of those is a scoping decision with a reason — compliance, privacy, honesty about what daily-bar analytics can support — and knowing where *not* to build is the most underrated engineering skill.
+
+## What's next in this newsletter
+
+- **Post 2:** Implementing VaR two ways — and writing an inverse-normal CDF from scratch to avoid a black box
+- **Post 3:** Teaching a 7B local model to use quant tools (and every way it went wrong)
+- **Post 4:** Anatomy of the grounding checker — how it caught $12,345.67
+- **Post 5:** From clean clone to running app in 5 minutes — the replication test as a design constraint
+
+The code is public: [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro). The site is [faroquant.com](https://faroquant.com). If you're into quant finance, AI engineering, or watching someone build fintech software with defense-industry paranoia about correctness — subscribe.
 
 *Faro is an educational tool, not an investment adviser. Nothing in this newsletter is investment advice.*
 
 ---
 
-*End of post. Before publishing: replace the GitHub link placeholder once the repo is public, export logo-wordmark.svg to PNG for Substack (it doesn't take SVG), and set the post's social preview image to the logo.*
+*End of post.*
