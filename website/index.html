@@ -4,96 +4,218 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faro — AI Portfolio Copilot</title>
-<meta name="description" content="Faro is an open-source AI portfolio copilot: institutional-grade risk analytics computed from first principles, explained by an AI that has to show its work — unsupported numbers are detected and flagged. English y español.">
+<meta name="description" content="Open-source bilingual portfolio analytics. A first-principles quant engine plus an AI copilot that shows its work — unsupported numbers are detected and flagged. English y español.">
+<meta property="og:title" content="Faro — AI Portfolio Copilot">
+<meta property="og:description" content="Institutional-grade risk analytics from first principles, explained by an AI that shows its work. Open source, bilingual, runs free on your machine.">
+<meta property="og:url" content="https://faroquant.com">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="logo-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#0B1220;--card:#111A2E;--beam:#FFB020;--teal:#2DD4BF;--text:#E6EDF7;--muted:#8B98AC}
+  :root{--navy:#0B1220;--card:#111A2E;--line:#1E2A44;--beam:#FFB020;--teal:#2DD4BF;--red:#F87171;--text:#E6EDF7;--muted:#8B98AC;--dim:#5E6B82}
   *{margin:0;box-sizing:border-box}
-  body{background:var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;flex-wrap:wrap;gap:10px}
-  .logo{font-size:1.4rem;font-weight:700}.logo span{color:var(--beam)}
-  nav .links a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:.95rem}
-  nav .links a:hover{color:var(--text)}
-  .lang{display:inline-flex;border:1px solid #2A3650;border-radius:99px;overflow:hidden;margin-left:22px;vertical-align:middle}
-  .lang button{background:none;border:0;color:var(--muted);padding:6px 14px;font:600 .85rem Inter,sans-serif;cursor:pointer}
-  .lang button.on{background:var(--beam);color:#0B1220}
-  .hero{padding:80px 0 56px;text-align:center}
-  .badge{display:inline-block;border:1px solid var(--teal);color:var(--teal);border-radius:99px;padding:4px 14px;font-size:.8rem;letter-spacing:.5px;margin-bottom:22px}
-  h1{font-size:clamp(2.1rem,5.5vw,3.5rem);line-height:1.12;font-weight:700}
+  a{color:inherit}
+  .tabular{font-variant-numeric:tabular-nums}
+  /* nav */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;flex-wrap:wrap;gap:10px}
+  .logo{font-size:1.35rem;font-weight:700;display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo img{width:34px;height:34px;border-radius:8px}
+  .logo span{color:var(--beam)}
+  nav .links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  nav .links a{color:var(--muted);text-decoration:none;font-size:.92rem;padding:6px 12px;border-radius:8px}
+  nav .links a:hover{color:var(--text);background:var(--card)}
+  .ghbtn{border:1px solid var(--line);border-radius:8px;padding:6px 14px !important;color:var(--text) !important}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-left:8px}
+  .lang button{background:none;border:0;color:var(--muted);padding:6px 13px;font:600 .82rem Inter,sans-serif;cursor:pointer}
+  .lang button.on{background:var(--beam);color:var(--navy)}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:72px 0 64px}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:44px}}
+  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(45,212,191,.35);color:var(--teal);border-radius:99px;padding:5px 14px;font-size:.78rem;letter-spacing:.6px;margin-bottom:22px;font-weight:600}
+  .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal)}
+  h1{font-size:clamp(2.3rem,4.6vw,3.6rem);line-height:1.08;font-weight:700;letter-spacing:-.5px}
   h1 em{color:var(--beam);font-style:normal}
-  .sub{color:var(--muted);max-width:660px;margin:22px auto 34px;font-size:1.12rem}
-  .cta{display:inline-block;background:var(--beam);color:#0B1220;font-weight:600;padding:14px 30px;border-radius:10px;text-decoration:none;margin:0 8px 12px}
-  .cta.ghost{background:transparent;color:var(--text);border:1px solid #2A3650}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:44px 0}
-  .card{background:var(--card);border:1px solid #1E2A44;border-radius:14px;padding:26px}
-  .card h3{margin-bottom:10px;font-size:1.12rem}
-  .card h3 .dot{color:var(--beam)}
-  .card p{color:var(--muted);font-size:.97rem}
-  .strip{border-top:1px solid #1E2A44;border-bottom:1px solid #1E2A44;padding:34px 0;text-align:center}
-  .strip code{background:#0F1830;border:1px solid #24304C;border-radius:8px;padding:10px 18px;color:var(--teal);font-size:1rem;display:inline-block}
-  .strip p{color:var(--muted);margin-top:12px;font-size:.9rem}
-  .how{padding:56px 0}
-  .how h2{text-align:center;font-size:1.9rem;margin-bottom:8px}
-  .how p.center{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 30px}
-  ol.steps{max-width:640px;margin:0 auto;color:var(--muted);padding-left:22px}
-  ol.steps li{margin:12px 0}ol.steps b{color:var(--text)}
-  footer{padding:44px 0 56px;color:var(--muted);font-size:.85rem;text-align:center}
-  footer a{color:var(--muted)}
-  footer .disc{max-width:680px;margin:14px auto 0;color:#5E6B82}
+  .sub{color:var(--muted);margin:22px 0 30px;font-size:1.13rem;max-width:34rem}
+  .cta{display:inline-block;background:var(--beam);color:var(--navy);font-weight:600;padding:14px 28px;border-radius:11px;text-decoration:none;margin:0 10px 12px 0;transition:transform .15s}
+  .cta:hover{transform:translateY(-2px)}
+  .cta.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .trust{color:var(--dim);font-size:.85rem;margin-top:14px}
+  /* product mockup */
+  .mock{background:linear-gradient(160deg,#0F1830,#0B1220);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 30px 80px -30px rgba(0,0,0,.8);position:relative}
+  .mock::before{content:"";position:absolute;inset:-1px;border-radius:18px;padding:1px;background:linear-gradient(140deg,rgba(255,176,32,.35),transparent 40%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+  .mock .bar{display:flex;gap:6px;margin-bottom:14px}
+  .mock .bar i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}
+  .mock .bar i:first-child{background:var(--red)}
+  .mock .bar i:nth-child(2){background:var(--beam)}
+  .mock .bar i:nth-child(3){background:var(--teal)}
+  .mrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .mlabel{font-size:.62rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+  .mval{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700}
+  .mdelta{color:var(--teal);font-size:.85rem;font-weight:600}
+  .mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+  .mcard .k{font-size:.6rem;letter-spacing:.8px;color:var(--muted);text-transform:uppercase}
+  .mcard .v{font-family:'Space Grotesk';font-size:1.05rem;font-weight:700;margin-top:2px}
+  .mchart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:12px}
+  .mchat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(45,212,191,.4);background:rgba(45,212,191,.08);color:var(--teal);border-radius:99px;padding:3px 10px;font-size:.68rem;font-weight:600;margin-bottom:8px}
+  .bubble{font-size:.8rem;color:var(--text);line-height:1.55}
+  .bubble b{color:var(--beam)}
+  .q{color:var(--muted);font-size:.75rem;margin-bottom:8px;text-align:right}
+  .q span{background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.3);color:var(--beam);border-radius:10px;padding:5px 10px;display:inline-block}
+  /* stats strip */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;text-align:center}
+  .stat .n{font-family:'Space Grotesk';font-size:2rem;font-weight:700;color:var(--beam)}
+  .stat .l{color:var(--muted);font-size:.85rem;margin-top:2px}
+  /* sections */
+  section.block{padding:72px 0 8px}
+  .kicker{color:var(--teal);font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center}
+  h2.title{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);margin:10px auto 12px;max-width:38rem}
+  p.lead{text-align:center;color:var(--muted);max-width:40rem;margin:0 auto 44px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;padding-bottom:56px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;transition:border-color .2s}
+  .card:hover{border-color:rgba(255,176,32,.35)}
+  .card .ic{font-size:1.3rem;margin-bottom:10px;display:block}
+  .card h3{margin-bottom:8px;font-size:1.08rem}
+  .card p{color:var(--muted);font-size:.94rem}
+  /* grounded steps */
+  .steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding-bottom:56px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
+  .step .num{position:absolute;top:-14px;left:22px;background:var(--beam);color:var(--navy);font-family:'Space Grotesk';font-weight:700;border-radius:8px;padding:2px 11px;font-size:.85rem}
+  .step h3{margin:8px 0 8px;font-size:1.02rem}
+  .step p{color:var(--muted);font-size:.92rem}
+  .step code{display:block;background:#0F1830;border:1px solid #24304C;border-radius:8px;padding:8px 10px;color:var(--teal);font-size:.72rem;margin-top:12px;overflow-x:auto;white-space:pre}
+  /* quickstart */
+  .quick{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px;text-align:center;margin-bottom:72px}
+  .quick code{background:#0F1830;border:1px solid #24304C;border-radius:10px;padding:14px 22px;color:var(--teal);font-size:.95rem;display:inline-block;margin:16px 0;max-width:100%;overflow-x:auto}
+  .quick p{color:var(--muted);font-size:.92rem}
+  footer{border-top:1px solid var(--line);padding:44px 0 56px;color:var(--muted);font-size:.85rem;text-align:center}
+  footer .disc{max-width:700px;margin:16px auto 0;color:var(--dim);font-size:.8rem}
+  footer .legal a{color:var(--muted);margin:0 8px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <nav>
-    <div class="logo">faro<span>quant</span></div>
+    <a class="logo" href="#"><img src="logo-icon.svg" alt="">faro<span>quant</span></a>
     <div class="links">
       <a href="#features" data-i18n="nav.features"></a>
+      <a href="#grounded" data-i18n="nav.grounded"></a>
       <a href="#how" data-i18n="nav.how"></a>
-      <a href="https://github.com/CarlosM787/faro">GitHub</a>
+      <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
     </div>
   </nav>
 
   <section class="hero">
-    <div class="badge" data-i18n="hero.badge"></div>
-    <h1 id="hero-h1"></h1>
-    <p class="sub" data-i18n="hero.sub"></p>
-    <a class="cta" href="https://github.com/CarlosM787/faro" data-i18n="hero.cta1"></a>
-    <a class="cta ghost" href="#how" data-i18n="hero.cta2"></a>
+    <div>
+      <div class="badge" data-i18n="hero.badge"></div>
+      <h1 id="hero-h1"></h1>
+      <p class="sub" data-i18n="hero.sub"></p>
+      <a class="cta" href="https://github.com/CarlosM787/faro" data-i18n="hero.cta1"></a>
+      <a class="cta ghost" href="#grounded" data-i18n="hero.cta2"></a>
+      <p class="trust" data-i18n="hero.trust"></p>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="mrow">
+        <div>
+          <div class="mlabel" data-i18n="mock.value"></div>
+          <div class="mval tabular">$30,253.30</div>
+        </div>
+        <div class="mdelta">▲ +44.2%</div>
+      </div>
+      <div class="mcards">
+        <div class="mcard"><div class="k">Sharpe</div><div class="v">0.54</div></div>
+        <div class="mcard"><div class="k">VaR 95%</div><div class="v">1.62%</div></div>
+        <div class="mcard"><div class="k">Beta</div><div class="v">0.85</div></div>
+      </div>
+      <div class="mchart">
+        <svg viewBox="0 0 320 70" width="100%" height="70" preserveAspectRatio="none">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFB020" stop-opacity=".35"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/>
+          </linearGradient></defs>
+          <path d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14 L320,70 L0,70 Z" fill="url(#g)"/>
+          <path d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14" fill="none" stroke="#FFB020" stroke-width="2"/>
+          <path d="M0,58 C40,56 80,50 120,46 S220,34 320,30" fill="none" stroke="#8B98AC" stroke-width="1.4" stroke-dasharray="5 4"/>
+        </svg>
+      </div>
+      <div class="mchat">
+        <div class="q"><span data-i18n="mock.q"></span></div>
+        <div class="chip">📊 run_price_shock_scenario(NVDA, −20%)</div>
+        <div class="bubble" data-i18n-html="mock.a"></div>
+      </div>
+    </div>
   </section>
 
-  <section id="features" class="grid">
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f1.h"></span></h3><p data-i18n="f1.p"></p></div>
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f2.h"></span></h3><p data-i18n="f2.p"></p></div>
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f3.h"></span></h3><p data-i18n="f3.p"></p></div>
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f4.h"></span></h3><p data-i18n="f4.p"></p></div>
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f5.h"></span></h3><p data-i18n="f5.p"></p></div>
-    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f6.h"></span></h3><p data-i18n="f6.p"></p></div>
+  <div class="stats">
+    <div class="stat"><div class="n">68</div><div class="l" data-i18n="stats.tests"></div></div>
+    <div class="stat"><div class="n">20/20</div><div class="l" data-i18n="stats.eval"></div></div>
+    <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs"></div></div>
+    <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost"></div></div>
+    <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license"></div></div>
+  </div>
+
+  <section id="features" class="block">
+    <div class="kicker" data-i18n="feat.kicker"></div>
+    <h2 class="title" data-i18n="feat.title"></h2>
+    <p class="lead" data-i18n="feat.lead"></p>
+    <div class="grid">
+      <div class="card"><span class="ic">🧮</span><h3 data-i18n="f1.h"></h3><p data-i18n="f1.p"></p></div>
+      <div class="card"><span class="ic">🔍</span><h3 data-i18n="f2.h"></h3><p data-i18n="f2.p"></p></div>
+      <div class="card"><span class="ic">🌎</span><h3 data-i18n="f3.h"></h3><p data-i18n="f3.p"></p></div>
+      <div class="card"><span class="ic">⚡</span><h3 data-i18n="f4.h"></h3><p data-i18n="f4.p"></p></div>
+      <div class="card"><span class="ic">🔒</span><h3 data-i18n="f5.h"></h3><p data-i18n="f5.p"></p></div>
+      <div class="card"><span class="ic">⚖️</span><h3 data-i18n="f6.h"></h3><p data-i18n="f6.p"></p></div>
+    </div>
   </section>
 
-  <section class="strip">
-    <code>git clone … &amp;&amp; docker compose up</code>
-    <p data-i18n="strip.p"></p>
+  <section id="grounded" class="block">
+    <div class="kicker" data-i18n="gr.kicker"></div>
+    <h2 class="title" data-i18n="gr.title"></h2>
+    <p class="lead" data-i18n="gr.lead"></p>
+    <div class="steps3">
+      <div class="step"><span class="num">1</span><h3 data-i18n="gr1.h"></h3><p data-i18n="gr1.p"></p><code>quant/risk.py
+historical_var(returns, 0.95)
+→ 0.0162   # unit-tested</code></div>
+      <div class="step"><span class="num">2</span><h3 data-i18n="gr2.h"></h3><p data-i18n="gr2.p"></p><code>tools: get_metric
+get_position_detail
+run_price_shock_scenario
+compare_to_benchmark</code></div>
+      <div class="step"><span class="num">3</span><h3 data-i18n="gr3.h"></h3><p data-i18n="gr3.p"></p><code>grounding_check: every number
+in the reply must trace to a
+tool result → flagged if not</code></div>
+    </div>
   </section>
 
-  <section id="how" class="how">
-    <h2 data-i18n="how.h"></h2>
-    <p class="center" data-i18n="how.sub"></p>
-    <ol class="steps">
-      <li><b data-i18n="s1.b"></b> <span data-i18n="s1.t"></span></li>
-      <li><b data-i18n="s2.b"></b> <span data-i18n="s2.t"></span></li>
-      <li><b data-i18n="s3.b"></b> <span data-i18n="s3.t"></span></li>
-      <li><b data-i18n="s4.b"></b> <span data-i18n="s4.t"></span></li>
-    </ol>
+  <section id="how" class="block">
+    <div class="kicker" data-i18n="how.kicker"></div>
+    <h2 class="title" data-i18n="how.h"></h2>
+    <p class="lead" data-i18n="how.sub"></p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <div class="card"><span class="ic">📋</span><h3 data-i18n="s1.b"></h3><p data-i18n="s1.t"></p></div>
+      <div class="card"><span class="ic">📈</span><h3 data-i18n="s2.b"></h3><p data-i18n="s2.t"></p></div>
+      <div class="card"><span class="ic">💬</span><h3 data-i18n="s3.b"></h3><p data-i18n="s3.t"></p></div>
+      <div class="card"><span class="ic">📰</span><h3 data-i18n="s4.b"></h3><p data-i18n="s4.t"></p></div>
+    </div>
   </section>
+
+  <div class="quick">
+    <h2 class="title" data-i18n="quick.h"></h2>
+    <code>git clone https://github.com/CarlosM787/faro && docker compose up</code>
+    <p data-i18n="quick.p"></p>
+  </div>
 
   <footer>
-    <div class="logo" style="font-size:1.1rem">faro<span style="color:var(--beam)">quant</span></div>
+    <div class="logo" style="justify-content:center;font-size:1.1rem">faro<span style="color:var(--beam)">quant</span></div>
     <p style="margin-top:6px" data-i18n="foot.by"></p>
-    <p style="margin-top:10px">
+    <p class="legal" style="margin-top:12px">
+      <a href="https://github.com/CarlosM787/faro">GitHub</a> ·
       <a href="legal/Faro-Privacy-Policy.pdf" data-i18n="foot.privacy"></a> ·
       <a href="legal/Faro-Terms-of-Use.pdf" data-i18n="foot.terms"></a> ·
       <a href="legal/Faro-Investment-Disclaimer.pdf" data-i18n="foot.disclaimer"></a>
@@ -105,54 +227,81 @@
 <script>
 const T = {
   en: {
-    "nav.features":"Features","nav.how":"How it works",
-    "hero.badge":"OPEN SOURCE · RUNS FREE ON YOUR MACHINE · ENGLISH & ESPAÑOL",
+    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works",
+    "hero.badge":"OPEN SOURCE · SELF-HOSTED · ENGLISH & ESPAÑOL",
     "hero.h1":'Portfolio analytics where the AI <em>shows its work</em>.',
-    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then lets an AI copilot explain them in plain English or Spanish. Every number the AI states is verified against the tested quant engine — unsupported figures are flagged. No bank logins, no cloud required.",
-    "hero.cta1":"Get it on GitHub","hero.cta2":"See how it works",
-    "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against reference values — not imported from a black box. Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration.",
-    "f2.h":"A copilot grounded by design","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is checked against a computation, and unsupported numbers are flagged.",
-    "f3.h":"Truly bilingual","f3.p":"The whole app — dashboard, copilot chat, digests — works in English and Spanish with one tap. Ask in either language; get answers in yours.",
-    "f4.h":"Daily digests","f4.p":"One click: what moved your portfolio, your biggest risk contributors, and upcoming earnings for your holdings — summarized by the copilot from computed data.",
-    "f5.h":"Private & replicable","f5.p":"Your data stays in a local database on your machine. Clone → docker compose up → running in 5 minutes. Powered by Claude, with a free local-model fallback.",
-    "f6.h":"Compliance-aware","f6.p":"Educational analytics, not advice. Faro never executes trades, never links to your broker, and politely refuses \"should I buy?\" — showing you how to evaluate it yourself instead.",
-    "strip.p":"That's the whole install. Your portfolio never leaves your machine.",
-    "how.h":"How it works","how.sub":"One engine, two consumers — the dashboard and the AI both call the same tested functions.",
-    "s1.b":"Enter your holdings.","s1.t":"Tickers, shares, cost basis. Data stays in a local SQLite file.",
-    "s2.b":"Faro fetches free market data","s2.t":"(daily bars, cached on disk) and computes your full risk profile.",
-    "s3.b":"Ask the copilot anything.","s3.t":"It calls get_metric, run_price_shock_scenario, and friends — then explains the results with the actual numbers cited.",
-    "s4.b":"Read your daily digest.","s4.t":"Drivers, risks, and upcoming events for your holdings.",
-    "foot.by":"Built by an MSF graduate & engineer. Open source.",
+    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then an AI copilot explains them in plain English or Spanish. Every number it states is verified against the tested quant engine; unsupported figures are flagged.",
+    "hero.cta1":"Get it on GitHub","hero.cta2":"See how grounding works",
+    "hero.trust":"MIT licensed · No bank logins · No cloud required · Educational tool, not investment advice",
+    "mock.value":"PORTFOLIO VALUE","mock.q":"What happens if NVDA drops 20%?",
+    "mock.a":"If NVDA fell 20%, your portfolio would decline <b>$710.61 (−2.3%)</b> to <b>$29,542.69</b>. NVDA is 11.7% of your holdings but contributes <b>23.6% of your risk</b> — every number above comes from the scenario tool call shown.",
+    "stats.tests":"unit tests on the quant engine","stats.eval":"answers used tools in the bilingual grounding eval","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
+    "feat.kicker":"Why Faro","feat.title":"Serious analytics. Honest AI. Your machine.",
+    "feat.lead":"Most AI finance tools ask you to trust a chatbot. Faro is built the other way around: deterministic math first, language model second, verification always.",
+    "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against independently computed references — Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration, risk contributions.",
+    "f2.h":"A copilot that shows its work","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is checked against a computation, and unsupported numbers are flagged.",
+    "f3.h":"Truly bilingual","f3.p":"Dashboard, copilot, scenarios, digests — everything works in English and Spanish with one tap. Ask in either language; get answers, number formatting and legal docs in yours.",
+    "f4.h":"Scenario lab & daily digest","f4.p":"Stress-test instant price shocks with per-position impact, and generate a one-click daily brief: movers, risk contributors, upcoming earnings — narrated from computed facts only.",
+    "f5.h":"Private & replicable","f5.p":"Your data lives in a local database on your machine. Clone → docker compose up → running in 5 minutes. Claude-powered when you add a key; free local model otherwise.",
+    "f6.h":"Compliance-aware by design","f6.p":"Educational analytics, not advice. Faro never executes trades, never touches your brokerage, and politely refuses \"should I buy?\" — showing you how to evaluate it yourself instead.",
+    "gr.kicker":"The core idea","gr.title":"Hallucination isn't prompted away. It's engineered away.",
+    "gr.lead":"The #1 failure mode of LLM finance apps is invented numbers. Faro's answer is architectural — and it's measured, not assumed.",
+    "gr1.h":"Deterministic engine underneath","gr1.p":"Pure numpy/pandas implementations of every formula, documented and cross-checked against independent libraries in 68 tests.",
+    "gr2.h":"The AI can only call tools","gr2.p":"The copilot's sole source of numbers is five typed tools that dispatch into the same service layer the dashboard uses — one engine, two consumers, zero disagreement.",
+    "gr3.h":"Every reply is verified","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything unsupported is detected and surfaced — measured by a public 20-question bilingual eval.",
+    "how.kicker":"Workflow","how.h":"From holdings to insight in four steps",
+    "how.sub":"No accounts, no brokerage linking — enter what you own and Faro does the math.",
+    "s1.b":"Enter your holdings","s1.t":"Tickers, shares, cost basis. Data stays in a local SQLite file on your machine.",
+    "s2.b":"Faro computes your risk profile","s2.t":"Free daily market data, cached on disk, feeds the full metrics suite — with graceful offline degradation.",
+    "s3.b":"Ask the copilot anything","s3.t":"Streaming answers with visible tool-call chips, in your language, with every number cited from computations.",
+    "s4.b":"Read your daily digest","s4.t":"Drivers, risk contributors and upcoming earnings for your holdings — generated on demand.",
+    "quick.h":"Running in five minutes",
+    "quick.p":"That's the whole install. No API keys required — add ANTHROPIC_API_KEY later to switch the copilot to Claude with zero code changes.",
+    "foot.by":"Built by an MSF graduate & engineer. Open source under MIT.",
     "foot.privacy":"Privacy Policy","foot.terms":"Terms of Use","foot.disclaimer":"Investment Disclaimer",
-    "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including loss of principal."
+    "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including possible loss of principal."
   },
   es: {
-    "nav.features":"Funciones","nav.how":"Cómo funciona",
-    "hero.badge":"CÓDIGO ABIERTO · GRATIS EN TU COMPUTADORA · ENGLISH & ESPAÑOL",
+    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona",
+    "hero.badge":"CÓDIGO ABIERTO · AUTOALOJADO · ENGLISH & ESPAÑOL",
     "hero.h1":'Análisis de portafolio donde la IA <em>muestra su trabajo</em>.',
-    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice la IA se verifica contra el motor cuantitativo probado — las cifras sin respaldo se marcan. Sin conectar tu banco, sin nube obligatoria.",
-    "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona",
-    "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada con pruebas contra valores de referencia — no importada de una caja negra. Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración.",
-    "f2.h":"Un copiloto anclado por diseño","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra se verifica contra un cálculo, y los números sin respaldo se marcan.",
-    "f3.h":"Verdaderamente bilingüe","f3.p":"Toda la aplicación — tablero, chat del copiloto, resúmenes — funciona en español e inglés con un toque. Pregunta en cualquiera de los dos idiomas; recibe la respuesta en el tuyo.",
-    "f4.h":"Resúmenes diarios","f4.p":"Un clic: qué movió tu portafolio, tus mayores fuentes de riesgo y los próximos reportes de resultados de tus posiciones — resumido por el copiloto a partir de datos calculados.",
-    "f5.h":"Privado y replicable","f5.p":"Tus datos se quedan en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Impulsado por Claude, con un modelo local gratuito como alternativa.",
-    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca se conecta a tu casa de bolsa, y rechaza amablemente \"¿debería comprar?\" — mostrándote cómo evaluarlo tú mismo.",
-    "strip.p":"Esa es toda la instalación. Tu portafolio nunca sale de tu máquina.",
-    "how.h":"Cómo funciona","how.sub":"Un solo motor, dos consumidores — el tablero y la IA llaman las mismas funciones probadas.",
-    "s1.b":"Ingresa tus posiciones.","s1.t":"Símbolos, acciones, costo. Los datos se quedan en un archivo SQLite local.",
-    "s2.b":"Faro obtiene datos de mercado gratuitos","s2.t":"(precios diarios, guardados en caché) y calcula tu perfil de riesgo completo.",
-    "s3.b":"Pregúntale lo que quieras al copiloto.","s3.t":"Llama get_metric, run_price_shock_scenario y más — y explica los resultados citando los números reales.",
-    "s4.b":"Lee tu resumen diario.","s4.t":"Impulsores, riesgos y próximos eventos de tus posiciones.",
-    "foot.by":"Creado por un graduado de MSF e ingeniero. Código abierto.",
+    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice se verifica contra el motor cuantitativo probado; las cifras sin respaldo se marcan.",
+    "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona el anclaje",
+    "hero.trust":"Licencia MIT · Sin conectar tu banco · Sin nube obligatoria · Herramienta educativa, no asesoría de inversión",
+    "mock.value":"VALOR DEL PORTAFOLIO","mock.q":"¿Qué pasa si NVDA cae 20%?",
+    "mock.a":"Si NVDA cayera 20%, tu portafolio bajaría <b>$710.61 (−2.3%)</b> hasta <b>$29,542.69</b>. NVDA es el 11.7% de tus posiciones pero aporta el <b>23.6% de tu riesgo</b> — cada número viene de la llamada a la herramienta de escenarios mostrada.",
+    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"respuestas usaron herramientas en la evaluación bilingüe","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
+    "feat.kicker":"Por qué Faro","feat.title":"Análisis serio. IA honesta. Tu computadora.",
+    "feat.lead":"La mayoría de las herramientas financieras con IA te piden confiar en un chatbot. Faro está construido al revés: primero matemáticas deterministas, luego el modelo de lenguaje, y verificación siempre.",
+    "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada contra referencias independientes — Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración, contribuciones al riesgo.",
+    "f2.h":"Un copiloto que muestra su trabajo","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra se verifica contra un cálculo y los números sin respaldo se marcan.",
+    "f3.h":"Verdaderamente bilingüe","f3.p":"Tablero, copiloto, escenarios, resúmenes — todo funciona en español e inglés con un toque. Pregunta en cualquier idioma; recibe respuestas, formatos numéricos y documentos legales en el tuyo.",
+    "f4.h":"Laboratorio de escenarios y resumen diario","f4.p":"Simula caídas de precio instantáneas con impacto por posición, y genera un resumen diario con un clic: movimientos, fuentes de riesgo y próximos reportes — narrado solo a partir de datos calculados.",
+    "f5.h":"Privado y replicable","f5.p":"Tus datos viven en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Con Claude si agregas una clave; con un modelo local gratuito si no.",
+    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y rechaza amablemente \"¿debería comprar?\" — mostrándote cómo evaluarlo tú mismo.",
+    "gr.kicker":"La idea central","gr.title":"La alucinación no se elimina con prompts. Se elimina con ingeniería.",
+    "gr.lead":"El principal defecto de las apps financieras con IA son los números inventados. La respuesta de Faro es arquitectónica — y se mide, no se asume.",
+    "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 68 pruebas.",
+    "gr2.h":"La IA solo puede llamar herramientas","gr2.p":"La única fuente de números del copiloto son cinco herramientas tipadas que llegan a la misma capa de servicios que usa el tablero — un motor, dos consumidores, cero desacuerdos.",
+    "gr3.h":"Cada respuesta se verifica","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no tenga respaldo se detecta y se señala — medido con una evaluación pública bilingüe de 20 preguntas.",
+    "how.kicker":"Flujo de trabajo","how.h":"De tus posiciones al análisis en cuatro pasos",
+    "how.sub":"Sin cuentas, sin conectar tu casa de bolsa — ingresa lo que tienes y Faro hace las matemáticas.",
+    "s1.b":"Ingresa tus posiciones","s1.t":"Símbolos, acciones, costo. Los datos se quedan en un archivo SQLite local en tu máquina.",
+    "s2.b":"Faro calcula tu perfil de riesgo","s2.t":"Datos de mercado diarios y gratuitos, en caché local, alimentan todas las métricas — con degradación elegante sin conexión.",
+    "s3.b":"Pregúntale lo que quieras al copiloto","s3.t":"Respuestas en tiempo real con las herramientas usadas a la vista, en tu idioma, con cada número citado de los cálculos.",
+    "s4.b":"Lee tu resumen diario","s4.t":"Impulsores, fuentes de riesgo y próximos reportes de tus posiciones — generado bajo demanda.",
+    "quick.h":"Funcionando en cinco minutos",
+    "quick.p":"Esa es toda la instalación. No se requieren claves API — agrega ANTHROPIC_API_KEY después para cambiar el copiloto a Claude sin tocar el código.",
+    "foot.by":"Creado por un graduado de MSF e ingeniero. Código abierto bajo MIT.",
     "foot.privacy":"Política de Privacidad","foot.terms":"Términos de Uso","foot.disclaimer":"Aviso Legal de Inversión",
-    "foot.disc":"Faro es una herramienta educativa de análisis, no un asesor de inversiones. Nada de lo que produce es asesoría de inversión ni una recomendación de comprar o vender ningún valor. Los mercados implican riesgo, incluida la pérdida del capital."
+    "foot.disc":"Faro es una herramienta educativa de análisis, no un asesor de inversiones. Nada de lo que produce es asesoría de inversión ni una recomendación de comprar o vender ningún valor. Los mercados implican riesgo, incluida la posible pérdida del capital."
   }
 };
 function setLang(l){
   localStorage.setItem("faro-lang", l);
   document.documentElement.lang = l;
-  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = T[l][el.dataset.i18n] ?? el.textContent; });
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[l][el.dataset.i18n]; if (v !== undefined) el.textContent = v; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = T[l][el.dataset.i18nHtml]; if (v !== undefined) el.innerHTML = v; });
   document.getElementById("hero-h1").innerHTML = T[l]["hero.h1"];
   document.getElementById("btn-en").classList.toggle("on", l === "en");
   document.getElementById("btn-es").classList.toggle("on", l === "es");

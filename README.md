@@ -6,7 +6,9 @@
 
 [![CI](https://github.com/CarlosM787/faro/actions/workflows/ci.yml/badge.svg)](https://github.com/CarlosM787/faro/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key.
+**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key. Installable as a PWA.
+
+**Website: [faroquant.com](https://faroquant.com)** · Live CI · MIT
 
 > ⚠️ Faro is an **educational tool, not an investment adviser**. It never executes trades, never links to brokerages, and refuses to give personalized investment advice — a deliberate compliance boundary. Legal docs (EN/ES): [docs/legal/](docs/legal/).
 
@@ -94,6 +96,7 @@ Every user-facing string ships in English **and** neutral Latin-American Spanish
 - **Copilot** — streaming chat, tool-call chips, per-portfolio history, suggested questions.
 - **Scenarios** — compounding price shocks (per-ticker or market-wide), per-position impact; same engine as the agent's scenario tool.
 - **Daily digest** — one-click Cortex-style brief: movers, risk contributors, upcoming earnings — narrated by the LLM from computed facts only, grounding-checked.
+- **Installable PWA** — add Faro to any home screen or desktop straight from the browser; a deliberate platform choice over a native app (self-hosted + private beats app-store distribution for this tool).
 
 ## Deliberate boundaries
 
@@ -119,4 +122,4 @@ Fama-French 3-factor exposure (regression is one `quant/` function away) · agen
 
 ---
 
-Built by an MSF graduate (University of Arizona) & Raytheon engineer — [faroquant.com](https://faroquant.com)
+Built by an MSF graduate (University of Arizona) & Raytheon engineer · [faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)

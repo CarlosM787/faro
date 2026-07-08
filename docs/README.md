@@ -28,7 +28,7 @@ The PDFs are also served by the app (Settings page) from `web/public/legal/`.
 |---|---|
 | Brand guide (palette, fonts, voice) | [../brand/BRAND.md](../brand/BRAND.md) |
 | Logos (icon + wordmark, SVG) | [../brand/](../brand/) |
-| Landing page (bilingual, static) | [../website/index.html](../website/index.html) — deploy to faroquant.com |
+| Landing page (bilingual, live) | [faroquant.com](https://faroquant.com) — source in [../website/](../website/), auto-deployed by `.github/workflows/pages.yml` on every push |
 | Substack launch article (post #1 + series plan) | [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) |
 
 ## Archive
