@@ -1,0 +1,25 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      # Ollama runs on the HOST machine; host.docker.internal reaches it from the container.
+      - OLLAMA_URL=http://host.docker.internal:11434
+    env_file:
+      - path: .env
+        required: false # app works keyless (Ollama fallback)
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Linux compatibility
+    volumes:
+      - faro-data:/app/data
+
+  web:
+    build: ./web
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  faro-data:
