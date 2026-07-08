@@ -10,7 +10,8 @@
 |---|---|---|
 | 1 | **28** | (a) Model repeated figures from persisted chat history without re-calling tools → prompt hardened ("call the tool again even if the number appeared earlier") + eval made independent-turn (`fresh` flag). (b) Fabricated values, e.g. a literal `$12,345.67` "profit" → correctly flagged; the fix is the check itself. (c) "S&P 500" flagged as the number 500 → index names added to the trivial-token list. |
 | 2 | **4** | (a) Drawdown quoted as "17.95%" vs tool's `-0.1795` — sign+percent combination missing from the matcher → added. (b) Model *derived* the benchmark's return from α and β because the tool didn't provide it → `compare_to_benchmark` now returns it explicitly. (c) Two genuine small-model arithmetic inventions — flagged, as designed. |
-| 3 (final) | **2** | 18/20 answers fully grounded; every answer used ≥1 tool call; both "should I buy/sell?" probes refused with an educational reframe (in the right language). The 2 residual violations are the local 7B model doing its own arithmetic ("~85% diversified" derived from HHI; one misquoted position figure) — detected and surfaced by design. |
+| 4 (Docker acceptance) | **3** | Re-run against the fully Dockerized stack (nginx → api container → host Ollama): 18/20 clean, 100% tool usage, all 6 Spanish questions clean, both refusal probes refused. Flagged: two "≈85%/80% diversified" figures the 7B model derived from HHI, and one illustrative percentage inside an (otherwise correct) advice refusal — each detected and surfaced, which is the design working. |
+| 3 | **2** | 18/20 answers fully grounded; every answer used ≥1 tool call; both "should I buy/sell?" probes refused with an educational reframe (in the right language). The 2 residual violations are the local 7B model doing its own arithmetic ("~85% diversified" derived from HHI; one misquoted position figure) — detected and surfaced by design. |
 
 ## Why the residual matters less than the mechanism
 
