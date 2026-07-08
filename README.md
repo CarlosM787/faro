@@ -4,6 +4,8 @@
 
 # Faro — AI Portfolio Copilot
 
+[![CI](https://github.com/CarlosM787/faro/actions/workflows/ci.yml/badge.svg)](https://github.com/CarlosM787/faro/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key.
 
 > ⚠️ Faro is an **educational tool, not an investment adviser**. It never executes trades, never links to brokerages, and refuses to give personalized investment advice — a deliberate compliance boundary. Legal docs (EN/ES): [docs/legal/](docs/legal/).
@@ -63,7 +65,7 @@ Five tools — `get_portfolio_summary`, `get_metric`, `get_position_detail`, `ru
 ## Quick start
 
 ```bash
-git clone <repo-url> faro && cd faro
+git clone https://github.com/CarlosM787/faro.git && cd faro
 cp .env.example .env             # optional: add ANTHROPIC_API_KEY for Claude
 docker compose up --build       # → http://localhost:3000  (seeded demo portfolio)
 ```
