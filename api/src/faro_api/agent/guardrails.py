@@ -16,8 +16,9 @@ logger = logging.getLogger(__name__)
 
 # Comma-grouped form must contain ≥1 comma, else plain digits (so "2024" stays whole).
 _NUMBER = re.compile(r"-?\d{1,3}(?:,\d{3})+(?:\.\d+)?|-?\d+(?:\.\d+)?")
-# Numbers that appear in normal prose/formatting, not as data claims:
-_TRIVIAL = {0.0, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 95.0, 99.0, 100.0, 252.0}
+# Numbers that appear in normal prose/formatting, not as data claims
+# (counts, confidence levels, trading days, and index names like "S&P 500"):
+_TRIVIAL = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 10.0, 20.0, 50.0, 95.0, 99.0, 100.0, 252.0, 500.0}
 
 
 def _collect_numbers(value: Any, out: set[float]) -> None:
@@ -42,8 +43,16 @@ def _collect_numbers(value: Any, out: set[float]) -> None:
 
 def _matches(candidate: float, sources: set[float]) -> bool:
     """A reply number is grounded if it matches a tool number in any common
-    presentation: as-is, percentage (×/÷100), sign-flipped, or rounded."""
-    forms = {candidate, -candidate, candidate / 100.0, candidate * 100.0}
+    presentation: as-is, percentage (×/÷100), sign-flipped (drawdowns/losses
+    are quoted positive), or any combination, with rounding tolerance."""
+    forms = {
+        candidate,
+        -candidate,
+        candidate / 100.0,
+        -candidate / 100.0,
+        candidate * 100.0,
+        -candidate * 100.0,
+    }
     for form in forms:
         for source in sources:
             if abs(form - source) <= max(0.005, abs(source) * 0.01):  # rounding tolerance

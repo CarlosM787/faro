@@ -28,6 +28,9 @@ HISTORY_TURNS = 12  # context window discipline: last N messages only
 class ChatIn(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     language: Literal["en", "es"] = "en"
+    # Skip conversation history for this turn (used by the grounding
+    # spot-check so every question is independent and must call tools).
+    fresh: bool = False
 
 
 class ChatMessageOut(BaseModel):
@@ -73,16 +76,16 @@ async def chat(portfolio_id: int, body: ChatIn, session: SessionDep) -> Streamin
     portfolio = _load_portfolio(session, portfolio_id)
     positions = list(portfolio.positions)
 
-    history_rows = (
-        session.query(ChatMessage)
-        .filter_by(portfolio_id=portfolio_id)
-        .order_by(ChatMessage.created_at.desc(), ChatMessage.id.desc())
-        .limit(HISTORY_TURNS)
-        .all()
-    )
-    history: list[Message] = [
-        {"role": r.role, "content": r.content} for r in reversed(history_rows)
-    ]
+    history: list[Message] = []
+    if not body.fresh:
+        history_rows = (
+            session.query(ChatMessage)
+            .filter_by(portfolio_id=portfolio_id)
+            .order_by(ChatMessage.created_at.desc(), ChatMessage.id.desc())
+            .limit(HISTORY_TURNS)
+            .all()
+        )
+        history = [{"role": r.role, "content": r.content} for r in reversed(history_rows)]
 
     executor = ToolExecutor(
         positions=positions,

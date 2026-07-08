@@ -4,7 +4,10 @@
     "totalPnl": "Total P/L",
     "dayChange": "Day change",
     "staleData": "Showing cached data — market data providers unreachable",
-    "asOf": "Data as of {{date}}"
+    "asOf": "Data as of {{date}}",
+    "totalValueInfo": "Current market value of all positions at the latest daily close.",
+    "totalPnlInfo": "Gain or loss versus what you paid (cost basis), in dollars and percent.",
+    "dayChangeInfo": "Change in portfolio value over the most recent trading day."
   },
   "cards": {
     "sharpe": "Sharpe ratio",

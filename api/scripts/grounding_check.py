@@ -42,7 +42,7 @@ def ask(client: httpx.Client, url: str, pid: int, language: str, message: str) -
     with client.stream(
         "POST",
         f"{url}/portfolios/{pid}/chat",
-        json={"message": message, "language": language},
+        json={"message": message, "language": language, "fresh": True},
         timeout=600.0,
     ) as resp:
         resp.raise_for_status()

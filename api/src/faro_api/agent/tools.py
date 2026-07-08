@@ -183,11 +183,18 @@ class ToolExecutor:
             }
 
         if name == "compare_to_benchmark":
+            # Benchmark's own return provided explicitly so the model never
+            # derives it (α = R_p − [R_f + β(R_b − R_f)] ⇒ R_b).
+            rf = full.risk_free_rate
+            bench_return = (
+                rf + (full.annual_return - rf - full.alpha) / full.beta if full.beta else 0.0
+            )
             return {
                 "benchmark": full.benchmark,
-                "portfolio_annual_return": round(full.annual_return, 4),
+                "portfolio_annual_return_percent": f"{full.annual_return * 100:.2f}%",
+                "benchmark_annual_return_percent": f"{bench_return * 100:.2f}%",
                 "beta": round(full.beta, 4),
-                "alpha_annualized": round(full.alpha, 4),
+                "alpha_annualized_percent": f"{full.alpha * 100:.2f}%",
                 "window": f"{full.window_start:%Y-%m-%d} to {full.window_end:%Y-%m-%d}",
             }
 

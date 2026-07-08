@@ -11,4 +11,12 @@ export default defineConfig({
     port: 5173,
     proxy: { "/api": { target: "http://localhost:8000", changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, "") } },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy vendors so the app shell stays small
+        manualChunks: { charts: ["recharts"], react: ["react", "react-dom", "react-router-dom"] },
+      },
+    },
+  },
 });

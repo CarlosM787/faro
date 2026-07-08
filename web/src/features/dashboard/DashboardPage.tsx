@@ -100,17 +100,17 @@ export function DashboardPage() {
         <>
           {/* headline stats */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <MetricCard label={t("header.totalValue")} value={fmtCurrency(metrics.value)} info={t("header.totalValue")} />
+            <MetricCard label={t("header.totalValue")} value={fmtCurrency(metrics.value)} info={t("header.totalValueInfo")} />
             <MetricCard
               label={t("header.totalPnl")}
               value={`${fmtCurrency(metrics.pnl)} (${fmtPct(metrics.pnl_pct)})`}
-              info={t("header.totalPnl")}
+              info={t("header.totalPnlInfo")}
               tone={metrics.pnl >= 0 ? "good" : "bad"}
             />
             <MetricCard
               label={t("header.dayChange")}
               value={fmtPct(metrics.day_change_pct)}
-              info={t("header.dayChange")}
+              info={t("header.dayChangeInfo")}
               tone={metrics.day_change_pct >= 0 ? "good" : "bad"}
             />
           </div>

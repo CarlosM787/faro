@@ -49,16 +49,20 @@ The acceptance test I've set for myself: *fresh clone → `docker compose up` �
 
 No trade execution. No brokerage linking. No "should I buy?" answers — the copilot refuses and instead shows you *how to evaluate the question yourself* (your position is X% of the portfolio, its beta is Y, it contributes Z% of your VaR…). Educational analytics, not investment advice. Drawing that line clearly is a feature, not a limitation.
 
+## It's built — and the eval caught real hallucinations
+
+The MVP is done: a 56-test quant engine (every metric hand-verified *and* cross-checked against independent implementations), a bilingual dashboard, scenario engine, daily digests, and the tool-grounded copilot running on either Claude or a free local model.
+
+The best part is what the **grounding eval** found. I wrote a 20-question spot-check (English + Spanish, including "should I buy?" traps) that extracts every number from the copilot's answers and verifies each one traces to a tool result. First run against a small local model: **28 ungrounded numbers** — including a completely fabricated "$12,345.67 profit" and answers recycled from chat history without re-computing. Each failure led to a concrete fix: prompt hardening, independent-turn evaluation, richer tool outputs so the model never needs to derive figures itself. That loop — measure, catch, fix, re-measure — is the whole point of the architecture. A vibe-checked chatbot would have shipped those hallucinations.
+
 ## What's coming in this newsletter
 
-I'll be documenting the build end to end:
-
-- **Post 2:** Implementing VaR three ways — and testing that I got it right
+- **Post 2:** Implementing VaR two ways — and proving both correct (including writing an inverse-normal CDF from scratch)
 - **Post 3:** Teaching a local LLM to use quant tools (and every way it went wrong)
-- **Post 4:** The grounding test — 20 questions, zero hallucinated numbers
+- **Post 4:** The grounding eval — how I caught my copilot inventing $12,345.67
 - **Post 5:** Ship it — Docker, CI, and the 5-minute replication test
 
-The code will be public on GitHub from the first commit.
+The code is public on GitHub.
 
 **[IMAGE: screenshot of the dashboard — add after milestone 5]**
 

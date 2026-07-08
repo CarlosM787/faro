@@ -4,7 +4,10 @@
     "totalPnl": "Ganancia/Pérdida total",
     "dayChange": "Cambio del día",
     "staleData": "Mostrando datos en caché — los proveedores de datos no responden",
-    "asOf": "Datos al {{date}}"
+    "asOf": "Datos al {{date}}",
+    "totalValueInfo": "Valor de mercado actual de todas las posiciones al último cierre diario.",
+    "totalPnlInfo": "Ganancia o pérdida frente a lo que pagaste (costo), en dólares y porcentaje.",
+    "dayChangeInfo": "Cambio del valor del portafolio en el día de operación más reciente."
   },
   "cards": {
     "sharpe": "Índice de Sharpe",
