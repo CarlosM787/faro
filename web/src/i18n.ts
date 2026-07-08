@@ -5,9 +5,11 @@ import { initReactI18next } from "react-i18next";
 import enChat from "./locales/en/chat.json";
 import enCommon from "./locales/en/common.json";
 import enDashboard from "./locales/en/dashboard.json";
+import enScenarios from "./locales/en/scenarios.json";
 import esChat from "./locales/es/chat.json";
 import esCommon from "./locales/es/common.json";
 import esDashboard from "./locales/es/dashboard.json";
+import esScenarios from "./locales/es/scenarios.json";
 
 // Hard rule (CLAUDE.md): every user-facing string goes through i18next,
 // with en + es shipped in the same commit.
@@ -16,8 +18,8 @@ void i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, dashboard: enDashboard, chat: enChat },
-      es: { common: esCommon, dashboard: esDashboard, chat: esChat },
+      en: { common: enCommon, dashboard: enDashboard, chat: enChat, scenarios: enScenarios },
+      es: { common: esCommon, dashboard: esDashboard, chat: esChat, scenarios: esScenarios },
     },
     defaultNS: "common",
     fallbackLng: "en",

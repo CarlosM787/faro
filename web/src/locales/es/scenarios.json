@@ -1,0 +1,17 @@
+{
+  "title": "Escenarios",
+  "subtitle": "Pon a prueba tu portafolio con caídas de precio hipotéticas — con el mismo motor que usa el copiloto.",
+  "market": "Todo el mercado",
+  "shockLabel": "Cambio de precio",
+  "addShock": "Agregar impacto",
+  "remove": "Quitar",
+  "run": "Ejecutar escenario",
+  "running": "Calculando…",
+  "before": "Valor antes",
+  "after": "Valor después",
+  "impact": "Impacto",
+  "perPosition": "Impacto por posición",
+  "askCopilot": "Pregúntale al copiloto sobre este escenario",
+  "error": "No se pudo ejecutar el escenario.",
+  "empty": "Agrega al menos un impacto y ejecuta el escenario."
+}

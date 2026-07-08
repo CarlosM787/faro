@@ -1,0 +1,17 @@
+{
+  "title": "Scenarios",
+  "subtitle": "Stress-test your portfolio with hypothetical price shocks — powered by the same engine the copilot uses.",
+  "market": "Entire market",
+  "shockLabel": "Price shock",
+  "addShock": "Add shock",
+  "remove": "Remove",
+  "run": "Run scenario",
+  "running": "Computing…",
+  "before": "Value before",
+  "after": "Value after",
+  "impact": "Impact",
+  "perPosition": "Impact by position",
+  "askCopilot": "Ask the copilot about this scenario",
+  "error": "Could not run the scenario.",
+  "empty": "Add at least one shock and run the scenario."
+}

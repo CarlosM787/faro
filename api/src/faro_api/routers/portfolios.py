@@ -12,6 +12,7 @@ from faro_api.db.models import Portfolio, Position
 from faro_api.db.session import get_session
 from faro_api.services.market_data import get_market_data_service
 from faro_api.services.metrics_service import MetricsService
+from faro_api.services.scenario_service import Shock, run_price_shock
 
 router = APIRouter(prefix="/portfolios", tags=["portfolios"])
 
@@ -195,6 +196,55 @@ def get_metrics(portfolio_id: int, session: SessionDep, metrics: MetricsDep) -> 
     full = metrics.full_metrics(portfolio.positions)
     payload = {**full.__dict__, "positions": [p.__dict__ for p in full.positions]}
     return FullMetricsOut(**payload)
+
+
+class ShockIn(BaseModel):
+    ticker: str  # "*" = market-wide
+    pct: float
+
+
+class ScenarioIn(BaseModel):
+    shocks: list[ShockIn]
+
+
+class PositionImpactOut(BaseModel):
+    ticker: str
+    value_before: float
+    value_after: float
+    impact: float
+
+
+class ScenarioOut(BaseModel):
+    value_before: float
+    value_after: float
+    impact: float
+    impact_pct: float
+    positions: list[PositionImpactOut]
+
+
+@router.post("/{portfolio_id}/scenarios")
+def run_scenario(portfolio_id: int, body: ScenarioIn, session: SessionDep) -> ScenarioOut:
+    """Price-shock scenario — same engine the copilot's tool uses."""
+    portfolio = _get_portfolio(session, portfolio_id)
+    if not portfolio.positions:
+        raise HTTPException(status_code=422, detail="Portfolio has no positions")
+    if not body.shocks:
+        raise HTTPException(status_code=422, detail="Provide at least one shock")
+    positions = list(portfolio.positions)
+    tickers = sorted({p.ticker for p in positions})
+    snap = get_market_data_service().get_closes(tickers)
+    result = run_price_shock(
+        positions,
+        snap.closes.iloc[-1],
+        [Shock(ticker=s.ticker, pct=s.pct) for s in body.shocks],
+    )
+    return ScenarioOut(
+        value_before=result.value_before,
+        value_after=result.value_after,
+        impact=result.impact,
+        impact_pct=result.impact_pct,
+        positions=[PositionImpactOut(**p.__dict__) for p in result.positions],
+    )
 
 
 @router.get("/{portfolio_id}/series")

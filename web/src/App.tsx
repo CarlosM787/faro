@@ -5,6 +5,7 @@ import { Disclaimer } from "./components/Disclaimer";
 import { Sidebar } from "./components/Sidebar";
 import { ChatPage } from "./features/chat/ChatPage";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
+import { ScenariosPage } from "./features/scenarios/ScenariosPage";
 import { SettingsPage } from "./features/settings/SettingsPage";
 
 /** Placeholder page used until each feature milestone lands. */
@@ -27,7 +28,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/chat" element={<ChatPage />} />
-            <Route path="/scenarios" element={<Placeholder titleKey="pages.scenariosTitle" />} />
+            <Route path="/scenarios" element={<ScenariosPage />} />
             <Route path="/digest" element={<Placeholder titleKey="pages.digestTitle" />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
