@@ -1,0 +1,9 @@
+{
+  "title": "Resumen diario",
+  "subtitle": "Un informe de tu portafolio con un clic — narrado por el copiloto usando solo datos calculados.",
+  "generate": "Generar el resumen de hoy",
+  "generating": "Generando…",
+  "provider": "Escrito por: {{name}}",
+  "error": "No se pudo generar el resumen. Si no configuraste una clave API, asegúrate de que Ollama esté corriendo.",
+  "empty": "Haz clic en el botón para generar tu resumen."
+}

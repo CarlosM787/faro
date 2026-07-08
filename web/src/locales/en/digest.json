@@ -1,0 +1,9 @@
+{
+  "title": "Daily digest",
+  "subtitle": "A one-click brief on your portfolio — narrated by the copilot from computed data only.",
+  "generate": "Generate today's digest",
+  "generating": "Generating…",
+  "provider": "Written by: {{name}}",
+  "error": "Could not generate the digest. If you're running without an API key, make sure Ollama is running.",
+  "empty": "Click the button to generate your digest."
+}

@@ -13,6 +13,7 @@ from faro_api.config import get_settings
 from faro_api.db.seed import seed_demo_portfolio
 from faro_api.db.session import get_engine
 from faro_api.routers.chat import router as chat_router
+from faro_api.routers.digest import router as digest_router
 from faro_api.routers.portfolios import router as portfolios_router
 
 
@@ -46,6 +47,7 @@ def create_app() -> FastAPI:
 
     app.include_router(portfolios_router)
     app.include_router(chat_router)
+    app.include_router(digest_router)
 
     @app.get("/health")
     def health() -> dict[str, Any]:

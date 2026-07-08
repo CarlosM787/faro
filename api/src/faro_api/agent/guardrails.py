@@ -34,6 +34,10 @@ def _collect_numbers(value: Any, out: set[float]) -> None:
     elif isinstance(value, str):
         with contextlib.suppress(json.JSONDecodeError, ValueError):
             _collect_numbers(json.loads(value), out)
+            return
+        # Formatted values ("0.16%", "$3,100.00", "-2.34%") are still sources.
+        for token in _NUMBER.findall(value):
+            out.add(round(float(token.replace(",", "")), 6))
 
 
 def _matches(candidate: float, sources: set[float]) -> bool:

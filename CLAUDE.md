@@ -41,5 +41,5 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 - [x] Portfolio CRUD + dashboard (value, allocation, metric cards, charts) (2026-07-08)
 - [x] LLM provider layer (Anthropic primary, Ollama fallback) + tool-use agent + chat UI (streaming, guardrails) (2026-07-08)
 - [x] Scenario engine + page (price shocks; shared with agent tools) (2026-07-08)
-- [ ] Daily digest generation
+- [x] Daily digest generation (2026-07-08)
 - [ ] Recruiter-grade README + live demo deployment

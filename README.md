@@ -45,7 +45,7 @@ No key? The copilot runs on a local model via [Ollama](https://ollama.com) (`oll
 | Portfolio CRUD + dashboard | ✅ |
 | LLM provider layer + tool-use agent + chat | ✅ |
 | Scenario engine + page | ✅ |
-| Daily digest | ⬜ |
+| Daily digest | ✅ |
 | Recruiter-grade README + demo | ⬜ |
 
 ## Development

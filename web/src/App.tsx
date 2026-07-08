@@ -1,23 +1,12 @@
-import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router-dom";
 
 import { Disclaimer } from "./components/Disclaimer";
 import { Sidebar } from "./components/Sidebar";
 import { ChatPage } from "./features/chat/ChatPage";
 import { DashboardPage } from "./features/dashboard/DashboardPage";
+import { DigestPage } from "./features/digest/DigestPage";
 import { ScenariosPage } from "./features/scenarios/ScenariosPage";
 import { SettingsPage } from "./features/settings/SettingsPage";
-
-/** Placeholder page used until each feature milestone lands. */
-function Placeholder({ titleKey }: { titleKey: string }) {
-  const { t } = useTranslation();
-  return (
-    <div>
-      <h1 className="text-2xl font-bold">{t(titleKey)}</h1>
-      <p className="mt-3 text-muted">{t("common.comingSoon")}</p>
-    </div>
-  );
-}
 
 export default function App() {
   return (
@@ -29,7 +18,7 @@ export default function App() {
             <Route path="/" element={<DashboardPage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/scenarios" element={<ScenariosPage />} />
-            <Route path="/digest" element={<Placeholder titleKey="pages.digestTitle" />} />
+            <Route path="/digest" element={<DigestPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
