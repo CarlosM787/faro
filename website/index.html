@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faro — AI Portfolio Copilot</title>
+<meta name="description" content="Faro is an open-source AI portfolio copilot: institutional-grade risk analytics computed from first principles, explained by an AI that can't make numbers up. English y español.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1220;--card:#111A2E;--beam:#FFB020;--teal:#2DD4BF;--text:#E6EDF7;--muted:#8B98AC}
+  *{margin:0;box-sizing:border-box}
+  body{background:var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;flex-wrap:wrap;gap:10px}
+  .logo{font-size:1.4rem;font-weight:700}.logo span{color:var(--beam)}
+  nav .links a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:.95rem}
+  nav .links a:hover{color:var(--text)}
+  .lang{display:inline-flex;border:1px solid #2A3650;border-radius:99px;overflow:hidden;margin-left:22px;vertical-align:middle}
+  .lang button{background:none;border:0;color:var(--muted);padding:6px 14px;font:600 .85rem Inter,sans-serif;cursor:pointer}
+  .lang button.on{background:var(--beam);color:#0B1220}
+  .hero{padding:80px 0 56px;text-align:center}
+  .badge{display:inline-block;border:1px solid var(--teal);color:var(--teal);border-radius:99px;padding:4px 14px;font-size:.8rem;letter-spacing:.5px;margin-bottom:22px}
+  h1{font-size:clamp(2.1rem,5.5vw,3.5rem);line-height:1.12;font-weight:700}
+  h1 em{color:var(--beam);font-style:normal}
+  .sub{color:var(--muted);max-width:660px;margin:22px auto 34px;font-size:1.12rem}
+  .cta{display:inline-block;background:var(--beam);color:#0B1220;font-weight:600;padding:14px 30px;border-radius:10px;text-decoration:none;margin:0 8px 12px}
+  .cta.ghost{background:transparent;color:var(--text);border:1px solid #2A3650}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:44px 0}
+  .card{background:var(--card);border:1px solid #1E2A44;border-radius:14px;padding:26px}
+  .card h3{margin-bottom:10px;font-size:1.12rem}
+  .card h3 .dot{color:var(--beam)}
+  .card p{color:var(--muted);font-size:.97rem}
+  .strip{border-top:1px solid #1E2A44;border-bottom:1px solid #1E2A44;padding:34px 0;text-align:center}
+  .strip code{background:#0F1830;border:1px solid #24304C;border-radius:8px;padding:10px 18px;color:var(--teal);font-size:1rem;display:inline-block}
+  .strip p{color:var(--muted);margin-top:12px;font-size:.9rem}
+  .how{padding:56px 0}
+  .how h2{text-align:center;font-size:1.9rem;margin-bottom:8px}
+  .how p.center{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 30px}
+  ol.steps{max-width:640px;margin:0 auto;color:var(--muted);padding-left:22px}
+  ol.steps li{margin:12px 0}ol.steps b{color:var(--text)}
+  footer{padding:44px 0 56px;color:var(--muted);font-size:.85rem;text-align:center}
+  footer a{color:var(--muted)}
+  footer .disc{max-width:680px;margin:14px auto 0;color:#5E6B82}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="logo">faro<span>quant</span></div>
+    <div class="links">
+      <a href="#features" data-i18n="nav.features"></a>
+      <a href="#how" data-i18n="nav.how"></a>
+      <a href="https://github.com/">GitHub</a>
+      <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="badge" data-i18n="hero.badge"></div>
+    <h1 id="hero-h1"></h1>
+    <p class="sub" data-i18n="hero.sub"></p>
+    <a class="cta" href="https://github.com/" data-i18n="hero.cta1"></a>
+    <a class="cta ghost" href="#how" data-i18n="hero.cta2"></a>
+  </section>
+
+  <section id="features" class="grid">
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f1.h"></span></h3><p data-i18n="f1.p"></p></div>
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f2.h"></span></h3><p data-i18n="f2.p"></p></div>
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f3.h"></span></h3><p data-i18n="f3.p"></p></div>
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f4.h"></span></h3><p data-i18n="f4.p"></p></div>
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f5.h"></span></h3><p data-i18n="f5.p"></p></div>
+    <div class="card"><h3><span class="dot">◆</span> <span data-i18n="f6.h"></span></h3><p data-i18n="f6.p"></p></div>
+  </section>
+
+  <section class="strip">
+    <code>git clone … &amp;&amp; docker compose up</code>
+    <p data-i18n="strip.p"></p>
+  </section>
+
+  <section id="how" class="how">
+    <h2 data-i18n="how.h"></h2>
+    <p class="center" data-i18n="how.sub"></p>
+    <ol class="steps">
+      <li><b data-i18n="s1.b"></b> <span data-i18n="s1.t"></span></li>
+      <li><b data-i18n="s2.b"></b> <span data-i18n="s2.t"></span></li>
+      <li><b data-i18n="s3.b"></b> <span data-i18n="s3.t"></span></li>
+      <li><b data-i18n="s4.b"></b> <span data-i18n="s4.t"></span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="logo" style="font-size:1.1rem">faro<span style="color:var(--beam)">quant</span></div>
+    <p style="margin-top:6px" data-i18n="foot.by"></p>
+    <p style="margin-top:10px">
+      <a href="legal/Faro-Privacy-Policy.pdf" data-i18n="foot.privacy"></a> ·
+      <a href="legal/Faro-Terms-of-Use.pdf" data-i18n="foot.terms"></a> ·
+      <a href="legal/Faro-Investment-Disclaimer.pdf" data-i18n="foot.disclaimer"></a>
+    </p>
+    <p class="disc" data-i18n="foot.disc"></p>
+  </footer>
+</div>
+
+<script>
+const T = {
+  en: {
+    "nav.features":"Features","nav.how":"How it works",
+    "hero.badge":"OPEN SOURCE · RUNS FREE ON YOUR MACHINE · ENGLISH & ESPAÑOL",
+    "hero.h1":'Portfolio analytics that <em>can\'t</em> make numbers up.',
+    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then lets an AI copilot explain them in plain English or Spanish. The AI only speaks numbers it got from the tested quant engine. No bank logins, no cloud required.",
+    "hero.cta1":"Get it on GitHub","hero.cta2":"See how it works",
+    "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against reference values — not imported from a black box. Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration.",
+    "f2.h":"A copilot grounded by design","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is traceable to a computation, never hallucinated.",
+    "f3.h":"Truly bilingual","f3.p":"The whole app — dashboard, copilot chat, digests — works in English and Spanish with one tap. Ask in either language; get answers in yours.",
+    "f4.h":"Daily digests","f4.p":"One click: what moved your portfolio, your biggest risk contributors, and upcoming earnings for your holdings — summarized by the copilot from computed data.",
+    "f5.h":"Private & replicable","f5.p":"Your data stays in a local database on your machine. Clone → docker compose up → running in 5 minutes. Powered by Claude, with a free local-model fallback.",
+    "f6.h":"Compliance-aware","f6.p":"Educational analytics, not advice. Faro never executes trades, never links to your broker, and politely refuses \"should I buy?\" — showing you how to evaluate it yourself instead.",
+    "strip.p":"That's the whole install. Your portfolio never leaves your machine.",
+    "how.h":"How it works","how.sub":"One engine, two consumers — the dashboard and the AI both call the same tested functions.",
+    "s1.b":"Enter your holdings.","s1.t":"Tickers, shares, cost basis. Data stays in a local SQLite file.",
+    "s2.b":"Faro fetches free market data","s2.t":"(daily bars, cached on disk) and computes your full risk profile.",
+    "s3.b":"Ask the copilot anything.","s3.t":"It calls get_metric, run_price_shock_scenario, and friends — then explains the results with the actual numbers cited.",
+    "s4.b":"Read your daily digest.","s4.t":"Drivers, risks, and upcoming events for your holdings.",
+    "foot.by":"Built by an MSF graduate & engineer. Open source.",
+    "foot.privacy":"Privacy Policy","foot.terms":"Terms of Use","foot.disclaimer":"Investment Disclaimer",
+    "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including loss of principal."
+  },
+  es: {
+    "nav.features":"Funciones","nav.how":"Cómo funciona",
+    "hero.badge":"CÓDIGO ABIERTO · GRATIS EN TU COMPUTADORA · ENGLISH & ESPAÑOL",
+    "hero.h1":'Análisis de portafolio que <em>no puede</em> inventar números.',
+    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. La IA solo dice números que obtuvo del motor cuantitativo probado. Sin conectar tu banco, sin nube obligatoria.",
+    "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona",
+    "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada con pruebas contra valores de referencia — no importada de una caja negra. Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración.",
+    "f2.h":"Un copiloto anclado por diseño","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra es rastreable a un cálculo, nunca inventada.",
+    "f3.h":"Verdaderamente bilingüe","f3.p":"Toda la aplicación — tablero, chat del copiloto, resúmenes — funciona en español e inglés con un toque. Pregunta en cualquiera de los dos idiomas; recibe la respuesta en el tuyo.",
+    "f4.h":"Resúmenes diarios","f4.p":"Un clic: qué movió tu portafolio, tus mayores fuentes de riesgo y los próximos reportes de resultados de tus posiciones — resumido por el copiloto a partir de datos calculados.",
+    "f5.h":"Privado y replicable","f5.p":"Tus datos se quedan en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Impulsado por Claude, con un modelo local gratuito como alternativa.",
+    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca se conecta a tu casa de bolsa, y rechaza amablemente \"¿debería comprar?\" — mostrándote cómo evaluarlo tú mismo.",
+    "strip.p":"Esa es toda la instalación. Tu portafolio nunca sale de tu máquina.",
+    "how.h":"Cómo funciona","how.sub":"Un solo motor, dos consumidores — el tablero y la IA llaman las mismas funciones probadas.",
+    "s1.b":"Ingresa tus posiciones.","s1.t":"Símbolos, acciones, costo. Los datos se quedan en un archivo SQLite local.",
+    "s2.b":"Faro obtiene datos de mercado gratuitos","s2.t":"(precios diarios, guardados en caché) y calcula tu perfil de riesgo completo.",
+    "s3.b":"Pregúntale lo que quieras al copiloto.","s3.t":"Llama get_metric, run_price_shock_scenario y más — y explica los resultados citando los números reales.",
+    "s4.b":"Lee tu resumen diario.","s4.t":"Impulsores, riesgos y próximos eventos de tus posiciones.",
+    "foot.by":"Creado por un graduado de MSF e ingeniero. Código abierto.",
+    "foot.privacy":"Política de Privacidad","foot.terms":"Términos de Uso","foot.disclaimer":"Aviso Legal de Inversión",
+    "foot.disc":"Faro es una herramienta educativa de análisis, no un asesor de inversiones. Nada de lo que produce es asesoría de inversión ni una recomendación de comprar o vender ningún valor. Los mercados implican riesgo, incluida la pérdida del capital."
+  }
+};
+function setLang(l){
+  localStorage.setItem("faro-lang", l);
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = T[l][el.dataset.i18n] ?? el.textContent; });
+  document.getElementById("hero-h1").innerHTML = T[l]["hero.h1"];
+  document.getElementById("btn-en").classList.toggle("on", l === "en");
+  document.getElementById("btn-es").classList.toggle("on", l === "es");
+}
+setLang(localStorage.getItem("faro-lang") || (navigator.language.startsWith("es") ? "es" : "en"));
+</script>
+</body>
+</html>

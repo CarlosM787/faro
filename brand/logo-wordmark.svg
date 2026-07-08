@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120">
+  <defs>
+    <linearGradient id="beam2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFB020" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFB020" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="120" fill="none"/>
+  <!-- icon -->
+  <path d="M28 30 L96 16 L96 48 Z" fill="url(#beam2)"/>
+  <path d="M22 92 L26 36 L34 36 L38 92 Z" fill="#E6EDF7"/>
+  <rect x="24" y="26" width="12" height="10" rx="2" fill="#FFB020"/>
+  <g stroke="#2DD4BF" stroke-width="3" stroke-linecap="round">
+    <line x1="54" y1="66" x2="54" y2="92"/>
+    <line x1="70" y1="54" x2="70" y2="92"/>
+    <line x1="86" y1="42" x2="86" y2="92"/>
+  </g>
+  <g fill="#2DD4BF">
+    <rect x="49" y="70" width="10" height="14" rx="2"/>
+    <rect x="65" y="59" width="10" height="16" rx="2"/>
+    <rect x="81" y="48" width="10" height="18" rx="2"/>
+  </g>
+  <!-- wordmark -->
+  <text x="116" y="76" font-family="'Space Grotesk','Segoe UI',Arial,sans-serif" font-size="52" font-weight="700" fill="#E6EDF7" letter-spacing="1">faro<tspan fill="#FFB020">quant</tspan></text>
+  <text x="118" y="98" font-family="'Segoe UI',Arial,sans-serif" font-size="15" fill="#8B98AC" letter-spacing="3">AI PORTFOLIO COPILOT</text>
+</svg>
