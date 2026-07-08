@@ -35,7 +35,7 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 
 - [x] Research + planning (2026-07-07)
 - [x] Scaffold: repo, FastAPI + React + Docker Compose + CI skeleton (2026-07-08)
-- [ ] Data pipeline: yfinance provider + cache + seed demo portfolio
+- [x] Data pipeline: yfinance provider + cache + seed demo portfolio (2026-07-08)
 - [ ] Quant engine: returns/vol/Sharpe/Sortino (+ tests)
 - [ ] Quant engine: beta/alpha, VaR/CVaR, max drawdown, correlations, concentration (+ tests)
 - [ ] Portfolio CRUD + dashboard (value, allocation, metric cards, charts)

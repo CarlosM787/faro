@@ -1,18 +1,32 @@
 """FastAPI application factory."""
 
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 
 from faro_api import __version__
 from faro_api.config import get_settings
+from faro_api.db.seed import seed_demo_portfolio
+from faro_api.db.session import get_engine
+
+
+@asynccontextmanager
+async def _lifespan(_: FastAPI) -> AsyncIterator[None]:
+    """Create tables and seed the demo portfolio on startup (idempotent)."""
+    with Session(get_engine()) as session:
+        seed_demo_portfolio(session)
+    yield
 
 
 def create_app() -> FastAPI:
     """Build the Faro API application."""
     settings = get_settings()
     app = FastAPI(
+        lifespan=_lifespan,
         title="Faro — AI Portfolio Copilot API",
         version=__version__,
         description=(
