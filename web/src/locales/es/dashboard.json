@@ -1,0 +1,58 @@
+{
+  "header": {
+    "totalValue": "Valor del portafolio",
+    "totalPnl": "Ganancia/Pérdida total",
+    "dayChange": "Cambio del día",
+    "staleData": "Mostrando datos en caché — los proveedores de datos no responden",
+    "asOf": "Datos al {{date}}"
+  },
+  "cards": {
+    "sharpe": "Índice de Sharpe",
+    "sharpeInfo": "Rendimiento obtenido por unidad de riesgo, por encima de la tasa libre de riesgo. Más de 1 es bueno; menos de 0 significa que el efectivo rindió más.",
+    "var": "Valor en Riesgo (95%)",
+    "varInfo": "En el 95% de los días, tu pérdida diaria no debería superar esta cifra. Basado en los últimos 2 años (método histórico).",
+    "beta": "Beta vs {{benchmark}}",
+    "betaInfo": "Sensibilidad al mercado. 1.0 se mueve con el mercado; más alto amplifica las variaciones, más bajo las amortigua.",
+    "maxDrawdown": "Caída máxima",
+    "maxDrawdownInfo": "La peor caída de pico a valle en el período — la pérdida más profunda que habrías atravesado."
+  },
+  "charts": {
+    "performance": "Rendimiento vs {{benchmark}}",
+    "performanceHint": "Ambos indexados a 100 al inicio del período",
+    "portfolio": "Portafolio",
+    "allocation": "Distribución",
+    "drawdown": "Caída (drawdown)",
+    "correlation": "Matriz de correlación",
+    "correlationHint": "Correlaciones de rendimientos diarios, ventana de 2 años"
+  },
+  "table": {
+    "title": "Posiciones",
+    "edit": "Editar portafolio",
+    "ticker": "Símbolo",
+    "shares": "Acciones",
+    "price": "Precio",
+    "value": "Valor",
+    "pnl": "G/P",
+    "weight": "Peso",
+    "beta": "Beta",
+    "risk": "Parte del riesgo",
+    "riskInfo": "Porción de la varianza total del portafolio que aporta esta posición (suma 100%)."
+  },
+  "editor": {
+    "title": "Editar portafolio",
+    "addPosition": "Agregar posición",
+    "ticker": "Símbolo",
+    "shares": "Acciones",
+    "costBasis": "Costo ($/acción)",
+    "purchaseDate": "Fecha de compra",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "add": "Agregar"
+  },
+  "state": {
+    "loading": "Calculando métricas…",
+    "error": "No se pudieron cargar los datos del portafolio. ¿Está corriendo el API?",
+    "empty": "Este portafolio aún no tiene posiciones."
+  }
+}

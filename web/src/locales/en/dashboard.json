@@ -1,0 +1,58 @@
+{
+  "header": {
+    "totalValue": "Portfolio value",
+    "totalPnl": "Total P/L",
+    "dayChange": "Day change",
+    "staleData": "Showing cached data — market data providers unreachable",
+    "asOf": "Data as of {{date}}"
+  },
+  "cards": {
+    "sharpe": "Sharpe ratio",
+    "sharpeInfo": "Return earned per unit of risk, above the risk-free rate. Above 1 is good; below 0 means cash did better.",
+    "var": "Value at Risk (95%)",
+    "varInfo": "On 95% of days, your one-day loss should not exceed this. Based on the last 2 years (historical method).",
+    "beta": "Beta vs {{benchmark}}",
+    "betaInfo": "Market sensitivity. 1.0 moves with the market; higher amplifies swings, lower dampens them.",
+    "maxDrawdown": "Max drawdown",
+    "maxDrawdownInfo": "Worst peak-to-trough decline in the window — the deepest loss you would have ridden through."
+  },
+  "charts": {
+    "performance": "Performance vs {{benchmark}}",
+    "performanceHint": "Both indexed to 100 at window start",
+    "portfolio": "Portfolio",
+    "allocation": "Allocation",
+    "drawdown": "Drawdown",
+    "correlation": "Correlation matrix",
+    "correlationHint": "Daily-return correlations, 2-year window"
+  },
+  "table": {
+    "title": "Positions",
+    "edit": "Edit portfolio",
+    "ticker": "Ticker",
+    "shares": "Shares",
+    "price": "Price",
+    "value": "Value",
+    "pnl": "P/L",
+    "weight": "Weight",
+    "beta": "Beta",
+    "risk": "Risk share",
+    "riskInfo": "Share of total portfolio variance contributed by this position (sums to 100%)."
+  },
+  "editor": {
+    "title": "Edit portfolio",
+    "addPosition": "Add position",
+    "ticker": "Ticker",
+    "shares": "Shares",
+    "costBasis": "Cost basis ($/share)",
+    "purchaseDate": "Purchase date",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "add": "Add"
+  },
+  "state": {
+    "loading": "Computing metrics…",
+    "error": "Could not load portfolio data. Is the API running?",
+    "empty": "This portfolio has no positions yet."
+  }
+}

@@ -42,7 +42,7 @@ No key? The copilot runs on a local model via [Ollama](https://ollama.com) (`oll
 | Data pipeline (yfinance + cache + seed) | ✅ |
 | Quant engine (returns/vol/Sharpe/Sortino) | ✅ |
 | Quant engine (beta/alpha/VaR/CVaR/drawdown/correlation) | ✅ |
-| Portfolio CRUD + dashboard | ⬜ |
+| Portfolio CRUD + dashboard | ✅ |
 | LLM provider layer + tool-use agent + chat | ⬜ |
 | Scenario engine + page | ⬜ |
 | Daily digest | ⬜ |

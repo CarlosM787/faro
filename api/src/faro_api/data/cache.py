@@ -8,6 +8,9 @@ Strategy (plan risk #1 — yfinance rate limits / outages):
 """
 
 import logging
+import os
+import threading
+import time
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -45,6 +48,9 @@ class PriceCache:
         self._dir = cache_dir
         self._max_age = timedelta(hours=max_age_hours)
         self._dir.mkdir(parents=True, exist_ok=True)
+        # Serialize fetch+write: concurrent dashboard requests must not write
+        # the same parquet file simultaneously (torn writes corrupt it).
+        self._lock = threading.Lock()
 
     def _path(self, ticker: str) -> Path:
         return self._dir / f"{ticker.upper()}.parquet"
@@ -53,7 +59,12 @@ class PriceCache:
         path = self._path(ticker)
         if not path.exists():
             return None
-        frame = pd.read_parquet(path)
+        try:
+            frame = pd.read_parquet(path)
+        except Exception:  # corrupt/partial file → treat as cache miss
+            logger.warning("Corrupt cache file for %s — discarding", ticker)
+            path.unlink(missing_ok=True)
+            return None
         series = frame["close"].astype("float64").rename(ticker)
         series.index = pd.DatetimeIndex(series.index)
         fetched_at = datetime.fromisoformat(str(frame.attrs.get("fetched_at", "")) or "1970-01-01")
@@ -70,10 +81,36 @@ class PriceCache:
         frame = closes.rename("close").to_frame()
         frame.attrs["fetched_at"] = fetched_at.isoformat()
         frame.attrs["requested_start"] = requested_start.isoformat()
-        frame.to_parquet(self._path(ticker))
+        # Atomic write: temp file + os.replace so readers never see a torn file.
+        # A failed cache WRITE must never fail the request — the data is already
+        # in hand. Retries cover transient Windows file locks (e.g. sync tools
+        # like OneDrive briefly holding new files).
+        path = self._path(ticker)
+        tmp = path.with_suffix(".parquet.tmp")
+        try:
+            frame.to_parquet(tmp)
+            for attempt in range(4):
+                try:
+                    os.replace(tmp, path)
+                    return
+                except PermissionError:
+                    if attempt == 3:
+                        raise
+                    time.sleep(0.25 * (attempt + 1))
+        except OSError as exc:
+            logger.warning("Cache write skipped for %s: %s", ticker, exc)
+            tmp.unlink(missing_ok=True)
 
     def get_history(self, ticker: str, start: date, end: date) -> PriceHistory:
-        """Closes for [start, end], cache-first with graceful degradation."""
+        """Closes for [start, end], cache-first with graceful degradation.
+
+        Thread-safe: a lock serializes the check-fetch-write cycle so parallel
+        requests for the same ticker fetch once instead of racing.
+        """
+        with self._lock:
+            return self._get_history_locked(ticker, start, end)
+
+    def _get_history_locked(self, ticker: str, start: date, end: date) -> PriceHistory:
         cached = self._read(ticker)
         now = datetime.now()
 
