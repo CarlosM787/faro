@@ -49,7 +49,7 @@ class PriceCache:
     def _path(self, ticker: str) -> Path:
         return self._dir / f"{ticker.upper()}.parquet"
 
-    def _read(self, ticker: str) -> tuple[pd.Series, datetime] | None:
+    def _read(self, ticker: str) -> tuple[pd.Series, datetime, date] | None:
         path = self._path(ticker)
         if not path.exists():
             return None
@@ -57,11 +57,19 @@ class PriceCache:
         series = frame["close"].astype("float64").rename(ticker)
         series.index = pd.DatetimeIndex(series.index)
         fetched_at = datetime.fromisoformat(str(frame.attrs.get("fetched_at", "")) or "1970-01-01")
-        return series, fetched_at
+        # The start we *asked* the provider for (may predate first trading day,
+        # e.g. IPOs) — determines whether a cached file covers a request.
+        requested_start = date.fromisoformat(
+            str(frame.attrs.get("requested_start", "")) or "9999-12-31"
+        )
+        return series, fetched_at, requested_start
 
-    def _write(self, ticker: str, closes: pd.Series, fetched_at: datetime) -> None:
+    def _write(
+        self, ticker: str, closes: pd.Series, fetched_at: datetime, requested_start: date
+    ) -> None:
         frame = closes.rename("close").to_frame()
         frame.attrs["fetched_at"] = fetched_at.isoformat()
+        frame.attrs["requested_start"] = requested_start.isoformat()
         frame.to_parquet(self._path(ticker))
 
     def get_history(self, ticker: str, start: date, end: date) -> PriceHistory:
@@ -70,11 +78,12 @@ class PriceCache:
         now = datetime.now()
 
         if cached is not None:
-            closes, fetched_at = cached
-            covers = bool(len(closes)) and closes.index.max() >= pd.Timestamp(end) - pd.Timedelta(
-                days=4  # weekend/holiday tolerance at the range end
-            )
-            if now - fetched_at < self._max_age and covers:
+            closes, fetched_at, cached_start = cached
+            covers_end = bool(len(closes)) and closes.index.max() >= pd.Timestamp(
+                end
+            ) - pd.Timedelta(days=4)  # weekend/holiday tolerance at the range end
+            covers_start = cached_start <= start  # file was fetched for a range this wide
+            if now - fetched_at < self._max_age and covers_end and covers_start:
                 return PriceHistory(
                     ticker=ticker,
                     closes=closes.loc[str(start) : str(end)],
@@ -90,13 +99,13 @@ class PriceCache:
             except MarketDataError as exc:
                 errors.append(str(exc))
                 continue
-            self._write(ticker, closes, now)
+            self._write(ticker, closes, now, start)
             return PriceHistory(
                 ticker=ticker, closes=closes, as_of=now, stale=False, source=provider.name
             )
 
         if cached is not None:  # all providers down → stale cache beats no data
-            closes, fetched_at = cached
+            closes, fetched_at, _ = cached
             logger.warning("Serving STALE cache for %s (providers failed: %s)", ticker, errors)
             return PriceHistory(
                 ticker=ticker,

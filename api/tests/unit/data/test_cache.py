@@ -68,3 +68,16 @@ def test_no_data_anywhere_raises(tmp_path) -> None:  # type: ignore[no-untyped-d
     cache = PriceCache([FakeProvider(fail=True)], tmp_path, max_age_hours=24)
     with pytest.raises(MarketDataError):
         cache.get_history("TEST", START, END)
+
+
+def test_wider_range_forces_refetch(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    """Regression: a fresh cache for a SHORT range must not satisfy a LONGER one."""
+    provider = FakeProvider()
+    cache = PriceCache([provider], tmp_path, max_age_hours=24)
+
+    cache.get_history("TEST", date(2024, 1, 5), END)  # warm with a short window
+    assert provider.calls == 1
+
+    result = cache.get_history("TEST", date(2023, 1, 1), END)  # ask for ~1y more
+    assert provider.calls == 2  # refetched — cached range didn't cover the start
+    assert result.source == "fake"

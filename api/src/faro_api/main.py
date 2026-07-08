@@ -12,6 +12,7 @@ from faro_api import __version__
 from faro_api.config import get_settings
 from faro_api.db.seed import seed_demo_portfolio
 from faro_api.db.session import get_engine
+from faro_api.routers.portfolios import router as portfolios_router
 
 
 @asynccontextmanager
@@ -41,6 +42,8 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    app.include_router(portfolios_router)
 
     @app.get("/health")
     def health() -> dict[str, Any]:
