@@ -106,6 +106,7 @@ class FullMetrics:
     correlation_tickers: list[str]
     correlation: list[list[float]]
     # provenance
+    data_sources: list[str]
     risk_free_rate: float
     window_start: datetime
     window_end: datetime
@@ -189,6 +190,7 @@ class MetricsService:
             positions=position_metrics,
             correlation_tickers=tickers,
             correlation=[[round(float(v), 6) for v in row] for row in corr.to_numpy()],
+            data_sources=list(snap.sources),
             risk_free_rate=rf,
             window_start=snap.closes.index.min().to_pydatetime(),
             window_end=snap.closes.index.max().to_pydatetime(),

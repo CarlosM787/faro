@@ -153,6 +153,7 @@ def test_real_executor_dispatches_summary() -> None:
                 positions=[pm],
                 correlation_tickers=["AAPL"],
                 correlation=[[1.0]],
+                data_sources=["yfinance"],
                 risk_free_rate=0.043,
                 window_start=now,
                 window_end=now,

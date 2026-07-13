@@ -65,6 +65,7 @@ export interface FullMetrics {
   positions: PositionMetrics[];
   correlation_tickers: string[];
   correlation: number[][];
+  data_sources: string[];
   risk_free_rate: number;
   window_start: string;
   window_end: string;

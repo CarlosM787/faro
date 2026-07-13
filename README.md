@@ -6,13 +6,17 @@
 
 [![CI](https://github.com/CarlosM787/faro/actions/workflows/ci.yml/badge.svg)](https://github.com/CarlosM787/faro/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key. Installable as a PWA.
+**Institutional-grade portfolio analytics computed from first principles, explained by an AI copilot that has to show its work.** Every number the copilot states is checked against the deterministic quant engine's tool outputs — unsupported figures are detected and flagged, not silently shipped. Fully bilingual (English / Español). Self-hosted; runs free without any API key. Installable to your home screen or desktop (web-app manifest).
 
 **Website: [faroquant.com](https://faroquant.com)** · Live CI · MIT
 
-> ⚠️ Faro is an **educational tool, not an investment adviser**. It never executes trades, never links to brokerages, and refuses to give personalized investment advice — a deliberate compliance boundary. Legal docs (EN/ES): [docs/legal/](docs/legal/).
+> ⚠️ Faro is an **educational tool, not an investment adviser**. It never executes trades, never links to brokerages, and is instructed to refuse personalized investment advice (a behavior exercised in the public eval), with educational disclaimers throughout — a deliberate compliance boundary. Legal docs (EN/ES): [docs/legal/](docs/legal/).
 
-<!-- TODO: add dashboard screenshot + 30s copilot GIF here after deploy -->
+![Faro dashboard — portfolio value, risk metric cards, performance vs SPY, correlation heatmap](docs/screenshots/dashboard.png)
+
+<p align="center"><em>The copilot, in Spanish, citing benchmark returns straight from the <code>compare_to_benchmark</code> tool — every figure traceable to a computation:</em></p>
+
+![Faro copilot answering in Spanish, grounded in tool output](docs/screenshots/copilot.png)
 
 ## The thesis
 
@@ -60,8 +64,8 @@ api (FastAPI · Python 3.12 · mypy strict)
 Five tools — `get_portfolio_summary`, `get_metric`, `get_position_detail`, `run_price_shock_scenario`, `compare_to_benchmark` — dispatch into the same services the dashboard uses. Guardrails:
 
 1. **System prompt contract**: numbers only from tools; educational, never advice; cite metrics; answer in the user's language (EN/ES).
-2. **Grounding checker**: after every reply, numeric tokens are matched against tool outputs; violations are logged and returned in the SSE `done` event. Run the full spot-check yourself: `python scripts/grounding_check.py` (20 questions, EN+ES, exits non-zero on any ungrounded number).
-3. **Advice refusal**: "Should I buy TSLA?" → a compliant educational reframe using the portfolio's actual computed data.
+2. **Grounding checker**: after every reply, numeric tokens are matched against tool outputs; violations are returned in the SSE `done` event and rendered as a visible amber warning under the message (and on digests). The eval runs in two modes — `--fresh` (per-answer integrity: 18/20 on the local 7B model) and `--no-fresh` (the shipped multi-turn config, where a weak local model recites from history and gets flagged wholesale — every figure surfaced, never hidden). Full write-up with real numbers and committed run logs: [docs/GROUNDING-CHECK.md](docs/GROUNDING-CHECK.md). Reproduce: `python scripts/grounding_check.py [--no-fresh]`.
+3. **Advice refusal**: "Should I buy TSLA?" → a compliant educational reframe using the portfolio's actual computed data. (Prompt-level behavior verified in the eval — not a hard code-level guarantee; the disclaimers are the backstop.)
 4. Tool-call chips in the chat UI show exactly which computations backed each answer.
 
 ## Quick start
@@ -72,7 +76,9 @@ cp .env.example .env             # optional: add ANTHROPIC_API_KEY for Claude
 docker compose up --build       # → http://localhost:3000  (seeded demo portfolio)
 ```
 
-No key? Install [Ollama](https://ollama.com), run `ollama pull qwen2.5:7b`, and the copilot works locally for $0. Everything else is free by design: yfinance market data (with on-disk cache + offline degradation), SQLite, Docker.
+No key? Install [Ollama](https://ollama.com), run `ollama pull qwen2.5:7b`, and the copilot works locally for $0. Everything else is free by design: yfinance market data (on-disk cache; keeps working offline after the first successful load), SQLite, Docker.
+
+> Docker + Ollama note: if chat can't reach the local model from inside Docker, make Ollama listen on all interfaces — set the `OLLAMA_HOST=0.0.0.0` environment variable before starting Ollama, then restart it.
 
 ### Development
 
@@ -96,7 +102,7 @@ Every user-facing string ships in English **and** neutral Latin-American Spanish
 - **Copilot** — streaming chat, tool-call chips, per-portfolio history, suggested questions.
 - **Scenarios** — compounding price shocks (per-ticker or market-wide), per-position impact; same engine as the agent's scenario tool.
 - **Daily digest** — one-click Cortex-style brief: movers, risk contributors, upcoming earnings — narrated by the LLM from computed facts only, grounding-checked.
-- **Installable PWA** — add Faro to any home screen or desktop straight from the browser; a deliberate platform choice over a native app (self-hosted + private beats app-store distribution for this tool).
+- **Installable web app** — a manifest lets you add Faro to any home screen or desktop straight from the browser (no offline service worker — the backend runs on your machine anyway); a deliberate platform choice over a native app.
 
 ## Deliberate boundaries
 

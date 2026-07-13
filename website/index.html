@@ -145,6 +145,7 @@
           <path d="M0,58 C40,56 80,50 120,46 S220,34 320,30" fill="none" stroke="#8B98AC" stroke-width="1.4" stroke-dasharray="5 4"/>
         </svg>
       </div>
+      <div style="text-align:right;font-size:.6rem;color:var(--dim);margin-bottom:4px" data-i18n="mock.note"></div>
       <div class="mchat">
         <div class="q"><span data-i18n="mock.q"></span></div>
         <div class="chip">📊 run_price_shock_scenario(NVDA, −20%)</div>
@@ -155,7 +156,7 @@
 
   <div class="stats">
     <div class="stat"><div class="n">68</div><div class="l" data-i18n="stats.tests"></div></div>
-    <div class="stat"><div class="n">20/20</div><div class="l" data-i18n="stats.eval"></div></div>
+    <div class="stat"><div class="n">100%</div><div class="l" data-i18n="stats.eval"></div></div>
     <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs"></div></div>
     <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost"></div></div>
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license"></div></div>
@@ -233,9 +234,9 @@ const T = {
     "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then an AI copilot explains them in plain English or Spanish. Every number it states is verified against the tested quant engine; unsupported figures are flagged.",
     "hero.cta1":"Get it on GitHub","hero.cta2":"See how grounding works",
     "hero.trust":"MIT licensed · No bank logins · No cloud required · Educational tool, not investment advice",
-    "mock.value":"PORTFOLIO VALUE","mock.q":"What happens if NVDA drops 20%?",
+    "mock.value":"PORTFOLIO VALUE","mock.note":"Illustrative demo data","mock.q":"What happens if NVDA drops 20%?",
     "mock.a":"If NVDA fell 20%, your portfolio would decline <b>$710.61 (−2.3%)</b> to <b>$29,542.69</b>. NVDA is 11.7% of your holdings but contributes <b>23.6% of your risk</b> — every number above comes from the scenario tool call shown.",
-    "stats.tests":"unit tests on the quant engine","stats.eval":"answers used tools in the bilingual grounding eval","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
+    "stats.tests":"unit tests on the quant engine","stats.eval":"of unsupported figures flagged in-app — detection, not hope","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
     "feat.kicker":"Why Faro","feat.title":"Serious analytics. Honest AI. Your machine.",
     "feat.lead":"Most AI finance tools ask you to trust a chatbot. Faro is built the other way around: deterministic math first, language model second, verification always.",
     "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against independently computed references — Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration, risk contributions.",
@@ -243,7 +244,7 @@ const T = {
     "f3.h":"Truly bilingual","f3.p":"Dashboard, copilot, scenarios, digests — everything works in English and Spanish with one tap. Ask in either language; get answers, number formatting and legal docs in yours.",
     "f4.h":"Scenario lab & daily digest","f4.p":"Stress-test instant price shocks with per-position impact, and generate a one-click daily brief: movers, risk contributors, upcoming earnings — narrated from computed facts only.",
     "f5.h":"Private & replicable","f5.p":"Your data lives in a local database on your machine. Clone → docker compose up → running in 5 minutes. Claude-powered when you add a key; free local model otherwise.",
-    "f6.h":"Compliance-aware by design","f6.p":"Educational analytics, not advice. Faro never executes trades, never touches your brokerage, and politely refuses \"should I buy?\" — showing you how to evaluate it yourself instead.",
+    "f6.h":"Compliance-aware by design","f6.p":"Educational analytics, not advice. Faro never executes trades, never touches your brokerage, and is instructed to refuse \"should I buy?\" (a behavior exercised in the public eval) — showing you how to evaluate it yourself instead.",
     "gr.kicker":"The core idea","gr.title":"Hallucination isn't prompted away. It's engineered away.",
     "gr.lead":"The #1 failure mode of LLM finance apps is invented numbers. Faro's answer is architectural — and it's measured, not assumed.",
     "gr1.h":"Deterministic engine underneath","gr1.p":"Pure numpy/pandas implementations of every formula, documented and cross-checked against independent libraries in 68 tests.",
@@ -268,9 +269,9 @@ const T = {
     "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice se verifica contra el motor cuantitativo probado; las cifras sin respaldo se marcan.",
     "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona el anclaje",
     "hero.trust":"Licencia MIT · Sin conectar tu banco · Sin nube obligatoria · Herramienta educativa, no asesoría de inversión",
-    "mock.value":"VALOR DEL PORTAFOLIO","mock.q":"¿Qué pasa si NVDA cae 20%?",
+    "mock.value":"VALOR DEL PORTAFOLIO","mock.note":"Datos ilustrativos de demostración","mock.q":"¿Qué pasa si NVDA cae 20%?",
     "mock.a":"Si NVDA cayera 20%, tu portafolio bajaría <b>$710.61 (−2.3%)</b> hasta <b>$29,542.69</b>. NVDA es el 11.7% de tus posiciones pero aporta el <b>23.6% de tu riesgo</b> — cada número viene de la llamada a la herramienta de escenarios mostrada.",
-    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"respuestas usaron herramientas en la evaluación bilingüe","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
+    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"de las cifras sin respaldo se marcan en la app — detección, no confianza ciega","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
     "feat.kicker":"Por qué Faro","feat.title":"Análisis serio. IA honesta. Tu computadora.",
     "feat.lead":"La mayoría de las herramientas financieras con IA te piden confiar en un chatbot. Faro está construido al revés: primero matemáticas deterministas, luego el modelo de lenguaje, y verificación siempre.",
     "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada contra referencias independientes — Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración, contribuciones al riesgo.",
@@ -278,7 +279,7 @@ const T = {
     "f3.h":"Verdaderamente bilingüe","f3.p":"Tablero, copiloto, escenarios, resúmenes — todo funciona en español e inglés con un toque. Pregunta en cualquier idioma; recibe respuestas, formatos numéricos y documentos legales en el tuyo.",
     "f4.h":"Laboratorio de escenarios y resumen diario","f4.p":"Simula caídas de precio instantáneas con impacto por posición, y genera un resumen diario con un clic: movimientos, fuentes de riesgo y próximos reportes — narrado solo a partir de datos calculados.",
     "f5.h":"Privado y replicable","f5.p":"Tus datos viven en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Con Claude si agregas una clave; con un modelo local gratuito si no.",
-    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y rechaza amablemente \"¿debería comprar?\" — mostrándote cómo evaluarlo tú mismo.",
+    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar \"¿debería comprar?\" (comportamiento verificado en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.",
     "gr.kicker":"La idea central","gr.title":"La alucinación no se elimina con prompts. Se elimina con ingeniería.",
     "gr.lead":"El principal defecto de las apps financieras con IA son los números inventados. La respuesta de Faro es arquitectónica — y se mide, no se asume.",
     "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 68 pruebas.",

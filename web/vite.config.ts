@@ -11,12 +11,15 @@ export default defineConfig({
     port: 5173,
     proxy: { "/api": { target: "http://localhost:8000", changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, "") } },
   },
+  preview: {
+    port: 4300,
+    proxy: { "/api": { target: "http://localhost:8000", changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, "") } },
+  },
   build: {
-    rollupOptions: {
-      output: {
-        // Split heavy vendors so the app shell stays small
-        manualChunks: { charts: ["recharts"], react: ["react", "react-dom", "react-router-dom"] },
-      },
-    },
+    // NOTE: no manualChunks — splitting react/recharts into separate vendor
+    // chunks broke module-initialization order in the production bundle
+    // ("TypeError: n is not a function" on /chat). One bundle is boring and
+    // correct; ~200kB gzip total does not justify the risk.
+    chunkSizeWarningLimit: 900,
   },
 });

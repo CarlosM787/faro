@@ -7,7 +7,8 @@
     "asOf": "Data as of {{date}}",
     "totalValueInfo": "Current market value of all positions at the latest daily close.",
     "totalPnlInfo": "Gain or loss versus what you paid (cost basis), in dollars and percent.",
-    "dayChangeInfo": "Change in portfolio value over the most recent trading day."
+    "dayChangeInfo": "Change in portfolio value over the most recent trading day.",
+    "fallbackSource": "Some prices come from the backup provider (Stooq, split-adjusted only — dividends not included). Metrics may differ slightly."
   },
   "cards": {
     "sharpe": "Sharpe ratio",

@@ -12,6 +12,8 @@ interface ChatTurn {
   role: "user" | "assistant";
   content: string;
   tools: ToolChip[];
+  /** Numbers in the reply the grounding checker could NOT trace to a tool result. */
+  violations: number[];
 }
 
 /** Parse an SSE stream of `data: {json}` lines, invoking onEvent per event. */
@@ -81,6 +83,7 @@ export function ChatPage() {
               role: r.role as "user" | "assistant",
               content: r.content,
               tools: r.tool_calls ?? [],
+              violations: [],
             })),
           ),
         );
@@ -90,7 +93,12 @@ export function ChatPage() {
       .then((h: { llm_provider: string }) => setProvider(h.llm_provider));
   }, []);
 
-  useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth" }), [turns]);
+  useEffect(() => {
+    // Block body is REQUIRED: in modern Chrome `scrollIntoView({behavior:"smooth"})`
+    // returns a Promise. A concise-body arrow would hand that Promise back as the
+    // effect's cleanup, and React would crash calling it ("not a function").
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [turns]);
 
   const send = async (text: string) => {
     if (!portfolio || busy || !text.trim()) return;
@@ -99,8 +107,8 @@ export function ChatPage() {
     setInput("");
     setTurns((prev) => [
       ...prev,
-      { role: "user", content: text, tools: [] },
-      { role: "assistant", content: "", tools: [] },
+      { role: "user", content: text, tools: [], violations: [] },
+      { role: "assistant", content: "", tools: [], violations: [] },
     ]);
     try {
       await streamChat(portfolio.id, text, i18n.resolvedLanguage ?? "en", (event) => {
@@ -113,7 +121,13 @@ export function ChatPage() {
               ...last.tools,
               { name: event.name as string, arguments: event.arguments as Record<string, unknown> },
             ];
-          if (event.type === "done" && event.error) setFailed(true);
+          if (event.type === "done") {
+            if (event.error) setFailed(true);
+            // Surface the grounding checker's findings on THIS message —
+            // "unsupported numbers are detected and surfaced," literally.
+            const flagged = event.grounding_violations as number[] | undefined;
+            if (flagged && flagged.length > 0) last.violations = flagged;
+          }
           next[next.length - 1] = last;
           return next;
         });
@@ -167,6 +181,14 @@ export function ChatPage() {
             >
               {turn.content || (busy && i === turns.length - 1 ? t("thinking") : "")}
             </div>
+            {turn.violations.length > 0 && (
+              <p
+                className="mt-1 max-w-[85%] rounded-lg border border-beam/40 bg-beam/10 px-3 py-2 text-xs text-beam"
+                title={turn.violations.join(", ")}
+              >
+                {t("groundingWarning", { count: turn.violations.length })}
+              </p>
+            )}
           </div>
         ))}
         {failed && <p className="text-sm text-loss">{t("error")}</p>}

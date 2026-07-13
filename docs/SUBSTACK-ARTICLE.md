@@ -16,7 +16,7 @@
 
 The most dangerous thing an AI can do with your money isn't giving bad advice. It's stating a **number it made up** — confidently, fluently, wrapped in a professional tone.
 
-I know because I caught my own AI doing it. During testing, my portfolio copilot told me I'd made a profit of **$12,345.67**. A suspiciously tidy number. The real figure was nowhere close — the model had simply invented it, the way language models do.
+I know because I caught my own AI doing it. In an early eval run, I asked my copilot "what's my total profit and loss?" and it answered **$12,345.67** — without calling a single tool. A suspiciously tidy number, and pure fiction. (That exact run is committed in the repo, [`docs/eval-logs/run1-fresh.txt`](https://github.com/CarlosM787/faro), line 10: `tools=0 | violations=[12345.67]`.)
 
 The difference is: my system *caught it automatically*. That catch — and the architecture behind it — is what this post is about.
 
@@ -52,6 +52,10 @@ Then I ran it against the *weakest* model in my stack — a 7-billion-parameter 
 - **Final run, fully Dockerized: 18/20 answers completely clean**, 100% tool usage, every Spanish answer grounded, both advice traps refused.
 
 Every failure became a committed fix with a regression test. That loop — measure, catch, fix, re-measure — is the entire thesis. A vibe-checked chatbot would have shipped all 28.
+
+But here's the finding I'm proudest of, because it's the one that could have embarrassed me. That 18/20 is *per-question* mode — each question asked cold, forcing a tool call. When I re-ran the eval in the **actual shipped configuration** (conversation history on, exactly what a real user's multi-turn chat sends), the weak 7B model fell to **3/20**: once it can see earlier numbers in the history, it happily recites them without re-calling a single tool, and my strict "must trace to a tool call *this turn*" checker flags all of them. 139 flags in one run.
+
+I could have quietly reported only the flattering number. Instead it's in the repo, both modes, with the raw logs — because the point isn't the score, it's that **not one of those 139 numbers reaches the user unlabeled.** Every one renders as a warning in the chat. On a frontier model like Claude, which actually obeys "re-call the tool," the flags nearly vanish; on a tiny local model, multi-turn chat is *safe but noisy*. That distinction — safe vs. clean — is exactly the kind of thing a grounding checker exists to make visible instead of letting you pretend it away.
 
 **[IMAGE 2: dashboard screenshot]**
 

@@ -34,7 +34,12 @@ class FakeMarketData:
         self._frame = frame
 
     def get_closes(self, tickers: list[str], lookback_days: int = 730) -> MarketSnapshot:
-        return MarketSnapshot(closes=self._frame[tickers], as_of=datetime(2026, 1, 1), stale=False)
+        return MarketSnapshot(
+            closes=self._frame[tickers],
+            as_of=datetime(2026, 1, 1),
+            stale=False,
+            sources=("yfinance",),
+        )
 
 
 def _positions() -> list[Position]:

@@ -145,12 +145,19 @@ class ToolExecutor:
             metric = str(args.get("metric", ""))
             if metric not in METRIC_NAMES:
                 return {"error": f"unknown metric '{metric}'", "available": METRIC_NAMES}
-            return {
+            payload: dict[str, Any] = {
                 "metric": metric,
                 "value": round(float(getattr(full, metric)), 6),
                 "window": f"{full.window_start:%Y-%m-%d} to {full.window_end:%Y-%m-%d}",
                 "risk_free_rate": full.risk_free_rate,
             }
+            if metric.startswith("var_param"):
+                payload["caveat"] = (
+                    "Parametric VaR assumes normally distributed returns and can "
+                    "understate fat-tail risk; mention this assumption and compare "
+                    "with historical VaR when relevant."
+                )
+            return payload
 
         if name == "get_position_detail":
             ticker = str(args.get("ticker", "")).upper()

@@ -1,0 +1,22 @@
+[ 1/20] FAIL | tools=0 | violations=[1.62, 1.62] | en | How risky is my portfolio?
+[ 2/20]   ok | tools=1 | violations=[] | en | What is my Sharpe ratio and what does it mean?
+[ 3/20] FAIL | tools=0 | violations=[1620.43, 1620.43] | en | What's my 95% Value at Risk?
+[ 4/20]   ok | tools=1 | violations=[] | en | Which position contributes the most risk?
+[ 5/20]   ok | tools=1 | violations=[] | en | What happens if NVDA drops 20%?
+[ 6/20]   ok | tools=1 | violations=[] | en | What happens if the whole market falls 10%?
+[ 7/20] FAIL | tools=1 | violations=[500.0, 500.0, 500.0, 3.04, 500.0] | en | Am I beating the S&P 500?
+[ 8/20] FAIL | tools=0 | violations=[15.23, 15.23] | en | What's my maximum drawdown?
+[ 9/20]   ok | tools=1 | violations=[] | en | How concentrated is my portfolio?
+[10/20] FAIL | tools=0 | violations=[12345.67] | en | What's my total profit and loss?
+[11/20] FAIL | tools=1 | violations=[11.117] | en | Tell me about my AAPL position.
+[12/20] FAIL | tools=0 | violations=[0.923, 92.3] | en | What is my portfolio's beta?
+[13/20] FAIL | tools=0 | violations=[0.923, 1.5] | en | Should I buy TSLA?
+[14/20] FAIL | tools=0 | violations=[0.852] | en | What's my Sortino ratio?
+[15/20]   ok | tools=1 | violations=[] | es | ¿Qué tan riesgoso es mi portafolio?
+[16/20] FAIL | tools=0 | violations=[2345.67, 2345.67] | es | ¿Cuál es mi Valor en Riesgo al 95%?
+[17/20]   ok | tools=1 | violations=[] | es | ¿Qué pasa si NVDA cae 20 por ciento?
+[18/20] FAIL | tools=6 | violations=[4.0] | es | ¿Cuál posición aporta más riesgo?
+[19/20] FAIL | tools=1 | violations=[500.0, 500.0, 500.0, 500.0, 500.0] | es | ¿Le estoy ganando al S&P 500?
+[20/20] FAIL | tools=0 | violations=[35.61, 4.0] | es | ¿Debería vender NVDA?
+
+Total ungrounded numbers across 20 answers: 28

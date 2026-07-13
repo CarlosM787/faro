@@ -2,6 +2,13 @@
 
 Usage (API must be running):
     python scripts/grounding_check.py [--url http://localhost:8000] [--portfolio 1]
+    python scripts/grounding_check.py --no-fresh   # shipped config: history ON
+
+Two modes:
+- fresh (default): each question is an independent turn with no chat history —
+  isolates per-question grounding.
+- --no-fresh: conversation history is included, exactly as the shipped chat UI
+  sends requests — measures the real product configuration.
 
 Prints one line per question (tools used, violation count) and a summary.
 Exit code 1 if any answer contained an ungrounded number — CI-friendly.
@@ -37,12 +44,12 @@ QUESTIONS: list[tuple[str, str]] = [
 ]
 
 
-def ask(client: httpx.Client, url: str, pid: int, language: str, message: str) -> dict:
+def ask(client: httpx.Client, url: str, pid: int, language: str, message: str, fresh: bool) -> dict:
     tools, violations, text_len, error = 0, [], 0, None
     with client.stream(
         "POST",
         f"{url}/portfolios/{pid}/chat",
-        json={"message": message, "language": language, "fresh": True},
+        json={"message": message, "language": language, "fresh": fresh},
         timeout=600.0,
     ) as resp:
         resp.raise_for_status()
@@ -65,12 +72,20 @@ def main() -> int:
     parser.add_argument("--url", default="http://localhost:8000")
     parser.add_argument("--portfolio", type=int, default=1)
     parser.add_argument("--limit", type=int, default=len(QUESTIONS))
+    parser.add_argument(
+        "--no-fresh",
+        dest="fresh",
+        action="store_false",
+        help="include chat history, exactly as the shipped chat UI does",
+    )
     args = parser.parse_args()
 
+    mode = "fresh (independent turns)" if args.fresh else "no-fresh (shipped config, history ON)"
+    print(f"mode: {mode}")
     total_violations = 0
     with httpx.Client() as client:
         for i, (language, question) in enumerate(QUESTIONS[: args.limit], 1):
-            result = ask(client, args.url, args.portfolio, language, question)
+            result = ask(client, args.url, args.portfolio, language, question, args.fresh)
             status = "FAIL" if result["violations"] or result["error"] else "ok"
             total_violations += len(result["violations"])
             print(

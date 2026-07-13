@@ -7,7 +7,8 @@
     "asOf": "Datos al {{date}}",
     "totalValueInfo": "Valor de mercado actual de todas las posiciones al último cierre diario.",
     "totalPnlInfo": "Ganancia o pérdida frente a lo que pagaste (costo), en dólares y porcentaje.",
-    "dayChangeInfo": "Cambio del valor del portafolio en el día de operación más reciente."
+    "dayChangeInfo": "Cambio del valor del portafolio en el día de operación más reciente.",
+    "fallbackSource": "Algunos precios provienen del proveedor de respaldo (Stooq, ajustado solo por splits — sin dividendos). Las métricas pueden variar ligeramente."
   },
   "cards": {
     "sharpe": "Índice de Sharpe",

@@ -21,6 +21,9 @@ class MarketSnapshot:
     closes: pd.DataFrame  # DatetimeIndex x ticker columns, float64
     as_of: datetime  # oldest refresh time across tickers
     stale: bool  # True if ANY ticker was served past max age
+    # Distinct upstream sources ("yfinance", "stooq", "cache") — surfaced in the
+    # UI because Stooq is split-adjusted only (dividends not folded in).
+    sources: tuple[str, ...] = ("yfinance",)
 
 
 class MarketDataService:
@@ -47,6 +50,7 @@ class MarketDataService:
             closes=frame.astype("float64"),
             as_of=min(h.as_of for h in histories),
             stale=any(h.stale for h in histories),
+            sources=tuple(sorted({h.source for h in histories})),
         )
 
 

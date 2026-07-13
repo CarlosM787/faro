@@ -72,6 +72,7 @@ class FullMetricsOut(BaseModel):
     positions: list[PositionMetricsOut]
     correlation_tickers: list[str]
     correlation: list[list[float]]
+    data_sources: list[str]
     risk_free_rate: float
     window_start: datetime
     window_end: datetime

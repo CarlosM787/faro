@@ -97,6 +97,11 @@ export function DashboardPage() {
           })}
         </div>
       )}
+      {metrics?.data_sources?.includes("stooq") && (
+        <div className="rounded-lg border border-beam/40 bg-beam/10 px-4 py-2 text-sm text-beam">
+          {t("header.fallbackSource")}
+        </div>
+      )}
 
       {!metrics ? (
         <p className="text-muted">{portfolio.positions.length === 0 ? t("state.empty") : t("state.loading")}</p>
