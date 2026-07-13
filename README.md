@@ -18,6 +18,10 @@
 
 ![Faro copilot answering in Spanish, grounded in tool output](docs/screenshots/copilot.png)
 
+<p align="center"><em>…and the whole point, in one screenshot: when the model states a number it didn't compute this turn, the app says so out loud.</em></p>
+
+![Faro flagging a number that could not be traced to a tool result](docs/screenshots/copilot-grounding-warning.png)
+
 ## The thesis
 
 The #1 failure mode of LLM finance apps is **hallucinated numbers**. Faro demonstrates the architecture that fixes it:
