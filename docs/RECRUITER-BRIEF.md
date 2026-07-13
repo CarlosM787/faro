@@ -65,6 +65,18 @@ Then, to judge the engineering:
 - Designed a **provider-agnostic LLM layer** (Claude primary, local Ollama fallback) switchable by one env var with zero code changes.
 - Delivered a **fully bilingual (EN/ES)** product with CI-enforced locale parity and a live HTTPS landing site; enforced a compliance boundary (no trading, no brokerage linking, no personalized advice).
 
+## Interview talking points
+
+Short, honest answers ready for the questions this project invites:
+
+- **"How do you stop an LLM from hallucinating numbers?"** You don't *stop* it — you make it structurally hard and then *catch* what slips through. The model's only numeric source is typed tools over a tested engine, and a post-response checker verifies every number against that turn's tool output. The honest claim is "unsupported numbers are detected and surfaced," and it's measured, not assumed.
+- **"Why detection instead of prevention?"** No one can promise a language model will never produce a bad number. What the architecture *can* do is flag an unsupported number in the UI rather than show it silently — a testable property, and the eval is what tests it.
+- **The eval story (my favorite):** I ran it in the shipped multi-turn config and the weak local model scored 3/20 with 139 flagged figures — far worse than the flattering per-answer 18/20. I put *both* in the repo with raw logs, because the safety story is about what the user sees, not the score. That's the difference between a demo and a system you'd trust.
+- **A real bug I found by testing like a user:** the chat page crashed to blank on modern Chrome because a concise-body `useEffect` returned the Promise from `scrollIntoView`, which React tried to call as a cleanup function. It was invisible until I loaded `/chat` in an actual browser instead of curl — a reminder that end-to-end verification catches what unit tests don't.
+- **Correctness discipline:** I hand-wrote the inverse-normal CDF (Acklam's approximation) instead of importing `scipy`, then tested it against `scipy` to 1e-8. Every quant metric is validated two independent ways.
+- **Architecture judgment:** the dashboard and the copilot read the *same* service layer — one engine, two consumers — so the chart and the chat can't disagree. The LLM provider swaps (Claude ⇄ local Ollama) with one env var and zero code changes.
+- **Knowing what not to build:** no trade execution, no brokerage linking, no "should I buy?" answers, no intraday data — each a deliberate compliance/scope decision. Drawing that boundary is engineering judgment, not a limitation.
+
 ---
 
 *Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice.*

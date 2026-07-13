@@ -16,6 +16,8 @@
 | 💻 **Source** | **[github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)** (MIT) |
 | 🐳 **Run it locally** | `git clone` → `docker compose up --build` → **http://localhost:3000** (seeded demo portfolio, no API key required — [full steps ↓](#run-it-locally-docker)) |
 
+**📚 Docs:** [Recruiter brief](docs/RECRUITER-BRIEF.md) · [Grounding eval (two-mode, with logs)](docs/GROUNDING-CHECK.md) · [Changelog / build diary](docs/CHANGELOG.md) · [Project handoff](docs/PROJECT-HANDOFF.md) · [Legal (EN/ES)](docs/legal/)
+
 > ⚠️ **Educational tool, not an investment adviser.** Faro never executes trades, never links to brokerages, and is **instructed to refuse personalized investment advice, with educational-only disclaimers throughout** — a deliberate compliance boundary. Bilingual legal docs: [docs/legal/](docs/legal/).
 
 ---

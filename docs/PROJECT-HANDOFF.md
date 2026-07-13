@@ -10,7 +10,7 @@ Faro is a **shipped, live MVP** plus a recruiter-grade documentation layer.
 
 - Core app (quant engine, dashboard, copilot, scenarios, digest) — **built, tested, running.**
 - Website [faroquant.com](https://faroquant.com) — **live, HTTPS, recruiter-facing redesign deployed** (real screenshots, "for hiring managers" section, honest two-mode eval stat).
-- Docs — README rewritten recruiter-grade; this handoff + [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) created; [GROUNDING-CHECK.md](GROUNDING-CHECK.md) reflects the honest two-mode eval; [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) drafted and claim-checked (not yet published).
+- Docs — README rewritten recruiter-grade; this handoff + [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) + [CHANGELOG.md](CHANGELOG.md) created; [GROUNDING-CHECK.md](GROUNDING-CHECK.md) reflects the honest two-mode eval; [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) drafted and claim-checked (not yet published).
 - CI **green**; working tree expected clean on `main`.
 
 **Open user tasks (Carlos):** add `ANTHROPIC_API_KEY` and re-run the eval on Claude; publish the Substack article; optional demo GIF / OG social image.
@@ -117,6 +117,42 @@ The dashboard and the copilot read the **same `services/` layer**; the copilot's
 2. Make the smallest change that satisfies the request; keep EN/ES paired; keep claims matched to shipped code and the committed eval.
 3. Run the relevant gates: UI change → check EN⇄ES; agent change → `python api/scripts/grounding_check.py --limit 5` against a running stack; data-layer change → full `pytest`.
 4. Verify **before** pushing (push = deploy). Small conventional commit. Update README/CLAUDE.md Status and this handoff's "current status" when something lands.
+
+## 13. Continuation prompts (copy-paste)
+
+For a **new AI session (Opus / Fable / ChatGPT / Claude Code)**:
+
+> Read `docs/PROJECT-HANDOFF.md`, then `CLAUDE.md` and `README.md`. Run `git status` and `git log --oneline -8` to confirm the real tree state before assuming anything. We are in documentation/recruiter-packaging mode — do not add app features. Then continue from the next open task in section 1 or the roadmap in section 11. Preserve the non-negotiable invariants in section 6; keep every public claim matched to the shipped app and the committed eval; keep EN/ES paired; do not push without my say-so.
+
+For a **claim/accuracy audit**:
+
+> Read `docs/PROJECT-HANDOFF.md` section 6–9. Grep the repo docs and `website/index.html` for overclaims: "cannot hallucinate", "guarantees", "20/20", "PWA"/offline, "prevents hallucinations", hard advice enforcement. For each hit, fix it or explain why it's acceptable. Report a diff summary; commit only if clean; do not push.
+
+For **resuming the one open eval task**:
+
+> With `ANTHROPIC_API_KEY` set and the stack running, run `python api/scripts/grounding_check.py --no-fresh`, then record the Claude result next to the local-7B numbers in `docs/GROUNDING-CHECK.md`. This closes the only unverified public claim. Do not change any other eval numbers.
+
+## 14. What Carlos should do next — checklist
+
+**Manual tests to run (5–10 min):**
+- [ ] `docker compose up --build` → open http://localhost:3000; confirm dashboard loads with the seeded portfolio.
+- [ ] Open the Copilot, ask 2–3 follow-up questions; confirm the **amber grounding warning fires** on the local model (it will, in multi-turn) and that tool-call chips show.
+- [ ] Toggle **EN ⇄ ES** in the app; confirm the copilot answers in the selected language.
+- [ ] Ask "Should I buy TSLA?" → confirm an educational reframe, not a recommendation.
+- [ ] Visit https://faroquant.com; eyeball the two screenshots in place and the EN⇄ES toggle.
+
+**Screenshots / GIFs still needed:**
+- [ ] *(optional)* a 15–30s **demo GIF** for the README hero and Substack (copilot answering + a tool-call chip + a grounding warning).
+- [ ] *(optional)* an **OG social-preview image** (1200×630) for nicer link unfurls on LinkedIn/Substack.
+- Current three screenshots (dashboard, Spanish copilot, grounding warning) exist and are wired into the README and site.
+
+**Substack:** publish-ready and claim-checked, **not published.** Do one human voice pass, export the wordmark to PNG (Substack rejects SVG), then publish. Hook = the real `$12,345.67` catch (verified in `run1-fresh.txt`).
+
+**GitHub / LinkedIn sharing:** ready. The repo README is the front door; pin the repo; a LinkedIn post can reuse the RECRUITER-BRIEF's opening + a screenshot.
+
+**Should Opus review again?** Worth one pass **after** you (a) run the Claude eval and paste the number into GROUNDING-CHECK.md, and (b) do the Substack voice pass — so the review sees final numbers and final copy.
+
+**Push status:** the documentation commits are **local only** (unpushed) unless you've since pushed. Review the diff, then `git push origin main` (docs-only → CI runs and passes; the live site is untouched because Pages only deploys `website/**`).
 
 ---
 

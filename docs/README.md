@@ -12,6 +12,15 @@ Everything that isn't code lives here or in the two sibling folders (`brand/`, `
 | [GROUNDING-CHECK.md](GROUNDING-CHECK.md) | Results of the 20-question EN/ES anti-hallucination spot-check (repeatable via `api/scripts/grounding_check.py`) |
 | [KICKOFF-PROMPT.md](KICKOFF-PROMPT.md) | The prompt that kicked off the build (kept for the build-in-public story) |
 
+## Recruiter & handoff
+
+| Document | Purpose |
+|---|---|
+| [../README.md](../README.md) | The front door — recruiter/GitHub landing, full technical overview |
+| [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) | 1–2 page explainer for job applications and interviews (+ talking points) |
+| [PROJECT-HANDOFF.md](PROJECT-HANDOFF.md) | Canonical source of truth for continuing the project (future AI/human sessions) |
+| [CHANGELOG.md](CHANGELOG.md) | Changelog + build diary — the real milestones and course-corrections |
+
 ## Legal (bilingual EN/ES — Word + PDF)
 
 | Document | Files |

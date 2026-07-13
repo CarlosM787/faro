@@ -2,7 +2,7 @@
 
 *How to publish: Substack → New post. Paste the Title and Subtitle into their fields, then the body below (Substack accepts pasted markdown). Insert images at the two marked spots. Suggested publication name: **Faro Quant** — tagline: "Building an open-source AI portfolio copilot, in public."*
 
-*Before hitting publish: (1) export `brand/logo-wordmark.svg` to PNG (Substack doesn't take SVG) for the header + social preview; (2) take the dashboard screenshot for the second image slot; (3) set the post URL slug to `faro-ai-portfolio-copilot`.*
+*Before hitting publish: (1) export `brand/logo-wordmark.svg` to PNG (Substack doesn't take SVG) for the header + social preview; (2) the three body images already exist in the repo — `docs/screenshots/dashboard.png`, `docs/screenshots/copilot-grounding-warning.png` — drop them into the marked `[IMAGE …]` slots; (3) set the post URL slug to `faro-ai-portfolio-copilot`.*
 
 ---
 
@@ -56,6 +56,10 @@ Every failure became a committed fix with a regression test. That loop — measu
 But here's the finding I'm proudest of, because it's the one that could have embarrassed me. That 18/20 is *per-question* mode — each question asked cold, forcing a tool call. When I re-ran the eval in the **actual shipped configuration** (conversation history on, exactly what a real user's multi-turn chat sends), the weak 7B model fell to **3/20**: once it can see earlier numbers in the history, it happily recites them without re-calling a single tool, and my strict "must trace to a tool call *this turn*" checker flags all of them. 139 flags in one run.
 
 I could have quietly reported only the flattering number. Instead it's in the repo, both modes, with the raw logs — because the point isn't the score, it's that **not one of those 139 numbers reaches the user unlabeled.** Every one renders as a warning in the chat. On a frontier model like Claude, which is far better at obeying "re-call the tool," I expect the flags to be dramatically fewer — but I haven't run that comparison with a real key yet, so I'm not going to quote a number I can't back up (it's the next thing on the list). On a tiny local model, multi-turn chat is *safe but noisy*. That distinction — safe vs. clean — is exactly the kind of thing a grounding checker exists to make visible instead of letting you pretend it away.
+
+**[IMAGE 3: grounding-warning screenshot — `docs/screenshots/copilot-grounding-warning.png`]**
+
+<em>The whole thesis in one screenshot: the copilot (here, in Spanish) states a beta it recited from earlier in the chat, and the app flags it — "3 figures … could not be traced to a tool result."</em>
 
 **[IMAGE 2: dashboard screenshot]**
 
