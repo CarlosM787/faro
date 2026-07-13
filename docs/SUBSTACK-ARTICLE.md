@@ -20,7 +20,7 @@ I know because I caught my own AI doing it. In an early eval run, I asked my cop
 
 The difference is: my system *caught it automatically*. That catch — and the architecture behind it — is what this post is about.
 
-**Faro** ([faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)) is an open-source, self-hosted, bilingual portfolio analytics app with an AI copilot. You enter your holdings; it computes institutional-grade risk metrics and lets you interrogate them in plain English or Spanish. It's free to run, MIT-licensed, and it never executes trades or gives personalized advice — an educational tool with the compliance boundary drawn in ink.
+**Faro** ([faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)) is an open-source, self-hosted, bilingual portfolio analytics app with an AI copilot. You enter your holdings; it computes institutional-grade risk metrics and lets you interrogate them in plain English or Spanish. It's free to run, MIT-licensed, and it never executes trades and is instructed to refuse personalized advice, with educational-only disclaimers throughout — an educational tool with the compliance boundary drawn in ink.
 
 ## Who I am, and why I built this
 
@@ -55,7 +55,7 @@ Every failure became a committed fix with a regression test. That loop — measu
 
 But here's the finding I'm proudest of, because it's the one that could have embarrassed me. That 18/20 is *per-question* mode — each question asked cold, forcing a tool call. When I re-ran the eval in the **actual shipped configuration** (conversation history on, exactly what a real user's multi-turn chat sends), the weak 7B model fell to **3/20**: once it can see earlier numbers in the history, it happily recites them without re-calling a single tool, and my strict "must trace to a tool call *this turn*" checker flags all of them. 139 flags in one run.
 
-I could have quietly reported only the flattering number. Instead it's in the repo, both modes, with the raw logs — because the point isn't the score, it's that **not one of those 139 numbers reaches the user unlabeled.** Every one renders as a warning in the chat. On a frontier model like Claude, which actually obeys "re-call the tool," the flags nearly vanish; on a tiny local model, multi-turn chat is *safe but noisy*. That distinction — safe vs. clean — is exactly the kind of thing a grounding checker exists to make visible instead of letting you pretend it away.
+I could have quietly reported only the flattering number. Instead it's in the repo, both modes, with the raw logs — because the point isn't the score, it's that **not one of those 139 numbers reaches the user unlabeled.** Every one renders as a warning in the chat. On a frontier model like Claude, which is far better at obeying "re-call the tool," I expect the flags to be dramatically fewer — but I haven't run that comparison with a real key yet, so I'm not going to quote a number I can't back up (it's the next thing on the list). On a tiny local model, multi-turn chat is *safe but noisy*. That distinction — safe vs. clean — is exactly the kind of thing a grounding checker exists to make visible instead of letting you pretend it away.
 
 **[IMAGE 2: dashboard screenshot]**
 
