@@ -90,6 +90,28 @@
   .step h3{margin:8px 0 8px;font-size:1.02rem}
   .step p{color:var(--muted);font-size:.92rem}
   .step code{display:block;background:#0F1830;border:1px solid #24304C;border-radius:8px;padding:8px 10px;color:var(--teal);font-size:.72rem;margin-top:12px;overflow-x:auto;white-space:pre}
+  /* screenshots */
+  .shots{display:grid;gap:30px;padding-bottom:20px}
+  figure.shot{margin:0}
+  figure.shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 26px 64px -32px rgba(0,0,0,.85)}
+  figure.shot figcaption{color:var(--muted);font-size:.92rem;line-height:1.6;margin:14px auto 0;text-align:center;max-width:46rem}
+  figure.shot figcaption b{color:var(--beam);font-weight:600}
+  /* two-mode callout */
+  .callout{background:linear-gradient(160deg,rgba(255,176,32,.08),rgba(45,212,191,.05));border:1px solid rgba(255,176,32,.3);border-radius:14px;padding:26px 28px;margin:2px 0 56px}
+  .callout h3{font-size:1.08rem;margin-bottom:8px}
+  .callout p{color:var(--muted);font-size:.94rem}
+  .callout .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  @media(max-width:640px){.callout .two{grid-template-columns:1fr}}
+  .callout .m{background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:15px 16px;display:flex;align-items:baseline;gap:12px}
+  .callout .m .big{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;color:var(--beam);flex:none}
+  .callout .m .lil{color:var(--muted);font-size:.85rem;line-height:1.45}
+  /* evaluate */
+  .evalgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;padding-bottom:56px}
+  .evalcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+  .evalcard h3{font-size:1.02rem;margin-bottom:8px}
+  .evalcard p{color:var(--muted);font-size:.91rem;margin-bottom:16px;flex:1}
+  .evalcard a{color:var(--teal);font-size:.82rem;text-decoration:none;border:1px solid rgba(45,212,191,.35);border-radius:8px;padding:6px 12px;align-self:flex-start;font-weight:600}
+  .evalcard a:hover{background:rgba(45,212,191,.08)}
   /* quickstart */
   .quick{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px;text-align:center;margin-bottom:72px}
   .quick code{background:#0F1830;border:1px solid #24304C;border-radius:10px;padding:14px 22px;color:var(--teal);font-size:.95rem;display:inline-block;margin:16px 0;max-width:100%;overflow-x:auto}
@@ -104,9 +126,11 @@
   <nav>
     <a class="logo" href="#"><img src="logo-icon.svg" alt="">faro<span>quant</span></a>
     <div class="links">
+      <a href="#see" data-i18n="nav.see"></a>
       <a href="#features" data-i18n="nav.features"></a>
       <a href="#grounded" data-i18n="nav.grounded"></a>
       <a href="#how" data-i18n="nav.how"></a>
+      <a href="#evaluate" data-i18n="nav.evaluate"></a>
       <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
     </div>
@@ -162,6 +186,18 @@
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license"></div></div>
   </div>
 
+  <section id="see" class="block">
+    <div class="kicker" data-i18n="see.kicker"></div>
+    <h2 class="title" data-i18n="see.title"></h2>
+    <p class="lead" data-i18n="see.lead"></p>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/dashboard.png" width="1440" height="1060" loading="lazy" alt="Faro dashboard" data-i18n-alt="see.dashAlt">
+        <figcaption data-i18n-html="see.dashCap"></figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section id="features" class="block">
     <div class="kicker" data-i18n="feat.kicker"></div>
     <h2 class="title" data-i18n="feat.title"></h2>
@@ -192,6 +228,18 @@ compare_to_benchmark</code></div>
 in the reply must trace to a
 tool result → flagged if not</code></div>
     </div>
+    <figure class="shot" style="margin-bottom:34px">
+      <img src="img/grounding-warning.png" width="1100" height="900" loading="lazy" alt="Grounding warning in the copilot" data-i18n-alt="see.groundAlt">
+      <figcaption data-i18n-html="see.groundCap"></figcaption>
+    </figure>
+    <div class="callout">
+      <h3 data-i18n="two.h"></h3>
+      <p data-i18n="two.p"></p>
+      <div class="two">
+        <div class="m"><div class="big">18/20</div><div class="lil" data-i18n="two.m1"></div></div>
+        <div class="m"><div class="big">100%</div><div class="lil" data-i18n="two.m2"></div></div>
+      </div>
+    </div>
   </section>
 
   <section id="how" class="block">
@@ -203,6 +251,18 @@ tool result → flagged if not</code></div>
       <div class="card"><span class="ic">📈</span><h3 data-i18n="s2.b"></h3><p data-i18n="s2.t"></p></div>
       <div class="card"><span class="ic">💬</span><h3 data-i18n="s3.b"></h3><p data-i18n="s3.t"></p></div>
       <div class="card"><span class="ic">📰</span><h3 data-i18n="s4.b"></h3><p data-i18n="s4.t"></p></div>
+    </div>
+  </section>
+
+  <section id="evaluate" class="block">
+    <div class="kicker" data-i18n="ev.kicker"></div>
+    <h2 class="title" data-i18n="ev.title"></h2>
+    <p class="lead" data-i18n="ev.lead"></p>
+    <div class="evalgrid">
+      <div class="evalcard"><h3 data-i18n="ev1.h"></h3><p data-i18n="ev1.p"></p><a href="https://github.com/CarlosM787/faro/tree/main/api/src/faro_api/quant" data-i18n="ev1.a"></a></div>
+      <div class="evalcard"><h3 data-i18n="ev2.h"></h3><p data-i18n="ev2.p"></p><a href="https://github.com/CarlosM787/faro/blob/main/api/src/faro_api/agent/guardrails.py" data-i18n="ev2.a"></a></div>
+      <div class="evalcard"><h3 data-i18n="ev3.h"></h3><p data-i18n="ev3.p"></p><a href="https://github.com/CarlosM787/faro/blob/main/docs/GROUNDING-CHECK.md" data-i18n="ev3.a"></a></div>
+      <div class="evalcard"><h3 data-i18n="ev4.h"></h3><p data-i18n="ev4.p"></p><a href="https://github.com/CarlosM787/faro/tree/main/api/tests" data-i18n="ev4.a"></a></div>
     </div>
   </section>
 
@@ -228,7 +288,7 @@ tool result → flagged if not</code></div>
 <script>
 const T = {
   en: {
-    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works",
+    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works","nav.see":"See it work","nav.evaluate":"Evaluate",
     "hero.badge":"OPEN SOURCE · SELF-HOSTED · ENGLISH & ESPAÑOL",
     "hero.h1":'Portfolio analytics where the AI <em>shows its work</em>.',
     "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then an AI copilot explains them in plain English or Spanish. Every number it states is verified against the tested quant engine; unsupported figures are flagged.",
@@ -237,6 +297,18 @@ const T = {
     "mock.value":"PORTFOLIO VALUE","mock.note":"Illustrative demo data","mock.q":"What happens if NVDA drops 20%?",
     "mock.a":"If NVDA fell 20%, your portfolio would decline <b>$710.61 (−2.3%)</b> to <b>$29,542.69</b>. NVDA is 11.7% of your holdings but contributes <b>23.6% of your risk</b> — every number above comes from the scenario tool call shown.",
     "stats.tests":"unit tests on the quant engine","stats.eval":"of unsupported figures flagged in-app — detection, not hope","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
+    "see.kicker":"See it work","see.title":"Real screens, real numbers","see.lead":"Not mockups — the actual app running the seeded demo portfolio.",
+    "see.dashAlt":"Faro dashboard showing portfolio value, risk metric cards, performance vs SPY, allocation and a correlation matrix",
+    "see.dashCap":"The <b>dashboard</b> — value & P/L, Sharpe · VaR · beta · drawdown, performance vs SPY, allocation, drawdown and a correlation matrix. The copilot calls the <b>same engine</b>, so the chat and the charts can never disagree.",
+    "see.groundAlt":"Faro copilot in Spanish with an amber warning that three figures could not be traced to a tool result",
+    "see.groundCap":"<b>Caught in the act.</b> Asked its beta again mid-conversation, the local model recited “1.35” from earlier in the chat instead of re-calling the tool — and Faro flagged it in-app: <b>“3 figures … could not be traced to a tool result.”</b> That's the grounding checker working — here, in Spanish.",
+    "two.h":"Honest by two measures, not one flattering number","two.p":"The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Claude, the primary provider, adheres far more tightly.",
+    "two.m1":"answers fully grounded — asked fresh, on a local 7B model","two.m2":"of unsupported figures surfaced in multi-turn use — detection, not hope",
+    "ev.kicker":"For hiring managers","ev.title":"How to evaluate this in five minutes","ev.lead":"Built as a work sample. Here's where to look, and what each choice is meant to demonstrate.",
+    "ev1.h":"The quant is from first principles","ev1.p":"Every metric implemented from its documented formula in pure numpy/pandas — no black-box libraries — tested against hand-computed references plus independent cross-checks.","ev1.a":"Read the engine →",
+    "ev2.h":"The guardrail is code, not vibes","ev2.p":"The grounding checker that extracts every number and matches it to a tool result — the mechanism that makes “detected and surfaced” a testable claim.","ev2.a":"Read the checker →",
+    "ev3.h":"The eval is public and honest","ev3.p":"A two-mode bilingual spot-check with the iteration history (28 → 4 → 2) and raw logs committed — including the fabricated $12,345.67 the checker caught.","ev3.a":"See the results →",
+    "ev4.h":"It runs from a clean clone","ev4.p":"68 unit tests, mypy-strict, CI green on every push, and clone → docker compose up → running in five minutes. Replication as a design constraint.","ev4.a":"Browse the tests →",
     "feat.kicker":"Why Faro","feat.title":"Serious analytics. Honest AI. Your machine.",
     "feat.lead":"Most AI finance tools ask you to trust a chatbot. Faro is built the other way around: deterministic math first, language model second, verification always.",
     "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against independently computed references — Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration, risk contributions.",
@@ -249,7 +321,7 @@ const T = {
     "gr.lead":"The #1 failure mode of LLM finance apps is invented numbers. Faro's answer is architectural — and it's measured, not assumed.",
     "gr1.h":"Deterministic engine underneath","gr1.p":"Pure numpy/pandas implementations of every formula, documented and cross-checked against independent libraries in 68 tests.",
     "gr2.h":"The AI can only call tools","gr2.p":"The copilot's sole source of numbers is five typed tools that dispatch into the same service layer the dashboard uses — one engine, two consumers, zero disagreement.",
-    "gr3.h":"Every reply is verified","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything unsupported is detected and surfaced — measured by a public 20-question bilingual eval.",
+    "gr3.h":"Every reply is verified","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything unsupported is detected and surfaced — measured by a public, two-mode bilingual eval with raw logs committed to the repo.",
     "how.kicker":"Workflow","how.h":"From holdings to insight in four steps",
     "how.sub":"No accounts, no brokerage linking — enter what you own and Faro does the math.",
     "s1.b":"Enter your holdings","s1.t":"Tickers, shares, cost basis. Data stays in a local SQLite file on your machine.",
@@ -263,7 +335,7 @@ const T = {
     "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including possible loss of principal."
   },
   es: {
-    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona",
+    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona","nav.see":"Míralo funcionar","nav.evaluate":"Evalúalo",
     "hero.badge":"CÓDIGO ABIERTO · AUTOALOJADO · ENGLISH & ESPAÑOL",
     "hero.h1":'Análisis de portafolio donde la IA <em>muestra su trabajo</em>.',
     "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice se verifica contra el motor cuantitativo probado; las cifras sin respaldo se marcan.",
@@ -272,6 +344,18 @@ const T = {
     "mock.value":"VALOR DEL PORTAFOLIO","mock.note":"Datos ilustrativos de demostración","mock.q":"¿Qué pasa si NVDA cae 20%?",
     "mock.a":"Si NVDA cayera 20%, tu portafolio bajaría <b>$710.61 (−2.3%)</b> hasta <b>$29,542.69</b>. NVDA es el 11.7% de tus posiciones pero aporta el <b>23.6% de tu riesgo</b> — cada número viene de la llamada a la herramienta de escenarios mostrada.",
     "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"de las cifras sin respaldo se marcan en la app — detección, no confianza ciega","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
+    "see.kicker":"Míralo funcionar","see.title":"Pantallas reales, números reales","see.lead":"No son mockups — es la app real corriendo el portafolio de demostración.",
+    "see.dashAlt":"Tablero de Faro con el valor del portafolio, tarjetas de métricas de riesgo, rendimiento vs SPY, asignación y una matriz de correlación",
+    "see.dashCap":"El <b>tablero</b> — valor y P/G, Sharpe · VaR · beta · drawdown, rendimiento vs SPY, asignación, drawdown y una matriz de correlación. El copiloto llama al <b>mismo motor</b>, así que el chat y las gráficas nunca se contradicen.",
+    "see.groundAlt":"Copiloto de Faro en español con una advertencia ámbar de que tres cifras no pudieron rastrearse a un resultado de herramienta",
+    "see.groundCap":"<b>Atrapado en el acto.</b> Al preguntarle de nuevo su beta a mitad de la conversación, el modelo local recitó “1.35” de un mensaje anterior en vez de volver a llamar la herramienta — y Faro lo marcó en la app: <b>“3 cifras … no pudieron rastrearse a un resultado de herramienta.”</b> Así funciona el verificador de anclaje — aquí, en español.",
+    "two.h":"Honesto con dos medidas, no con un solo número halagador","two.p":"La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. Claude, el proveedor principal, se apega mucho más.",
+    "two.m1":"respuestas totalmente ancladas — preguntadas en fresco, en un modelo local 7B","two.m2":"de las cifras sin respaldo señaladas en varios turnos — detección, no confianza ciega",
+    "ev.kicker":"Para reclutadores","ev.title":"Cómo evaluarlo en cinco minutos","ev.lead":"Hecho como muestra de trabajo. Aquí está dónde mirar, y qué busca demostrar cada decisión.",
+    "ev1.h":"El motor cuantitativo es desde las fórmulas","ev1.p":"Cada métrica implementada desde su fórmula documentada en numpy/pandas puro — sin bibliotecas caja-negra — probada contra referencias calculadas a mano más verificaciones independientes.","ev1.a":"Ver el motor →",
+    "ev2.h":"La protección es código, no confianza","ev2.p":"El verificador de anclaje que extrae cada número y lo compara con un resultado de herramienta — el mecanismo que hace de “detectado y señalado” una afirmación comprobable.","ev2.a":"Ver el verificador →",
+    "ev3.h":"La evaluación es pública y honesta","ev3.p":"Un chequeo bilingüe de dos modos con el historial de iteraciones (28 → 4 → 2) y registros crudos incluidos — incluyendo el $12,345.67 inventado que el verificador atrapó.","ev3.a":"Ver los resultados →",
+    "ev4.h":"Corre desde un clon limpio","ev4.p":"68 pruebas unitarias, mypy estricto, CI verde en cada push, y clonar → docker compose up → funcionando en cinco minutos. La replicación como restricción de diseño.","ev4.a":"Ver las pruebas →",
     "feat.kicker":"Por qué Faro","feat.title":"Análisis serio. IA honesta. Tu computadora.",
     "feat.lead":"La mayoría de las herramientas financieras con IA te piden confiar en un chatbot. Faro está construido al revés: primero matemáticas deterministas, luego el modelo de lenguaje, y verificación siempre.",
     "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada contra referencias independientes — Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración, contribuciones al riesgo.",
@@ -284,7 +368,7 @@ const T = {
     "gr.lead":"El principal defecto de las apps financieras con IA son los números inventados. La respuesta de Faro es arquitectónica — y se mide, no se asume.",
     "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 68 pruebas.",
     "gr2.h":"La IA solo puede llamar herramientas","gr2.p":"La única fuente de números del copiloto son cinco herramientas tipadas que llegan a la misma capa de servicios que usa el tablero — un motor, dos consumidores, cero desacuerdos.",
-    "gr3.h":"Cada respuesta se verifica","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no tenga respaldo se detecta y se señala — medido con una evaluación pública bilingüe de 20 preguntas.",
+    "gr3.h":"Cada respuesta se verifica","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no tenga respaldo se detecta y se señala — medido con una evaluación pública bilingüe de dos modos, con registros crudos incluidos en el repositorio.",
     "how.kicker":"Flujo de trabajo","how.h":"De tus posiciones al análisis en cuatro pasos",
     "how.sub":"Sin cuentas, sin conectar tu casa de bolsa — ingresa lo que tienes y Faro hace las matemáticas.",
     "s1.b":"Ingresa tus posiciones","s1.t":"Símbolos, acciones, costo. Los datos se quedan en un archivo SQLite local en tu máquina.",
@@ -303,6 +387,7 @@ function setLang(l){
   document.documentElement.lang = l;
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = T[l][el.dataset.i18n]; if (v !== undefined) el.textContent = v; });
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = T[l][el.dataset.i18nHtml]; if (v !== undefined) el.innerHTML = v; });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => { const v = T[l][el.dataset.i18nAlt]; if (v !== undefined) el.alt = v; });
   document.getElementById("hero-h1").innerHTML = T[l]["hero.h1"];
   document.getElementById("btn-en").classList.toggle("on", l === "en");
   document.getElementById("btn-es").classList.toggle("on", l === "es");
