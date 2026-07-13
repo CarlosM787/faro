@@ -125,3 +125,32 @@ export function IconInfo(p: IconProps) {
     </Svg>
   );
 }
+
+/** Language picker trigger. */
+export function IconGlobe(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z" />
+    </Svg>
+  );
+}
+
+/** Dropdown affordance. */
+export function IconChevronDown(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <path d="m6 9 6 6 6-6" />
+    </Svg>
+  );
+}
+
+/** Selected option marker. */
+export function IconCheck(p: IconProps) {
+  return (
+    <Svg {...p}>
+      <path d="m5 12 5 5L20 7" />
+    </Svg>
+  );
+}

@@ -1,0 +1,64 @@
+{
+  "header": {
+    "totalValue": "Valeur du portefeuille",
+    "totalPnl": "Gain/Perte total",
+    "dayChange": "Variation du jour",
+    "staleData": "Utilisation de données de marché en cache du {{date}} — certains prix peuvent être obsolètes (fournisseurs inaccessibles).",
+    "asOf": "Données au {{date}}",
+    "totalValueInfo": "Valeur de marché actuelle de toutes les positions au dernier cours de clôture quotidien.",
+    "totalPnlInfo": "Gain ou perte par rapport à votre prix de revient, en dollars et en pourcentage.",
+    "dayChangeInfo": "Variation de la valeur du portefeuille sur la séance la plus récente.",
+    "fallbackSource": "Certains prix proviennent du fournisseur de secours (Stooq, ajusté des divisions uniquement — dividendes non inclus). Les indicateurs peuvent légèrement différer."
+  },
+  "cards": {
+    "sharpe": "Ratio de Sharpe",
+    "sharpeInfo": "Rendement obtenu par unité de risque, au-dessus du taux sans risque. Au-dessus de 1 c'est bon ; en dessous de 0 les liquidités ont fait mieux.",
+    "var": "Valeur à Risque (95 %)",
+    "varInfo": "95 % des jours, votre perte sur une journée ne devrait pas dépasser ce niveau. Basé sur les 2 dernières années (méthode historique).",
+    "beta": "Bêta vs {{benchmark}}",
+    "betaInfo": "Sensibilité au marché. 1,0 suit le marché ; plus élevé amplifie les variations, plus faible les atténue.",
+    "maxDrawdown": "Drawdown maximal",
+    "maxDrawdownInfo": "Pire baisse du sommet au creux sur la période — la perte la plus profonde que vous auriez traversée."
+  },
+  "charts": {
+    "performance": "Performance vs {{benchmark}}",
+    "performanceHint": "Les deux indexés à 100 au début de la période",
+    "portfolio": "Portefeuille",
+    "allocation": "Répartition",
+    "drawdown": "Drawdown",
+    "correlation": "Matrice de corrélation",
+    "correlationHint": "Corrélations des rendements quotidiens, fenêtre de 2 ans"
+  },
+  "table": {
+    "title": "Positions",
+    "edit": "Modifier le portefeuille",
+    "ticker": "Symbole",
+    "shares": "Titres",
+    "price": "Prix",
+    "value": "Valeur",
+    "pnl": "G/P",
+    "weight": "Poids",
+    "beta": "Bêta",
+    "risk": "Part du risque",
+    "riskInfo": "Part de la variance totale du portefeuille apportée par cette position (somme à 100 %)."
+  },
+  "editor": {
+    "title": "Modifier le portefeuille",
+    "addPosition": "Ajouter une position",
+    "ticker": "Symbole",
+    "shares": "Titres",
+    "costBasis": "Prix de revient ($/titre)",
+    "purchaseDate": "Date d'achat",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "add": "Ajouter"
+  },
+  "state": {
+    "loading": "Calcul des indicateurs…",
+    "error": "Impossible de charger les données du portefeuille. L'API est-elle démarrée ?",
+    "retry": "Réessayer",
+    "empty": "Ce portefeuille n'a pas encore de positions.",
+    "emptyCta": "Ajoutez votre première position"
+  }
+}

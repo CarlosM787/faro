@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { IconAlertTriangle, IconInfo } from "../../components/icons";
 import { api, type FullMetrics, type PortfolioOut, type Series } from "../../lib/api";
-import { fmtCurrency, fmtNum, fmtPct } from "../../lib/format";
+import { fmtCurrency, fmtDate, fmtNum, fmtPct } from "../../lib/format";
 import { PortfolioEditor } from "../portfolio/PortfolioEditor";
 import {
   AllocationDonut,
@@ -53,7 +53,7 @@ function Panel({ title, hint, children }: { title: string; hint?: string; childr
 }
 
 export function DashboardPage() {
-  const { t, i18n } = useTranslation("dashboard");
+  const { t } = useTranslation("dashboard");
   const [portfolio, setPortfolio] = useState<PortfolioOut | null>(null);
   const [metrics, setMetrics] = useState<FullMetrics | null>(null);
   const [perf, setPerf] = useState<Series | null>(null);
@@ -112,11 +112,7 @@ export function DashboardPage() {
           <h1 className="text-2xl font-bold">{portfolio.name}</h1>
           {metrics && (
             <p className="text-xs text-muted">
-              {t("header.asOf", {
-                date: new Date(metrics.as_of).toLocaleDateString(
-                  i18n.resolvedLanguage === "es" ? "es-MX" : "en-US",
-                ),
-              })}
+              {t("header.asOf", { date: fmtDate(metrics.as_of) })}
             </p>
           )}
         </div>
@@ -132,11 +128,7 @@ export function DashboardPage() {
         <div className="flex items-start gap-2.5 rounded-lg border border-beam/40 bg-beam/10 px-4 py-2.5 text-sm text-beam">
           <IconAlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
-            {t("header.staleData", {
-              date: new Date(metrics.as_of).toLocaleDateString(
-                i18n.resolvedLanguage === "es" ? "es-MX" : "en-US",
-              ),
-            })}
+            {t("header.staleData", { date: fmtDate(metrics.as_of) })}
           </span>
         </div>
       )}

@@ -1,4 +1,10 @@
-"""System prompts (EN/ES) — the guardrail contract, enforced in text and code."""
+"""System prompts — the guardrail contract, enforced in text and code.
+
+English and Spanish are hand-written. Other UI languages reuse the same core
+contract with a generic "answer in <language>" instruction, so the copilot
+always replies in the user's selected language instead of silently falling
+back to English.
+"""
 
 _CORE = """You are Faro, an educational portfolio-analytics copilot.
 
@@ -28,7 +34,29 @@ _ES = _CORE + (
     "en inglés entre paréntesis la primera vez, p. ej. 'Valor en Riesgo (VaR)'."
 )
 
+# Endonyms for the remaining UI languages; the model is instructed to answer in
+# the named language. Metric names keep their English term in parentheses on
+# first use so the finance vocabulary stays recognizable.
+_LANGUAGE_NAMES = {
+    "pt": "Portuguese (neutral Brazilian Portuguese)",
+    "fr": "French",
+    "de": "German",
+}
+
+
+def _generic(language_name: str) -> str:
+    return _CORE + (
+        f"\nAlways answer in {language_name}. Keep answers concise and concrete. "
+        "On first use, a metric's name may include its English term in parentheses, "
+        "e.g. 'Value at Risk (VaR)'."
+    )
+
 
 def system_prompt(language: str) -> str:
     """The system prompt for the user's selected language."""
-    return _ES if language == "es" else _EN
+    if language == "es":
+        return _ES
+    if language == "en":
+        return _EN
+    name = _LANGUAGE_NAMES.get(language)
+    return _generic(name) if name else _EN

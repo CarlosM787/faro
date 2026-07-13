@@ -1,0 +1,43 @@
+{
+  "app": {
+    "name": "Faro",
+    "tagline": "Copiloto de Portfólio com IA",
+    "disclaimer": "O Faro é uma ferramenta educacional de análise, não um consultor de investimentos. Nada aqui é recomendação de investimento."
+  },
+  "nav": {
+    "dashboard": "Painel",
+    "chat": "Copiloto",
+    "scenarios": "Cenários",
+    "digest": "Resumo",
+    "settings": "Configurações"
+  },
+  "common": {
+    "loading": "Carregando…",
+    "comingSoon": "Em breve — esta tela chega em uma etapa posterior.",
+    "language": "Idioma"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "languageHint": "O painel, o copiloto e os resumos usam este idioma.",
+    "legal": "Documentos legais",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "disclaimer": "Aviso de Investimento",
+    "provider": "Provedor de IA",
+    "providerAnthropic": "Claude (API da Anthropic)",
+    "providerOllama": "Modelo local (Ollama)",
+    "providerHint": "Defina ANTHROPIC_API_KEY no .env para usar o Claude; sem chave, o Faro usa um modelo local gratuito via Ollama. Em nenhum caso é preciso alterar o código.",
+    "about": "Sobre",
+    "aboutText": "O Faro é um app de análise de portfólio de código aberto e auto-hospedado. É apenas educacional — nunca executa operações, nunca se conecta a uma corretora e não dá recomendações de investimento personalizadas.",
+    "source": "Código-fonte no GitHub",
+    "website": "faroquant.com",
+    "version": "Faro v{{version}}"
+  },
+  "pages": {
+    "dashboardTitle": "Painel",
+    "chatTitle": "Copiloto",
+    "scenariosTitle": "Cenários",
+    "digestTitle": "Resumo diário"
+  }
+}

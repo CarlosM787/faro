@@ -1,0 +1,43 @@
+{
+  "app": {
+    "name": "Faro",
+    "tagline": "Copilote de portefeuille IA",
+    "disclaimer": "Faro est un outil d'analyse éducatif, pas un conseiller en investissement. Rien ici ne constitue un conseil en investissement."
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "chat": "Copilote",
+    "scenarios": "Scénarios",
+    "digest": "Synthèse",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "loading": "Chargement…",
+    "comingSoon": "Bientôt disponible — cet écran arrive dans une étape ultérieure.",
+    "language": "Langue"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "languageHint": "Le tableau de bord, le copilote et les synthèses suivent cette langue.",
+    "legal": "Documents juridiques",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "disclaimer": "Avertissement sur l'investissement",
+    "provider": "Fournisseur d'IA",
+    "providerAnthropic": "Claude (API Anthropic)",
+    "providerOllama": "Modèle local (Ollama)",
+    "providerHint": "Définissez ANTHROPIC_API_KEY dans .env pour utiliser Claude ; sans clé, Faro utilise un modèle local gratuit via Ollama. Aucun changement de code dans les deux cas.",
+    "about": "À propos",
+    "aboutText": "Faro est une application d'analyse de portefeuille open source et auto-hébergée. Elle est purement éducative — elle n'exécute jamais d'ordres, ne se connecte jamais à un courtier et ne donne pas de conseils en investissement personnalisés.",
+    "source": "Code source sur GitHub",
+    "website": "faroquant.com",
+    "version": "Faro v{{version}}"
+  },
+  "pages": {
+    "dashboardTitle": "Tableau de bord",
+    "chatTitle": "Copilote",
+    "scenariosTitle": "Scénarios",
+    "digestTitle": "Synthèse quotidienne"
+  }
+}

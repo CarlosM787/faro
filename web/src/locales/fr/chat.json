@@ -1,0 +1,20 @@
+{
+  "title": "Copilote",
+  "subtitle": "Posez des questions sur votre portefeuille — chaque chiffre provient du moteur quantitatif.",
+  "placeholder": "ex. : Quel est le risque de mon portefeuille ?",
+  "send": "Envoyer",
+  "thinking": "Analyse…",
+  "toolCall": "Calculé",
+  "provider": "Modèle : {{name}}",
+  "error": "Le copilote est indisponible. Si vous fonctionnez sans clé d'API, vérifiez qu'Ollama est lancé (ollama serve) avec le modèle qwen2.5:7b téléchargé.",
+  "suggestions": {
+    "risk": "Quel est le risque de mon portefeuille ?",
+    "concentration": "Quel est mon plus grand risque ?",
+    "scenario": "Que se passe-t-il si NVDA chute de 20 % ?",
+    "benchmark": "Est-ce que je bats le S&P 500 ?"
+  },
+  "disclaimerShort": "Éducatif — pas un conseil en investissement.",
+  "tryAsking": "Essayez de demander",
+  "grounded": "Tous les chiffres de cette réponse sont rattachés à des résultats d'outils.",
+  "groundingWarning": "{{count}} chiffre(s) de cette réponse n'ont pas pu être rattachés à un résultat d'outil et pourraient ne pas être fiables."
+}

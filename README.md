@@ -78,7 +78,7 @@ api (FastAPI · Python 3.12 · mypy strict)
 - **Copilot** — streaming chat, **visible tool-call chips** showing which computations backed each answer, per-portfolio history, suggested questions, and an amber warning under any reply containing an unsupported number — plus a quiet confirmation note when every figure traced to a tool result.
 - **Scenario lab** — compounding price shocks (per-ticker or market-wide) with per-position impact and one-click presets (correction −10% · bear market −20% · severe crash −35%); the same engine the agent's scenario tool uses.
 - **Daily digest** — one-click brief (movers, risk contributors, upcoming earnings), narrated by the LLM from computed facts only, grounding-checked like the chat.
-- **Fully bilingual (EN/ES)** — every user-facing string ships in English and neutral Latin-American Spanish in the same commit (CI-enforced locale key parity). The copilot and digest answer in the selected language; currency/dates format per locale via `Intl`.
+- **Multilingual, bilingual-first** — a one-tap language dropdown covers **five UI languages**: English and neutral Latin-American Spanish are the hand-maintained pair shipped in the same commit (the CLAUDE.md hard rule), with Portuguese, French, and German added on the same **CI-enforced key set** (parity checked across every locale). The copilot and digest answer in the selected language; currency and dates format per locale via `Intl`. (The marketing site is EN/ES.)
 - **Installable web app** — a web-app manifest lets you add Faro to a home screen or desktop from the browser. **There is no offline service worker** — the backend runs on your own machine anyway; this is a deliberate self-hosted choice, not a full offline PWA.
 
 ## Quant metrics — formulas, not black boxes

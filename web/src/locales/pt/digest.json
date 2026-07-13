@@ -1,0 +1,12 @@
+{
+  "title": "Resumo diário",
+  "subtitle": "Um relatório do seu portfólio com um clique — narrado pelo copiloto apenas a partir de dados calculados.",
+  "generate": "Gerar o resumo de hoje",
+  "generating": "Gerando…",
+  "provider": "Escrito por: {{name}}",
+  "error": "Não foi possível gerar o resumo. Se você estiver rodando sem chave de API, verifique se o Ollama está ativo.",
+  "empty": "Ainda não há resumo.",
+  "emptyHint": "Com um clique, gera-se um relatório dos destaques de hoje, das principais fontes de risco e dos próximos balanços — narrado apenas com dados calculados e depois verificado pelo ancoramento.",
+  "grounded": "Todos os números deste resumo foram rastreados aos dados calculados.",
+  "groundingWarning": "{{count}} número(s) deste resumo não puderam ser rastreados aos dados calculados e podem não ser confiáveis."
+}

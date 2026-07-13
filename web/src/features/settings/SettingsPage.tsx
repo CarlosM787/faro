@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { IconArrowUpRight } from "../../components/icons";
-import { LangToggle } from "../../components/LangToggle";
+import { LanguageMenu } from "../../components/LanguageMenu";
 
 const LEGAL = [
   { key: "settings.privacy", file: "Faro-Privacy-Policy.pdf" },
@@ -45,7 +45,10 @@ export function SettingsPage() {
       <h1 className="text-2xl font-bold">{t("settings.title")}</h1>
 
       <Section title={t("settings.language")}>
-        <LangToggle />
+        <div className="max-w-xs">
+          <LanguageMenu placement="down" full />
+        </div>
+        <p className="mt-2 text-xs text-muted">{t("settings.languageHint")}</p>
       </Section>
 
       <Section title={t("settings.provider")}>

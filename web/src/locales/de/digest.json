@@ -1,0 +1,12 @@
+{
+  "title": "Tägliche Übersicht",
+  "subtitle": "Ein Kurzbericht zu Ihrem Portfolio auf Knopfdruck — vom Copilot allein aus berechneten Daten verfasst.",
+  "generate": "Heutige Übersicht erstellen",
+  "generating": "Wird erstellt…",
+  "provider": "Verfasst von: {{name}}",
+  "error": "Übersicht konnte nicht erstellt werden. Wenn Sie ohne API-Schlüssel arbeiten, stellen Sie sicher, dass Ollama läuft.",
+  "empty": "Noch keine Übersicht.",
+  "emptyHint": "Ein Klick erzeugt einen Bericht über die heutigen Bewegungen, die größten Risikotreiber und anstehende Geschäftszahlen — allein aus berechneten Daten verfasst und anschließend auf Verankerung geprüft.",
+  "grounded": "Alle Zahlen dieser Übersicht sind auf berechnete Daten zurückführbar.",
+  "groundingWarning": "{{count}} Zahl(en) dieser Übersicht ließen sich den berechneten Daten nicht zuordnen und sind möglicherweise unzuverlässig."
+}

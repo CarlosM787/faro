@@ -19,6 +19,7 @@
   "settings": {
     "title": "Configuración",
     "language": "Idioma",
+    "languageHint": "El tablero, el copiloto y los resúmenes usan este idioma.",
     "legal": "Documentos legales",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Uso",

@@ -6,6 +6,17 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com). Faro is p
 
 ---
 
+## 2026-07-13 — Language picker (5 UI languages)
+
+Turned the two-button EN/ES pill into a proper language dropdown and extended the app past the mandated pair.
+
+- **Dropdown picker** — a new accessible `LanguageMenu` (button + popover, keyboard/Escape/outside-click, `aria` listbox) replaces `LangToggle`, in the sidebar, mobile top bar, and Settings. Choice persists (localStorage) and flows to the copilot/digest.
+- **Five UI languages** — English and Spanish stay the hand-written, maintained pair; **Portuguese (pt-BR), French, and German** were added, sharing the exact same key set. A single `languages.ts` is the source of truth (code · endonym · Intl locale).
+- **Copilot answers in any of the five** — `system_prompt()` was made language-generic: EN/ES keep their hand-tuned prompts, the others get an "always answer in <language>" instruction over the same guardrail contract, so a non-EN/ES user no longer silently gets English. Locked in with `test_prompts.py` (11 tests).
+- **Formatting follows the language** — numbers, currency, and dates now format via each language's Intl locale (e.g. `US$ 30.660,08`, `13/07/2026` in pt-BR); the hardcoded `es-MX`/`en-US` branches are gone.
+- **CI parity scales** — `check-i18n.mjs` now auto-discovers every locale folder and checks each against English (both missing *and* extra keys), instead of hardcoding en⇄es.
+- Note: the marketing site (`website/`) remains EN/ES; this pass is the app.
+
 ## 2026-07-13 — Product & brand professionalization pass
 
 A design pass to make the shipped app and site feel like a real fintech product, benchmarked against the visual discipline of credible dev-tool/fintech products (restrained accent color, consistent stroke iconography, skeleton loading, no emoji chrome).

@@ -1,0 +1,12 @@
+{
+  "title": "Synthèse quotidienne",
+  "subtitle": "Un rapport en un clic sur votre portefeuille — rédigé par le copilote à partir des seules données calculées.",
+  "generate": "Générer la synthèse du jour",
+  "generating": "Génération…",
+  "provider": "Rédigé par : {{name}}",
+  "error": "Impossible de générer la synthèse. Si vous fonctionnez sans clé d'API, vérifiez qu'Ollama est lancé.",
+  "empty": "Pas encore de synthèse.",
+  "emptyHint": "Un clic génère un rapport sur les mouvements du jour, les principales sources de risque et les prochaines publications de résultats — rédigé uniquement à partir de données calculées, puis vérifié par l'ancrage.",
+  "grounded": "Tous les chiffres de cette synthèse sont rattachés aux données calculées.",
+  "groundingWarning": "{{count}} chiffre(s) de cette synthèse n'ont pas pu être rattachés aux données calculées et pourraient ne pas être fiables."
+}

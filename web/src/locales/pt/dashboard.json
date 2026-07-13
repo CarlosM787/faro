@@ -1,0 +1,64 @@
+{
+  "header": {
+    "totalValue": "Valor do portfólio",
+    "totalPnl": "Lucro/Prejuízo total",
+    "dayChange": "Variação do dia",
+    "staleData": "Usando dados de mercado em cache de {{date}} — alguns preços podem estar desatualizados (provedores indisponíveis).",
+    "asOf": "Dados de {{date}}",
+    "totalValueInfo": "Valor de mercado atual de todas as posições no último fechamento diário.",
+    "totalPnlInfo": "Ganho ou perda em relação ao que você pagou (preço de custo), em dólares e porcentagem.",
+    "dayChangeInfo": "Variação do valor do portfólio no pregão mais recente.",
+    "fallbackSource": "Alguns preços vêm do provedor reserva (Stooq, ajustado apenas por desdobramentos — sem dividendos). As métricas podem variar um pouco."
+  },
+  "cards": {
+    "sharpe": "Índice de Sharpe",
+    "sharpeInfo": "Retorno obtido por unidade de risco, acima da taxa livre de risco. Acima de 1 é bom; abaixo de 0 significa que o caixa rendeu mais.",
+    "var": "Valor em Risco (95%)",
+    "varInfo": "Em 95% dos dias, sua perda diária não deveria ultrapassar este valor. Baseado nos últimos 2 anos (método histórico).",
+    "beta": "Beta vs {{benchmark}}",
+    "betaInfo": "Sensibilidade ao mercado. 1,0 acompanha o mercado; maior amplifica as oscilações, menor as amortece.",
+    "maxDrawdown": "Drawdown máximo",
+    "maxDrawdownInfo": "Pior queda do pico ao fundo na janela — a maior perda que você teria atravessado."
+  },
+  "charts": {
+    "performance": "Desempenho vs {{benchmark}}",
+    "performanceHint": "Ambos indexados a 100 no início da janela",
+    "portfolio": "Portfólio",
+    "allocation": "Alocação",
+    "drawdown": "Drawdown",
+    "correlation": "Matriz de correlação",
+    "correlationHint": "Correlações de retornos diários, janela de 2 anos"
+  },
+  "table": {
+    "title": "Posições",
+    "edit": "Editar portfólio",
+    "ticker": "Símbolo",
+    "shares": "Cotas",
+    "price": "Preço",
+    "value": "Valor",
+    "pnl": "L/P",
+    "weight": "Peso",
+    "beta": "Beta",
+    "risk": "Parcela de risco",
+    "riskInfo": "Parcela da variância total do portfólio contribuída por esta posição (soma 100%)."
+  },
+  "editor": {
+    "title": "Editar portfólio",
+    "addPosition": "Adicionar posição",
+    "ticker": "Símbolo",
+    "shares": "Cotas",
+    "costBasis": "Preço de custo ($/cota)",
+    "purchaseDate": "Data da compra",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "add": "Adicionar"
+  },
+  "state": {
+    "loading": "Calculando métricas…",
+    "error": "Não foi possível carregar os dados do portfólio. A API está rodando?",
+    "retry": "Tentar novamente",
+    "empty": "Este portfólio ainda não tem posições.",
+    "emptyCta": "Adicione sua primeira posição"
+  }
+}

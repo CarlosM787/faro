@@ -1,8 +1,9 @@
-/** Locale-aware number formatting (en-US / es-MX conventions via Intl). */
+/** Locale-aware number & date formatting via Intl, driven by the active language. */
 
 import i18n from "../i18n";
+import { localeFor } from "../languages";
 
-const locale = () => (i18n.resolvedLanguage === "es" ? "es-MX" : "en-US");
+const locale = () => localeFor(i18n.resolvedLanguage ?? "en");
 
 export const fmtCurrency = (v: number): string =>
   new Intl.NumberFormat(locale(), { style: "currency", currency: "USD" }).format(v);
@@ -19,3 +20,7 @@ export const fmtNum = (v: number, digits = 2): string =>
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   }).format(v);
+
+/** Format an ISO date/timestamp in the active locale's conventions. */
+export const fmtDate = (value: string | number | Date): string =>
+  new Date(value).toLocaleDateString(locale());

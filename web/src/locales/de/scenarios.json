@@ -1,0 +1,23 @@
+{
+  "title": "Szenarien",
+  "subtitle": "Testen Sie Ihr Portfolio mit hypothetischen Kursschocks — mit derselben Engine, die der Copilot nutzt.",
+  "market": "Gesamter Markt",
+  "presets": "Schnellszenarien",
+  "preset": {
+    "correction": "Korrektur",
+    "bear": "Bärenmarkt",
+    "crash": "Schwerer Crash"
+  },
+  "shockLabel": "Kursschock",
+  "addShock": "Schock hinzufügen",
+  "remove": "Entfernen",
+  "run": "Szenario ausführen",
+  "running": "Berechne…",
+  "before": "Wert vorher",
+  "after": "Wert nachher",
+  "impact": "Auswirkung",
+  "perPosition": "Auswirkung je Position",
+  "askCopilot": "Den Copilot zu diesem Szenario fragen",
+  "error": "Szenario konnte nicht ausgeführt werden.",
+  "empty": "Fügen Sie mindestens einen Schock hinzu und führen Sie das Szenario aus."
+}

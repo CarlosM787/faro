@@ -1,0 +1,20 @@
+{
+  "title": "Copilot",
+  "subtitle": "Stellen Sie Fragen zu Ihrem Portfolio — jede Zahl stammt aus der Quant-Engine.",
+  "placeholder": "z. B. Wie riskant ist mein Portfolio?",
+  "send": "Senden",
+  "thinking": "Analysiere…",
+  "toolCall": "Berechnet",
+  "provider": "Modell: {{name}}",
+  "error": "Der Copilot ist nicht verfügbar. Wenn Sie ohne API-Schlüssel arbeiten, stellen Sie sicher, dass Ollama läuft (ollama serve) und das Modell qwen2.5:7b geladen ist.",
+  "suggestions": {
+    "risk": "Wie riskant ist mein Portfolio?",
+    "concentration": "Was ist mein größtes Risiko?",
+    "scenario": "Was passiert, wenn NVDA um 20 % fällt?",
+    "benchmark": "Schlage ich den S&P 500?"
+  },
+  "disclaimerShort": "Edukativ — keine Anlageberatung.",
+  "tryAsking": "Versuchen Sie zu fragen",
+  "grounded": "Alle Zahlen in dieser Antwort sind auf Tool-Ergebnisse zurückführbar.",
+  "groundingWarning": "{{count}} Zahl(en) in dieser Antwort ließen sich keinem Tool-Ergebnis zuordnen und sind möglicherweise unzuverlässig."
+}

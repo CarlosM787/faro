@@ -1,0 +1,20 @@
+{
+  "title": "Copiloto",
+  "subtitle": "Pergunte sobre seu portfólio — cada número vem do motor quantitativo.",
+  "placeholder": "ex.: Qual o risco do meu portfólio?",
+  "send": "Enviar",
+  "thinking": "Analisando…",
+  "toolCall": "Calculado",
+  "provider": "Modelo: {{name}}",
+  "error": "O copiloto está indisponível. Se você estiver rodando sem chave de API, verifique se o Ollama está ativo (ollama serve) com o modelo qwen2.5:7b baixado.",
+  "suggestions": {
+    "risk": "Qual o risco do meu portfólio?",
+    "concentration": "Qual é o meu maior risco?",
+    "scenario": "E se a NVDA cair 20%?",
+    "benchmark": "Estou superando o S&P 500?"
+  },
+  "disclaimerShort": "Educacional — não é recomendação de investimento.",
+  "tryAsking": "Experimente perguntar",
+  "grounded": "Todos os números desta resposta foram rastreados a resultados de ferramentas.",
+  "groundingWarning": "{{count}} número(s) desta resposta não puderam ser rastreados a um resultado de ferramenta e podem não ser confiáveis."
+}

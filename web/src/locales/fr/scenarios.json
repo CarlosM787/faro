@@ -1,0 +1,23 @@
+{
+  "title": "Scénarios",
+  "subtitle": "Testez la résistance de votre portefeuille avec des chocs de prix hypothétiques — avec le moteur qu'utilise le copilote.",
+  "market": "Marché entier",
+  "presets": "Scénarios rapides",
+  "preset": {
+    "correction": "Correction",
+    "bear": "Marché baissier",
+    "crash": "Krach sévère"
+  },
+  "shockLabel": "Choc de prix",
+  "addShock": "Ajouter un choc",
+  "remove": "Retirer",
+  "run": "Lancer le scénario",
+  "running": "Calcul…",
+  "before": "Valeur avant",
+  "after": "Valeur après",
+  "impact": "Impact",
+  "perPosition": "Impact par position",
+  "askCopilot": "Interroger le copilote sur ce scénario",
+  "error": "Impossible de lancer le scénario.",
+  "empty": "Ajoutez au moins un choc et lancez le scénario."
+}

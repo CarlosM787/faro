@@ -8,7 +8,7 @@ import {
   IconSettings,
   IconZap,
 } from "./icons";
-import { LangToggle } from "./LangToggle";
+import { LanguageMenu } from "./LanguageMenu";
 
 const links = [
   { to: "/", key: "nav.dashboard", Icon: IconDashboard },
@@ -60,7 +60,7 @@ export function Sidebar() {
           ))}
         </nav>
         <div className="mt-auto px-2">
-          <LangToggle />
+          <LanguageMenu placement="up" full />
         </div>
       </aside>
 
@@ -68,7 +68,7 @@ export function Sidebar() {
       <header className="sticky top-0 z-20 border-b border-navy-800 bg-navy-900/95 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between px-4 pt-3">
           <Logo compact />
-          <LangToggle />
+          <LanguageMenu placement="down" align="end" />
         </div>
         <nav className="flex gap-1 overflow-x-auto px-3 py-2">
           {links.map((l) => (

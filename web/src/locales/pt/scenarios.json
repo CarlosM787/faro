@@ -1,0 +1,23 @@
+{
+  "title": "Cenários",
+  "subtitle": "Teste o estresse do seu portfólio com choques de preço hipotéticos — com o mesmo motor que o copiloto usa.",
+  "market": "Mercado inteiro",
+  "presets": "Cenários rápidos",
+  "preset": {
+    "correction": "Correção",
+    "bear": "Mercado em baixa",
+    "crash": "Queda severa"
+  },
+  "shockLabel": "Choque de preço",
+  "addShock": "Adicionar choque",
+  "remove": "Remover",
+  "run": "Executar cenário",
+  "running": "Calculando…",
+  "before": "Valor antes",
+  "after": "Valor depois",
+  "impact": "Impacto",
+  "perPosition": "Impacto por posição",
+  "askCopilot": "Pergunte ao copiloto sobre este cenário",
+  "error": "Não foi possível executar o cenário.",
+  "empty": "Adicione ao menos um choque e execute o cenário."
+}

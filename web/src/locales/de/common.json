@@ -1,0 +1,43 @@
+{
+  "app": {
+    "name": "Faro",
+    "tagline": "KI-Portfolio-Copilot",
+    "disclaimer": "Faro ist ein Bildungs-Analysetool, kein Anlageberater. Nichts hier ist eine Anlageempfehlung."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "chat": "Copilot",
+    "scenarios": "Szenarien",
+    "digest": "Übersicht",
+    "settings": "Einstellungen"
+  },
+  "common": {
+    "loading": "Wird geladen…",
+    "comingSoon": "Demnächst — dieser Bereich kommt in einer späteren Ausbaustufe.",
+    "language": "Sprache"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "languageHint": "Dashboard, Copilot und Berichte folgen dieser Sprache.",
+    "legal": "Rechtliche Dokumente",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "disclaimer": "Anlage-Haftungsausschluss",
+    "provider": "KI-Anbieter",
+    "providerAnthropic": "Claude (Anthropic-API)",
+    "providerOllama": "Lokales Modell (Ollama)",
+    "providerHint": "Setze ANTHROPIC_API_KEY in .env, um Claude zu nutzen; ohne Schlüssel verwendet Faro ein kostenloses lokales Modell über Ollama. In beiden Fällen ohne Codeänderungen.",
+    "about": "Über",
+    "aboutText": "Faro ist eine quelloffene, selbst gehostete Portfolio-Analyse-App. Sie ist rein edukativ — sie führt nie Trades aus, verbindet sich nie mit einem Broker und gibt keine personalisierte Anlageberatung.",
+    "source": "Quellcode auf GitHub",
+    "website": "faroquant.com",
+    "version": "Faro v{{version}}"
+  },
+  "pages": {
+    "dashboardTitle": "Dashboard",
+    "chatTitle": "Copilot",
+    "scenariosTitle": "Szenarien",
+    "digestTitle": "Tägliche Übersicht"
+  }
+}

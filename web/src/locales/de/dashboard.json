@@ -1,0 +1,64 @@
+{
+  "header": {
+    "totalValue": "Portfoliowert",
+    "totalPnl": "Gesamtgewinn/-verlust",
+    "dayChange": "Tagesveränderung",
+    "staleData": "Es werden zwischengespeicherte Marktdaten vom {{date}} verwendet — einige Kurse sind möglicherweise veraltet (Anbieter nicht erreichbar).",
+    "asOf": "Daten vom {{date}}",
+    "totalValueInfo": "Aktueller Marktwert aller Positionen zum letzten Tagesschlusskurs.",
+    "totalPnlInfo": "Gewinn oder Verlust gegenüber dem Kaufpreis (Einstandswert), in Dollar und Prozent.",
+    "dayChangeInfo": "Veränderung des Portfoliowerts am jüngsten Handelstag.",
+    "fallbackSource": "Einige Kurse stammen vom Ersatzanbieter (Stooq, nur splitbereinigt — ohne Dividenden). Kennzahlen können leicht abweichen."
+  },
+  "cards": {
+    "sharpe": "Sharpe-Ratio",
+    "sharpeInfo": "Rendite je Risikoeinheit oberhalb des risikofreien Zinses. Über 1 ist gut; unter 0 hätte Bargeld besser abgeschnitten.",
+    "var": "Value at Risk (95 %)",
+    "varInfo": "An 95 % der Tage sollte Ihr Tagesverlust diesen Wert nicht übersteigen. Basierend auf den letzten 2 Jahren (historische Methode).",
+    "beta": "Beta vs. {{benchmark}}",
+    "betaInfo": "Marktsensitivität. 1,0 bewegt sich mit dem Markt; höher verstärkt die Schwankungen, niedriger dämpft sie.",
+    "maxDrawdown": "Maximaler Drawdown",
+    "maxDrawdownInfo": "Größter Rückgang vom Hoch zum Tief im Zeitfenster — der tiefste Verlust, den Sie durchgestanden hätten."
+  },
+  "charts": {
+    "performance": "Wertentwicklung vs. {{benchmark}}",
+    "performanceHint": "Beide zu Fensterbeginn auf 100 indexiert",
+    "portfolio": "Portfolio",
+    "allocation": "Allokation",
+    "drawdown": "Drawdown",
+    "correlation": "Korrelationsmatrix",
+    "correlationHint": "Korrelationen der Tagesrenditen, 2-Jahres-Fenster"
+  },
+  "table": {
+    "title": "Positionen",
+    "edit": "Portfolio bearbeiten",
+    "ticker": "Symbol",
+    "shares": "Anteile",
+    "price": "Kurs",
+    "value": "Wert",
+    "pnl": "G/V",
+    "weight": "Gewicht",
+    "beta": "Beta",
+    "risk": "Risikoanteil",
+    "riskInfo": "Anteil an der gesamten Portfoliovarianz, den diese Position beiträgt (summiert sich auf 100 %)."
+  },
+  "editor": {
+    "title": "Portfolio bearbeiten",
+    "addPosition": "Position hinzufügen",
+    "ticker": "Symbol",
+    "shares": "Anteile",
+    "costBasis": "Einstandswert ($/Anteil)",
+    "purchaseDate": "Kaufdatum",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "add": "Hinzufügen"
+  },
+  "state": {
+    "loading": "Kennzahlen werden berechnet…",
+    "error": "Portfoliodaten konnten nicht geladen werden. Läuft die API?",
+    "retry": "Erneut versuchen",
+    "empty": "Dieses Portfolio hat noch keine Positionen.",
+    "emptyCta": "Fügen Sie Ihre erste Position hinzu"
+  }
+}
