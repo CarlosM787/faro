@@ -27,7 +27,7 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 
 ## Workflow
 
-- Not yet a git repo — `git init` first; small, working, well-messaged commits (hiring managers read history).
+- Small, working, well-messaged commits (hiring managers read history).
 - After each milestone: run the TECH-NOTES verification checklist (clean-clone Docker run, tests, agent-vs-dashboard number match, advice refusal, offline cache).
 - Keep the README current as features land — it's part of every milestone, not an afterthought.
 
@@ -43,5 +43,8 @@ Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first pri
 - [x] Scenario engine + page (price shocks; shared with agent tools) (2026-07-08)
 - [x] Daily digest generation (2026-07-08)
 - [x] Recruiter-grade README + grounding spot-check (28→4→2 across iterations; docs/GROUNDING-CHECK.md) (2026-07-08)
-- [x] Docker acceptance test, GitHub push (CI green), faroquant.com DNS + Pages deploy + HTTPS enforced, PWA installability, landing-page redesign + mobile verification (2026-07-08)
-- [ ] User steps remaining: add ANTHROPIC_API_KEY to .env (then re-run grounding eval on Claude), README screenshots/GIF, publish Substack article (final draft ready in docs/SUBSTACK-ARTICLE.md)
+- [x] Docker acceptance test, GitHub push (CI green), faroquant.com DNS + Pages deploy + HTTPS enforced, installable web app (manifest), landing-page redesign + mobile verification (2026-07-08)
+- [x] Honesty hardening: grounding warnings surfaced in the UI (chat + digest), honest two-mode eval (fresh 18/20 · no-fresh 3/20 / 139 flagged, committed logs), chat-crash fix, claim-integrity sweep (2026-07-12)
+- [x] Recruiter website pass: real screenshots, "for hiring managers" section, two-mode honesty stat (EN/ES) (2026-07-12)
+- [x] Recruiter documentation: recruiter-grade README + docs/PROJECT-HANDOFF + docs/RECRUITER-BRIEF + docs/CHANGELOG; Substack claim-aligned (2026-07-13)
+- [ ] User steps remaining: push the two local docs commits (`c1ac1d4`, `4461d95`); add ANTHROPIC_API_KEY to .env then re-run the grounding eval on Claude and record it in docs/GROUNDING-CHECK.md; publish Substack article (docs/SUBSTACK-ARTICLE.md); optional: demo GIF + OG social image
