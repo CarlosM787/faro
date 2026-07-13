@@ -3,7 +3,7 @@
 import json
 from collections.abc import AsyncIterator
 from datetime import datetime
-from typing import Annotated, Literal
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from faro_api.agent.loop import run_agent
+from faro_api.agent.prompts import Language
 from faro_api.agent.provider import Message
 from faro_api.agent.tools import ToolExecutor
 from faro_api.db.models import ChatMessage, Portfolio
@@ -27,7 +28,7 @@ HISTORY_TURNS = 12  # context window discipline: last N messages only
 
 class ChatIn(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
-    language: Literal["en", "es"] = "en"
+    language: Language = "en"
     # Skip conversation history for this turn (used by the grounding
     # spot-check so every question is independent and must call tools).
     fresh: bool = False

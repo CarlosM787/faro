@@ -6,6 +6,14 @@ always replies in the user's selected language instead of silently falling
 back to English.
 """
 
+from typing import Literal
+
+# The UI languages Faro ships in — kept in sync with web/src/languages.ts.
+# Request models (chat, digest) accept exactly these so the frontend's language
+# selection is validated rather than 422'd for anything past en/es.
+Language = Literal["en", "es", "pt", "fr", "de"]
+SUPPORTED_LANGUAGES: tuple[Language, ...] = ("en", "es", "pt", "fr", "de")
+
 _CORE = """You are Faro, an educational portfolio-analytics copilot.
 
 STRICT RULES — never violate:
@@ -44,9 +52,18 @@ _LANGUAGE_NAMES = {
 }
 
 
-def _generic(language_name: str) -> str:
+def language_name(language: str) -> str | None:
+    """English display name for a supported non-EN/ES language, else None.
+
+    Shared by the copilot prompt and the digest so both narrate in the same
+    set of languages the UI offers.
+    """
+    return _LANGUAGE_NAMES.get(language)
+
+
+def _generic(language_display: str) -> str:
     return _CORE + (
-        f"\nAlways answer in {language_name}. Keep answers concise and concrete. "
+        f"\nAlways answer in {language_display}. Keep answers concise and concrete. "
         "On first use, a metric's name may include its English term in parentheses, "
         "e.g. 'Value at Risk (VaR)'."
     )

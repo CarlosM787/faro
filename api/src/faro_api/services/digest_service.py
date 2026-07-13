@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from faro_api.agent.guardrails import check_grounding
+from faro_api.agent.prompts import language_name
 from faro_api.agent.provider import ChatOptions, Done, LLMProvider, TextDelta
 from faro_api.db.models import Position
 from faro_api.services.metrics_service import MetricsService
@@ -32,6 +33,22 @@ _PROMPT_ES = (
     "cifras exactamente como aparecen. Termina con: 'Resumen educativo — no es asesoría "
     "de inversión.'\n\nDATOS:\n"
 )
+
+
+def _digest_prompt(language: str) -> str:
+    """Digest instruction in the user's language (mirrors the copilot's set)."""
+    if language == "es":
+        return _PROMPT_ES
+    name = language_name(language)
+    if name is None:  # en, or any unrecognized code
+        return _PROMPT_EN
+    return (
+        f"Write a short daily portfolio digest in {name}, using ONLY the numbers in the "
+        "FACTS JSON below. Structure: a one-line headline, then three sections whose titles "
+        "translate to 'What moved', 'Risk check', and 'Upcoming events' (omit a section if "
+        "no data). Plain, educational language; cite figures exactly as given. End with a "
+        "line that translates to 'Educational digest — not investment advice.'\n\nFACTS:\n"
+    )
 
 
 def _upcoming_earnings(tickers: list[str]) -> list[dict[str, str]]:
@@ -107,7 +124,7 @@ class DigestService:
     ) -> DigestResult:
         facts = self.build_facts(positions, include_earnings=include_earnings)
         facts_json = json.dumps(facts, ensure_ascii=False)
-        prompt = (_PROMPT_ES if language == "es" else _PROMPT_EN) + facts_json
+        prompt = _digest_prompt(language) + facts_json
 
         parts: list[str] = []
         error: str | None = None

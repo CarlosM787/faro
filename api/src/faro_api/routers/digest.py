@@ -1,12 +1,13 @@
 """Daily digest endpoint."""
 
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from faro_api.agent.loop import get_provider
+from faro_api.agent.prompts import Language
 from faro_api.db.models import Portfolio
 from faro_api.db.session import get_session
 from faro_api.services.digest_service import DigestService
@@ -19,7 +20,7 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 
 class DigestIn(BaseModel):
-    language: Literal["en", "es"] = "en"
+    language: Language = "en"
 
 
 class DigestOut(BaseModel):
