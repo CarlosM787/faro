@@ -13,4 +13,30 @@
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+
+  ::selection {
+    background: rgba(255, 176, 32, 0.3);
+  }
+  :focus-visible {
+    outline: 2px solid #ffb020;
+    outline-offset: 2px;
+  }
+
+  /* Slim scrollbars that match the dark surface */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1e2a44 transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e2a44;
+    border: 3px solid #0b1220;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }

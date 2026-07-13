@@ -75,8 +75,8 @@ api (FastAPI · Python 3.12 · mypy strict)
 ## Key features
 
 - **Dashboard** — value & P/L, Sharpe · VaR · beta · max-drawdown cards with plain-language tooltips, performance vs SPY, allocation donut, drawdown chart, correlation heatmap, and a positions table with per-position beta and share of total risk.
-- **Copilot** — streaming chat, **visible tool-call chips** showing which computations backed each answer, per-portfolio history, suggested questions, and an amber warning under any reply containing an unsupported number.
-- **Scenario lab** — compounding price shocks (per-ticker or market-wide) with per-position impact; the same engine the agent's scenario tool uses.
+- **Copilot** — streaming chat, **visible tool-call chips** showing which computations backed each answer, per-portfolio history, suggested questions, and an amber warning under any reply containing an unsupported number — plus a quiet confirmation note when every figure traced to a tool result.
+- **Scenario lab** — compounding price shocks (per-ticker or market-wide) with per-position impact and one-click presets (correction −10% · bear market −20% · severe crash −35%); the same engine the agent's scenario tool uses.
 - **Daily digest** — one-click brief (movers, risk contributors, upcoming earnings), narrated by the LLM from computed facts only, grounding-checked like the chat.
 - **Fully bilingual (EN/ES)** — every user-facing string ships in English and neutral Latin-American Spanish in the same commit (CI-enforced locale key parity). The copilot and digest answer in the selected language; currency/dates format per locale via `Intl`.
 - **Installable web app** — a web-app manifest lets you add Faro to a home screen or desktop from the browser. **There is no offline service worker** — the backend runs on your own machine anyway; this is a deliberate self-hosted choice, not a full offline PWA.

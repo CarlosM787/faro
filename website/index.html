@@ -9,6 +9,12 @@
 <meta property="og:description" content="Institutional-grade risk analytics from first principles, explained by an AI that shows its work. Open source, bilingual, runs free on your machine.">
 <meta property="og:url" content="https://faroquant.com">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Faro">
+<meta property="og:image" content="https://faroquant.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://faroquant.com/img/og.png">
 <link rel="icon" type="image/svg+xml" href="logo-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -30,6 +36,7 @@
   nav .links a{color:var(--muted);text-decoration:none;font-size:.92rem;padding:6px 12px;border-radius:8px}
   nav .links a:hover{color:var(--text);background:var(--card)}
   .ghbtn{border:1px solid var(--line);border-radius:8px;padding:6px 14px !important;color:var(--text) !important}
+  @media(max-width:760px){nav .links a:not(.ghbtn){display:none}}
   .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-left:8px}
   .lang button{background:none;border:0;color:var(--muted);padding:6px 13px;font:600 .82rem Inter,sans-serif;cursor:pointer}
   .lang button.on{background:var(--beam);color:var(--navy)}
@@ -105,6 +112,16 @@
   .callout .m{background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:15px 16px;display:flex;align-items:baseline;gap:12px}
   .callout .m .big{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;color:var(--beam);flex:none}
   .callout .m .lil{color:var(--muted);font-size:.85rem;line-height:1.45}
+  /* architecture */
+  .arch{max-width:880px;margin:0 auto 64px}
+  .archrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.archrow{grid-template-columns:1fr}}
+  .anode{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center}
+  .anode h4{font-family:'Space Grotesk';font-size:.98rem}
+  .anode small{display:block;color:var(--muted);font-size:.78rem;line-height:1.55;margin-top:4px}
+  .anode.hl{border-color:rgba(255,176,32,.4)}
+  .anode .tag{display:inline-block;margin-top:8px;border:1px solid rgba(255,176,32,.4);background:rgba(255,176,32,.08);color:var(--beam);border-radius:99px;padding:2px 10px;font-size:.68rem;font-weight:600}
+  .adown{color:var(--dim);text-align:center;font-size:.85rem;letter-spacing:2px;padding:8px 0}
   /* evaluate */
   .evalgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;padding-bottom:56px}
   .evalcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column}
@@ -130,6 +147,7 @@
       <a href="#features" data-i18n="nav.features"></a>
       <a href="#grounded" data-i18n="nav.grounded"></a>
       <a href="#how" data-i18n="nav.how"></a>
+      <a href="#architecture" data-i18n="nav.arch"></a>
       <a href="#evaluate" data-i18n="nav.evaluate"></a>
       <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
@@ -180,7 +198,7 @@
 
   <div class="stats">
     <div class="stat"><div class="n">68</div><div class="l" data-i18n="stats.tests"></div></div>
-    <div class="stat"><div class="n">100%</div><div class="l" data-i18n="stats.eval"></div></div>
+    <div class="stat"><div class="n">139/139</div><div class="l" data-i18n="stats.eval"></div></div>
     <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs"></div></div>
     <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost"></div></div>
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license"></div></div>
@@ -237,7 +255,7 @@ tool result → flagged if not</code></div>
       <p data-i18n="two.p"></p>
       <div class="two">
         <div class="m"><div class="big">18/20</div><div class="lil" data-i18n="two.m1"></div></div>
-        <div class="m"><div class="big">100%</div><div class="lil" data-i18n="two.m2"></div></div>
+        <div class="m"><div class="big">139/139</div><div class="lil" data-i18n="two.m2"></div></div>
       </div>
     </div>
   </section>
@@ -251,6 +269,25 @@ tool result → flagged if not</code></div>
       <div class="card"><span class="ic">📈</span><h3 data-i18n="s2.b"></h3><p data-i18n="s2.t"></p></div>
       <div class="card"><span class="ic">💬</span><h3 data-i18n="s3.b"></h3><p data-i18n="s3.t"></p></div>
       <div class="card"><span class="ic">📰</span><h3 data-i18n="s4.b"></h3><p data-i18n="s4.t"></p></div>
+    </div>
+  </section>
+
+  <section id="architecture" class="block">
+    <div class="kicker" data-i18n="ar.kicker"></div>
+    <h2 class="title" data-i18n="ar.title"></h2>
+    <p class="lead" data-i18n="ar.lead"></p>
+    <div class="arch">
+      <div class="archrow">
+        <div class="anode"><h4 data-i18n="ar.web.h"></h4><small>React 18 · TypeScript · Tailwind · Recharts · i18next EN/ES</small></div>
+        <div class="anode hl"><h4 data-i18n="ar.agent.h"></h4><small data-i18n="ar.agent.s"></small><span class="tag" data-i18n="ar.agent.tag"></span></div>
+      </div>
+      <div class="adown">↓ &nbsp;REST + SSE&nbsp; ↓</div>
+      <div class="anode"><h4 data-i18n="ar.svc.h"></h4><small data-i18n="ar.svc.s"></small></div>
+      <div class="adown">↓</div>
+      <div class="archrow">
+        <div class="anode"><h4 data-i18n="ar.quant.h"></h4><small data-i18n="ar.quant.s"></small></div>
+        <div class="anode"><h4 data-i18n="ar.data.h"></h4><small data-i18n="ar.data.s"></small></div>
+      </div>
     </div>
   </section>
 
@@ -288,7 +325,7 @@ tool result → flagged if not</code></div>
 <script>
 const T = {
   en: {
-    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works","nav.see":"See it work","nav.evaluate":"Evaluate",
+    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works","nav.arch":"Architecture","nav.see":"See it work","nav.evaluate":"Evaluate",
     "hero.badge":"OPEN SOURCE · SELF-HOSTED · ENGLISH & ESPAÑOL",
     "hero.h1":'Portfolio analytics where the AI <em>shows its work</em>.',
     "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then an AI copilot explains them in plain English or Spanish. Every number it states is verified against the tested quant engine; unsupported figures are flagged.",
@@ -296,14 +333,14 @@ const T = {
     "hero.trust":"MIT licensed · No bank logins · No cloud required · Educational tool, not investment advice",
     "mock.value":"PORTFOLIO VALUE","mock.note":"Illustrative demo data","mock.q":"What happens if NVDA drops 20%?",
     "mock.a":"If NVDA fell 20%, your portfolio would decline <b>$710.61 (−2.3%)</b> to <b>$29,542.69</b>. NVDA is 11.7% of your holdings but contributes <b>23.6% of your risk</b> — every number above comes from the scenario tool call shown.",
-    "stats.tests":"unit tests on the quant engine","stats.eval":"of unsupported figures flagged in-app — detection, not hope","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
+    "stats.tests":"unit tests on the quant engine","stats.eval":"figures flagged in the multi-turn eval — every one surfaced in-app","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
     "see.kicker":"See it work","see.title":"Real screens, real numbers","see.lead":"Not mockups — the actual app running the seeded demo portfolio.",
     "see.dashAlt":"Faro dashboard showing portfolio value, risk metric cards, performance vs SPY, allocation and a correlation matrix",
     "see.dashCap":"The <b>dashboard</b> — value & P/L, Sharpe · VaR · beta · drawdown, performance vs SPY, allocation, drawdown and a correlation matrix. The copilot calls the <b>same engine</b>, so the chat and the charts can never disagree.",
     "see.groundAlt":"Faro copilot in Spanish with an amber warning that three figures could not be traced to a tool result",
     "see.groundCap":"<b>Caught in the act.</b> Asked its beta again mid-conversation, the local model recited “1.35” from earlier in the chat instead of re-calling the tool — and Faro flagged it in-app: <b>“3 figures … could not be traced to a tool result.”</b> That's the grounding checker working — here, in Spanish.",
     "two.h":"Honest by two measures, not one flattering number","two.p":"The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Claude, the primary provider, adheres far more tightly.",
-    "two.m1":"answers fully grounded — asked fresh, on a local 7B model","two.m2":"of unsupported figures surfaced in multi-turn use — detection, not hope",
+    "two.m1":"answers fully grounded — asked fresh, on a local 7B model","two.m2":"figures flagged in multi-turn use, every one surfaced in-app — detection, not hope",
     "ev.kicker":"For hiring managers","ev.title":"How to evaluate this in five minutes","ev.lead":"Built as a work sample. Here's where to look, and what each choice is meant to demonstrate.",
     "ev1.h":"The quant is from first principles","ev1.p":"Every metric implemented from its documented formula in pure numpy/pandas — no black-box libraries — tested against hand-computed references plus independent cross-checks.","ev1.a":"Read the engine →",
     "ev2.h":"The guardrail is code, not vibes","ev2.p":"The grounding checker that extracts every number and matches it to a tool result — the mechanism that makes “detected and surfaced” a testable claim.","ev2.a":"Read the checker →",
@@ -322,6 +359,13 @@ const T = {
     "gr1.h":"Deterministic engine underneath","gr1.p":"Pure numpy/pandas implementations of every formula, documented and cross-checked against independent libraries in 68 tests.",
     "gr2.h":"The AI can only call tools","gr2.p":"The copilot's sole source of numbers is five typed tools that dispatch into the same service layer the dashboard uses — one engine, two consumers, zero disagreement.",
     "gr3.h":"Every reply is verified","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything unsupported is detected and surfaced — measured by a public, two-mode bilingual eval with raw logs committed to the repo.",
+    "ar.kicker":"Under the hood","ar.title":"One engine, two consumers",
+    "ar.lead":"The dashboard and the copilot read the same service layer, so the charts and the chat can never disagree — and the copilot's replies are grounding-checked on top.",
+    "ar.web.h":"React dashboard",
+    "ar.agent.h":"AI copilot","ar.agent.s":"Claude primary ⇄ local Ollama fallback, swapped by one environment variable. Its only source of numbers: five typed tools.","ar.agent.tag":"grounding checker on every reply",
+    "ar.svc.h":"FastAPI service layer — the single computation path","ar.svc.s":"One set of services answers both the dashboard's REST calls and the agent's tools.",
+    "ar.quant.h":"Quant engine","ar.quant.s":"Pure numpy/pandas, every formula documented and unit-tested — no black-box quant libraries.",
+    "ar.data.h":"Market data","ar.data.s":"Free daily bars: yfinance with a Stooq fallback, cached on disk — keeps working from cache when providers are unreachable.",
     "how.kicker":"Workflow","how.h":"From holdings to insight in four steps",
     "how.sub":"No accounts, no brokerage linking — enter what you own and Faro does the math.",
     "s1.b":"Enter your holdings","s1.t":"Tickers, shares, cost basis. Data stays in a local SQLite file on your machine.",
@@ -335,7 +379,7 @@ const T = {
     "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including possible loss of principal."
   },
   es: {
-    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona","nav.see":"Míralo funcionar","nav.evaluate":"Evalúalo",
+    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona","nav.arch":"Arquitectura","nav.see":"Míralo funcionar","nav.evaluate":"Evalúalo",
     "hero.badge":"CÓDIGO ABIERTO · AUTOALOJADO · ENGLISH & ESPAÑOL",
     "hero.h1":'Análisis de portafolio donde la IA <em>muestra su trabajo</em>.',
     "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice se verifica contra el motor cuantitativo probado; las cifras sin respaldo se marcan.",
@@ -343,14 +387,14 @@ const T = {
     "hero.trust":"Licencia MIT · Sin conectar tu banco · Sin nube obligatoria · Herramienta educativa, no asesoría de inversión",
     "mock.value":"VALOR DEL PORTAFOLIO","mock.note":"Datos ilustrativos de demostración","mock.q":"¿Qué pasa si NVDA cae 20%?",
     "mock.a":"Si NVDA cayera 20%, tu portafolio bajaría <b>$710.61 (−2.3%)</b> hasta <b>$29,542.69</b>. NVDA es el 11.7% de tus posiciones pero aporta el <b>23.6% de tu riesgo</b> — cada número viene de la llamada a la herramienta de escenarios mostrada.",
-    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"de las cifras sin respaldo se marcan en la app — detección, no confianza ciega","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
+    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"cifras marcadas en la evaluación multi-turno — todas señaladas en la app","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
     "see.kicker":"Míralo funcionar","see.title":"Pantallas reales, números reales","see.lead":"No son mockups — es la app real corriendo el portafolio de demostración.",
     "see.dashAlt":"Tablero de Faro con el valor del portafolio, tarjetas de métricas de riesgo, rendimiento vs SPY, asignación y una matriz de correlación",
     "see.dashCap":"El <b>tablero</b> — valor y P/G, Sharpe · VaR · beta · drawdown, rendimiento vs SPY, asignación, drawdown y una matriz de correlación. El copiloto llama al <b>mismo motor</b>, así que el chat y las gráficas nunca se contradicen.",
     "see.groundAlt":"Copiloto de Faro en español con una advertencia ámbar de que tres cifras no pudieron rastrearse a un resultado de herramienta",
     "see.groundCap":"<b>Atrapado en el acto.</b> Al preguntarle de nuevo su beta a mitad de la conversación, el modelo local recitó “1.35” de un mensaje anterior en vez de volver a llamar la herramienta — y Faro lo marcó en la app: <b>“3 cifras … no pudieron rastrearse a un resultado de herramienta.”</b> Así funciona el verificador de anclaje — aquí, en español.",
     "two.h":"Honesto con dos medidas, no con un solo número halagador","two.p":"La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. Claude, el proveedor principal, se apega mucho más.",
-    "two.m1":"respuestas totalmente ancladas — preguntadas en fresco, en un modelo local 7B","two.m2":"de las cifras sin respaldo señaladas en varios turnos — detección, no confianza ciega",
+    "two.m1":"respuestas totalmente ancladas — preguntadas en fresco, en un modelo local 7B","two.m2":"cifras marcadas en uso multi-turno, todas señaladas en la app — detección, no confianza ciega",
     "ev.kicker":"Para reclutadores","ev.title":"Cómo evaluarlo en cinco minutos","ev.lead":"Hecho como muestra de trabajo. Aquí está dónde mirar, y qué busca demostrar cada decisión.",
     "ev1.h":"El motor cuantitativo es desde las fórmulas","ev1.p":"Cada métrica implementada desde su fórmula documentada en numpy/pandas puro — sin bibliotecas caja-negra — probada contra referencias calculadas a mano más verificaciones independientes.","ev1.a":"Ver el motor →",
     "ev2.h":"La protección es código, no confianza","ev2.p":"El verificador de anclaje que extrae cada número y lo compara con un resultado de herramienta — el mecanismo que hace de “detectado y señalado” una afirmación comprobable.","ev2.a":"Ver el verificador →",
@@ -369,6 +413,13 @@ const T = {
     "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 68 pruebas.",
     "gr2.h":"La IA solo puede llamar herramientas","gr2.p":"La única fuente de números del copiloto son cinco herramientas tipadas que llegan a la misma capa de servicios que usa el tablero — un motor, dos consumidores, cero desacuerdos.",
     "gr3.h":"Cada respuesta se verifica","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no tenga respaldo se detecta y se señala — medido con una evaluación pública bilingüe de dos modos, con registros crudos incluidos en el repositorio.",
+    "ar.kicker":"Por dentro","ar.title":"Un motor, dos consumidores",
+    "ar.lead":"El tablero y el copiloto leen la misma capa de servicios, así que las gráficas y el chat nunca se contradicen — y además cada respuesta del copiloto pasa por el verificador de anclaje.",
+    "ar.web.h":"Tablero en React",
+    "ar.agent.h":"Copiloto de IA","ar.agent.s":"Claude como principal ⇄ Ollama local de respaldo, se cambia con una variable de entorno. Su única fuente de números: cinco herramientas tipadas.","ar.agent.tag":"verificador de anclaje en cada respuesta",
+    "ar.svc.h":"Capa de servicios FastAPI — la única ruta de cálculo","ar.svc.s":"Un solo conjunto de servicios responde a las llamadas REST del tablero y a las herramientas del agente.",
+    "ar.quant.h":"Motor cuantitativo","ar.quant.s":"numpy/pandas puro, cada fórmula documentada y con pruebas unitarias — sin bibliotecas cuantitativas caja-negra.",
+    "ar.data.h":"Datos de mercado","ar.data.s":"Barras diarias gratuitas: yfinance con respaldo de Stooq, con caché en disco — sigue funcionando desde la caché si los proveedores no responden.",
     "how.kicker":"Flujo de trabajo","how.h":"De tus posiciones al análisis en cuatro pasos",
     "how.sub":"Sin cuentas, sin conectar tu casa de bolsa — ingresa lo que tienes y Faro hace las matemáticas.",
     "s1.b":"Ingresa tus posiciones","s1.t":"Símbolos, acciones, costo. Los datos se quedan en un archivo SQLite local en tu máquina.",

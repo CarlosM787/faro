@@ -57,6 +57,8 @@
   "state": {
     "loading": "Computing metrics…",
     "error": "Could not load portfolio data. Is the API running?",
-    "empty": "This portfolio has no positions yet."
+    "retry": "Retry",
+    "empty": "This portfolio has no positions yet.",
+    "emptyCta": "Add your first position"
   }
 }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { IconAlertTriangle, IconInfo } from "../../components/icons";
 import { api, type FullMetrics, type PortfolioOut, type Series } from "../../lib/api";
 import { fmtCurrency, fmtNum, fmtPct } from "../../lib/format";
 import { PortfolioEditor } from "../portfolio/PortfolioEditor";
@@ -11,6 +12,33 @@ import {
   PerformanceChart,
 } from "./charts";
 import { MetricCard } from "./MetricCard";
+
+function Skeleton({ className }: { className: string }) {
+  return <div className={`animate-pulse rounded-xl border border-navy-800 bg-navy-900 ${className}`} />;
+}
+
+/** Mirrors the real layout so the page doesn't jump when data lands. */
+function DashboardSkeleton({ header = true }: { header?: boolean }) {
+  return (
+    <div className="space-y-6" aria-hidden>
+      {header && <Skeleton className="h-12 w-64" />}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {[0, 1, 2].map((i) => (
+          <Skeleton key={i} className="h-24" />
+        ))}
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[0, 1, 2, 3].map((i) => (
+          <Skeleton key={i} className="h-24" />
+        ))}
+      </div>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <Skeleton className="h-72 lg:col-span-2" />
+        <Skeleton className="h-72" />
+      </div>
+    </div>
+  );
+}
 
 function Panel({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
@@ -61,8 +89,20 @@ export function DashboardPage() {
     void load();
   }, [load]);
 
-  if (error) return <p className="text-loss">{t("state.error")}</p>;
-  if (!portfolio) return <p className="text-muted">{t("state.loading")}</p>;
+  if (error)
+    return (
+      <div className="mx-auto mt-16 max-w-md rounded-xl border border-loss/40 bg-loss/5 p-6 text-center">
+        <IconAlertTriangle className="mx-auto h-6 w-6 text-loss" />
+        <p className="mt-3 text-sm text-ink">{t("state.error")}</p>
+        <button
+          onClick={() => void load()}
+          className="mt-4 rounded-lg border border-navy-800 px-4 py-2 text-sm text-ink hover:bg-navy-800"
+        >
+          {t("state.retry")}
+        </button>
+      </div>
+    );
+  if (!portfolio) return <DashboardSkeleton />;
 
   return (
     <div className="space-y-6">
@@ -89,22 +129,38 @@ export function DashboardPage() {
       </div>
 
       {metrics?.stale && (
-        <div className="rounded-lg border border-beam/40 bg-beam/10 px-4 py-2 text-sm text-beam">
-          {t("header.staleData", {
-            date: new Date(metrics.as_of).toLocaleDateString(
-              i18n.resolvedLanguage === "es" ? "es-MX" : "en-US",
-            ),
-          })}
+        <div className="flex items-start gap-2.5 rounded-lg border border-beam/40 bg-beam/10 px-4 py-2.5 text-sm text-beam">
+          <IconAlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>
+            {t("header.staleData", {
+              date: new Date(metrics.as_of).toLocaleDateString(
+                i18n.resolvedLanguage === "es" ? "es-MX" : "en-US",
+              ),
+            })}
+          </span>
         </div>
       )}
       {metrics?.data_sources?.includes("stooq") && (
-        <div className="rounded-lg border border-beam/40 bg-beam/10 px-4 py-2 text-sm text-beam">
-          {t("header.fallbackSource")}
+        <div className="flex items-start gap-2.5 rounded-lg border border-beam/40 bg-beam/10 px-4 py-2.5 text-sm text-beam">
+          <IconAlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>{t("header.fallbackSource")}</span>
         </div>
       )}
 
       {!metrics ? (
-        <p className="text-muted">{portfolio.positions.length === 0 ? t("state.empty") : t("state.loading")}</p>
+        portfolio.positions.length === 0 ? (
+          <div className="mx-auto mt-10 max-w-md rounded-xl border border-navy-800 bg-navy-900 p-8 text-center">
+            <p className="text-sm text-muted">{t("state.empty")}</p>
+            <button
+              onClick={() => setEditing(true)}
+              className="mt-4 rounded-lg bg-beam px-5 py-2.5 text-sm font-semibold text-navy-950"
+            >
+              {t("state.emptyCta")}
+            </button>
+          </div>
+        ) : (
+          <DashboardSkeleton header={false} />
+        )
       ) : (
         <>
           {/* headline stats */}
@@ -177,7 +233,9 @@ export function DashboardPage() {
                     <th className="pb-2 text-right">{t("table.weight")}</th>
                     <th className="pb-2 text-right">{t("table.beta")}</th>
                     <th className="pb-2 text-right" title={t("table.riskInfo")}>
-                      {t("table.risk")} <span className="cursor-help text-muted/70">ⓘ</span>
+                      <span className="inline-flex cursor-help items-center gap-1">
+                        {t("table.risk")} <IconInfo className="h-3 w-3 text-muted/70" />
+                      </span>
                     </th>
                   </tr>
                 </thead>

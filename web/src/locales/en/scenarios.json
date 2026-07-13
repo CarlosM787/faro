@@ -2,6 +2,12 @@
   "title": "Scenarios",
   "subtitle": "Stress-test your portfolio with hypothetical price shocks — powered by the same engine the copilot uses.",
   "market": "Entire market",
+  "presets": "Quick scenarios",
+  "preset": {
+    "correction": "Correction",
+    "bear": "Bear market",
+    "crash": "Severe crash"
+  },
   "shockLabel": "Price shock",
   "addShock": "Add shock",
   "remove": "Remove",

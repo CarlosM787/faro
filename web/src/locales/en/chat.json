@@ -14,5 +14,7 @@
     "benchmark": "Am I beating the S&P 500?"
   },
   "disclaimerShort": "Educational — not investment advice.",
-  "groundingWarning": "⚠ {{count}} figure(s) in this reply could not be traced to a tool result and may be unreliable."
+  "tryAsking": "Try asking",
+  "grounded": "All figures in this reply traced to tool results.",
+  "groundingWarning": "{{count}} figure(s) in this reply could not be traced to a tool result and may be unreliable."
 }

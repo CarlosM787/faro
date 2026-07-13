@@ -14,5 +14,7 @@
     "benchmark": "¿Le estoy ganando al S&P 500?"
   },
   "disclaimerShort": "Educativo — no es asesoría de inversión.",
-  "groundingWarning": "⚠ {{count}} cifra(s) de esta respuesta no se pudieron rastrear a un resultado de herramienta y podrían no ser confiables."
+  "tryAsking": "Prueba preguntar",
+  "grounded": "Todas las cifras de esta respuesta se rastrearon a resultados de herramientas.",
+  "groundingWarning": "{{count}} cifra(s) de esta respuesta no se pudieron rastrear a un resultado de herramienta y podrían no ser confiables."
 }

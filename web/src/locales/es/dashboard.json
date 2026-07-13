@@ -57,6 +57,8 @@
   "state": {
     "loading": "Calculando métricas…",
     "error": "No se pudieron cargar los datos del portafolio. ¿Está corriendo el API?",
-    "empty": "Este portafolio aún no tiene posiciones."
+    "retry": "Reintentar",
+    "empty": "Este portafolio aún no tiene posiciones.",
+    "emptyCta": "Agrega tu primera posición"
   }
 }

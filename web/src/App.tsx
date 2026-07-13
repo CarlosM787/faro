@@ -10,10 +10,10 @@ import { SettingsPage } from "./features/settings/SettingsPage";
 
 export default function App() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen flex-col lg:flex-row">
       <Sidebar />
       <div className="flex min-h-screen flex-1 flex-col">
-        <main className="flex-1 p-6 lg:p-10">
+        <main className="flex-1 p-4 sm:p-6 lg:p-10">
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/chat" element={<ChatPage />} />

@@ -25,7 +25,13 @@
     "disclaimer": "Investment Disclaimer",
     "provider": "AI provider",
     "providerAnthropic": "Claude (Anthropic API)",
-    "providerOllama": "Local model (Ollama)"
+    "providerOllama": "Local model (Ollama)",
+    "providerHint": "Set ANTHROPIC_API_KEY in .env to use Claude; without a key, Faro uses a free local model via Ollama. No code changes either way.",
+    "about": "About",
+    "aboutText": "Faro is an open-source, self-hosted portfolio-analytics app. It is educational only — it never executes trades, never links to a brokerage, and does not give personalized investment advice.",
+    "source": "Source code on GitHub",
+    "website": "faroquant.com",
+    "version": "Faro v{{version}}"
   },
   "pages": {
     "dashboardTitle": "Dashboard",

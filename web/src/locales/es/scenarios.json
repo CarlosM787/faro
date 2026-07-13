@@ -2,6 +2,12 @@
   "title": "Escenarios",
   "subtitle": "Pon a prueba tu portafolio con caídas de precio hipotéticas — con el mismo motor que usa el copiloto.",
   "market": "Todo el mercado",
+  "presets": "Escenarios rápidos",
+  "preset": {
+    "correction": "Corrección",
+    "bear": "Mercado bajista",
+    "crash": "Caída severa"
+  },
   "shockLabel": "Cambio de precio",
   "addShock": "Agregar impacto",
   "remove": "Quitar",

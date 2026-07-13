@@ -5,6 +5,8 @@
   "generating": "Generando…",
   "provider": "Escrito por: {{name}}",
   "error": "No se pudo generar el resumen. Si no configuraste una clave API, asegúrate de que Ollama esté corriendo.",
-  "empty": "Haz clic en el botón para generar tu resumen.",
-  "groundingWarning": "⚠ {{count}} cifra(s) de este resumen no se pudieron rastrear a los datos calculados y podrían no ser confiables."
+  "empty": "Aún no hay resumen.",
+  "emptyHint": "Con un clic se genera un informe de los movimientos de hoy, las principales fuentes de riesgo y los próximos reportes — narrado solo con datos calculados y luego verificado por el anclaje.",
+  "grounded": "Todas las cifras de este resumen se rastrearon a los datos calculados.",
+  "groundingWarning": "{{count}} cifra(s) de este resumen no se pudieron rastrear a los datos calculados y podrían no ser confiables."
 }

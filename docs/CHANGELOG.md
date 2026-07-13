@@ -6,6 +6,21 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com). Faro is p
 
 ---
 
+## 2026-07-13 — Product & brand professionalization pass
+
+A design pass to make the shipped app and site feel like a real fintech product, benchmarked against the visual discipline of credible dev-tool/fintech products (restrained accent color, consistent stroke iconography, skeleton loading, no emoji chrome).
+
+- **App: real iconography** — replaced all emoji UI chrome (nav 📊💬⚡📰⚙️, chips, links) with a small in-repo SVG stroke-icon set (`web/src/components/icons.tsx`, no icon-library dependency).
+- **App: mobile layout** — the fixed desktop sidebar now collapses to a sticky top bar with horizontal nav below `lg`; verified no horizontal overflow at 375px.
+- **App: state design** — skeleton loading that mirrors the dashboard layout, a styled error state with retry, real empty states (dashboard CTA to add a first position; digest explains what it generates).
+- **App: grounding UX both ways** — the amber warning now has an icon treatment, and clean replies get the positive counterpart: a small "all figures traced to tool results" note when the checker found nothing to flag (live turns only — restored history is never re-claimed).
+- **App: scenario presets** — one-click market-wide Correction −10% / Bear market −20% / Severe crash −35%, running the same engine.
+- **App: settings grew up** — shows the active AI provider (from `/api/health`), an About section with links and the app version, and external-link icons on legal docs.
+- **Website: claim precision** — the "100%" eval stat became the exact **139/139** (every *flagged* figure surfaced in-app), which is what the logs support; EN/ES labels updated to match.
+- **Website: architecture section** — a bilingual "one engine, two consumers" diagram (dashboard + copilot → shared FastAPI services → quant engine + market data, grounding checker called out).
+- **Website: social meta** — og:image/twitter-card wired to a new `img/og.png` composed from the real dashboard screenshot; mobile nav now collapses section links.
+- All new UI copy shipped EN + ES in the same change; i18n parity and web build green.
+
 ## 2026-07-13 — Recruiter documentation pass
 
 The docs became the deliverable.

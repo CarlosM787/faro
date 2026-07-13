@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
+import { IconChat } from "../../components/icons";
 import { api, type PortfolioOut } from "../../lib/api";
 import { fmtCurrency, fmtPct } from "../../lib/format";
 
@@ -9,6 +10,13 @@ interface ShockRow {
   ticker: string;
   pct: number;
 }
+
+/** Market-wide one-click starting points (rough historical drawdown scale). */
+const PRESETS = [
+  { key: "correction", pct: -10 },
+  { key: "bear", pct: -20 },
+  { key: "crash", pct: -35 },
+] as const;
 
 interface ScenarioResult {
   value_before: number;
@@ -32,15 +40,15 @@ export function ScenariosPage() {
 
   const tickers = [...new Set(portfolio?.positions.map((p) => p.ticker) ?? [])].sort();
 
-  const run = async () => {
-    if (!portfolio || shocks.length === 0) return;
+  const run = async (rows: ShockRow[] = shocks) => {
+    if (!portfolio || rows.length === 0) return;
     setBusy(true);
     setError(false);
     try {
       const resp = await fetch(`/api/portfolios/${portfolio.id}/scenarios`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shocks }),
+        body: JSON.stringify({ shocks: rows }),
       });
       if (!resp.ok) throw new Error(`${resp.status}`);
       setResult((await resp.json()) as ScenarioResult);
@@ -61,6 +69,25 @@ export function ScenariosPage() {
       <div>
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-sm text-muted">{t("subtitle")}</p>
+      </div>
+
+      {/* one-click presets */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs uppercase tracking-wider text-muted">{t("presets")}</span>
+        {PRESETS.map((p) => (
+          <button
+            key={p.key}
+            disabled={busy || !portfolio}
+            onClick={() => {
+              const rows = [{ ticker: "*", pct: p.pct }];
+              setShocks(rows);
+              void run(rows);
+            }}
+            className="rounded-full border border-navy-800 px-4 py-1.5 text-sm text-muted transition-colors hover:border-beam hover:text-beam disabled:opacity-40"
+          >
+            {t(`preset.${p.key}`)} <span className="tabular text-loss">{p.pct}%</span>
+          </button>
+        ))}
       </div>
 
       {/* shock builder */}
@@ -177,8 +204,9 @@ export function ScenariosPage() {
             </div>
           </div>
 
-          <Link to="/chat" className="inline-block text-sm text-teal hover:underline">
-            💬 {t("askCopilot")} ({copilotPrompt})
+          <Link to="/chat" className="inline-flex items-center gap-1.5 text-sm text-teal hover:underline">
+            <IconChat className="h-4 w-4 shrink-0" />
+            {t("askCopilot")} ({copilotPrompt})
           </Link>
         </>
       ) : (

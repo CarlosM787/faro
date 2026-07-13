@@ -9,7 +9,8 @@
 Faro is a **shipped, live MVP** plus a recruiter-grade documentation layer.
 
 - Core app (quant engine, dashboard, copilot, scenarios, digest) — **built, tested, running.**
-- Website [faroquant.com](https://faroquant.com) — **live, HTTPS, recruiter-facing redesign deployed** (real screenshots, "for hiring managers" section, honest two-mode eval stat).
+- App UI professionalized (2026-07-13): SVG icon set replaces emoji chrome, responsive mobile top-bar nav, skeleton/empty/error states, scenario presets, settings provider+about sections, positive "figures traced" note beside the amber grounding warning. EN/ES paired; i18n parity + build green.
+- Website [faroquant.com](https://faroquant.com) — **live, HTTPS, recruiter-facing redesign deployed** (real screenshots, "for hiring managers" section, honest two-mode eval stat). Local-only additions pending push: precise 139/139 stat, bilingual architecture section, og:image social card.
 - Docs — README rewritten recruiter-grade; this handoff + [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) + [CHANGELOG.md](CHANGELOG.md) created; [GROUNDING-CHECK.md](GROUNDING-CHECK.md) reflects the honest two-mode eval; [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) drafted and claim-checked (not yet published).
 - CI **green**; working tree expected clean on `main`.
 
@@ -79,7 +80,8 @@ The dashboard and the copilot read the **same `services/` layer**; the copilot's
 - **Grounding eval, two modes, committed logs** ([docs/eval-logs/](eval-logs/)): fresh **18/20** answers clean (4 flagged figures); no-fresh (shipped) **3/20** clean, **139** flagged — every flag surfaced in the UI.
 - **Grounding warnings render in the UI** — chat and digest (verified with a live capture, [docs/screenshots/copilot-grounding-warning.png](screenshots/copilot-grounding-warning.png)).
 - **Advice refusal** works at the prompt level — both eval trap questions refused with an educational reframe (fresh mode).
-- **Website live** over HTTPS; all sections render EN/ES; screenshots serve 200; "20/20" overclaim removed.
+- **Website live** over HTTPS; all sections render EN/ES; screenshots serve 200; "20/20" overclaim removed; "100%" stat tightened to the exact 139/139 (2026-07-13, local until pushed).
+- **App UI pass verified live** (2026-07-13, dev server against the Docker API): responsive nav at 375px with no horizontal overflow, scenario presets run end-to-end, settings shows the live provider, a live chat turn rendered the amber grounding warning with the new icon treatment, EN⇄ES toggle checked on the new copy.
 - **The `$12,345.67` hook is real** — `docs/eval-logs/run1-fresh.txt` Q10: `tools=0 | violations=[12345.67]`.
 
 ## 8. What is NOT verified / uncertain

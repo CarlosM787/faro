@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { IconAlertTriangle, IconCheckCircle, IconSigma } from "../../components/icons";
 import { api, type PortfolioOut } from "../../lib/api";
 
 interface ToolChip {
@@ -14,6 +15,9 @@ interface ChatTurn {
   tools: ToolChip[];
   /** Numbers in the reply the grounding checker could NOT trace to a tool result. */
   violations: number[];
+  /** True only for live turns whose `done` event carried a grounding result —
+   *  restored history was checked in a past session, so we don't re-claim it. */
+  checked: boolean;
 }
 
 /** Parse an SSE stream of `data: {json}` lines, invoking onEvent per event. */
@@ -50,10 +54,11 @@ function ToolChipBadge({ chip, label }: { chip: ToolChip; label: string }) {
     .join(", ");
   return (
     <span
-      className="mb-1 mr-2 inline-flex items-center gap-1 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[11px] text-teal"
+      className="mb-1 mr-2 inline-flex items-center gap-1.5 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[11px] text-teal"
       title={args}
     >
-      📊 {label}: {chip.name}
+      <IconSigma className="h-3 w-3 shrink-0" />
+      {label}: {chip.name}
       {args && <span className="text-teal/70">({args})</span>}
     </span>
   );
@@ -84,6 +89,7 @@ export function ChatPage() {
               content: r.content,
               tools: r.tool_calls ?? [],
               violations: [],
+              checked: false,
             })),
           ),
         );
@@ -107,8 +113,8 @@ export function ChatPage() {
     setInput("");
     setTurns((prev) => [
       ...prev,
-      { role: "user", content: text, tools: [], violations: [] },
-      { role: "assistant", content: "", tools: [], violations: [] },
+      { role: "user", content: text, tools: [], violations: [], checked: false },
+      { role: "assistant", content: "", tools: [], violations: [], checked: false },
     ]);
     try {
       await streamChat(portfolio.id, text, i18n.resolvedLanguage ?? "en", (event) => {
@@ -127,6 +133,7 @@ export function ChatPage() {
             // "unsupported numbers are detected and surfaced," literally.
             const flagged = event.grounding_violations as number[] | undefined;
             if (flagged && flagged.length > 0) last.violations = flagged;
+            if (!event.error) last.checked = true;
           }
           next[next.length - 1] = last;
           return next;
@@ -151,7 +158,8 @@ export function ChatPage() {
 
       <div className="flex-1 space-y-4 overflow-y-auto pb-4">
         {turns.length === 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="w-full text-xs uppercase tracking-wider text-muted">{t("tryAsking")}</span>
             {(["risk", "concentration", "scenario", "benchmark"] as const).map((key) => (
               <button
                 key={key}
@@ -182,13 +190,24 @@ export function ChatPage() {
               {turn.content || (busy && i === turns.length - 1 ? t("thinking") : "")}
             </div>
             {turn.violations.length > 0 && (
-              <p
-                className="mt-1 max-w-[85%] rounded-lg border border-beam/40 bg-beam/10 px-3 py-2 text-xs text-beam"
+              <div
+                className="mt-1 flex max-w-[85%] items-start gap-2 rounded-lg border border-beam/40 bg-beam/10 px-3 py-2 text-xs text-beam"
                 title={turn.violations.join(", ")}
               >
-                {t("groundingWarning", { count: turn.violations.length })}
-              </p>
+                <IconAlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                <span>{t("groundingWarning", { count: turn.violations.length })}</span>
+              </div>
             )}
+            {turn.role === "assistant" &&
+              turn.checked &&
+              turn.violations.length === 0 &&
+              turn.tools.length > 0 &&
+              /\d/.test(turn.content) && (
+                <p className="mt-1 flex items-center gap-1.5 text-[11px] text-teal/80">
+                  <IconCheckCircle className="h-3 w-3 shrink-0" />
+                  {t("grounded")}
+                </p>
+              )}
           </div>
         ))}
         {failed && <p className="text-sm text-loss">{t("error")}</p>}

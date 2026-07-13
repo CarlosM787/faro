@@ -5,6 +5,8 @@
   "generating": "Generating…",
   "provider": "Written by: {{name}}",
   "error": "Could not generate the digest. If you're running without an API key, make sure Ollama is running.",
-  "empty": "Click the button to generate your digest.",
-  "groundingWarning": "⚠ {{count}} figure(s) in this digest could not be traced to the computed facts and may be unreliable."
+  "empty": "No digest yet.",
+  "emptyHint": "One click generates a brief on today's movers, top risk contributors, and upcoming earnings — narrated only from computed data, then grounding-checked.",
+  "grounded": "All figures in this digest traced to computed facts.",
+  "groundingWarning": "{{count}} figure(s) in this digest could not be traced to the computed facts and may be unreliable."
 }

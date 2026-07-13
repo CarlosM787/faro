@@ -25,7 +25,13 @@
     "disclaimer": "Aviso Legal de Inversión",
     "provider": "Proveedor de IA",
     "providerAnthropic": "Claude (API de Anthropic)",
-    "providerOllama": "Modelo local (Ollama)"
+    "providerOllama": "Modelo local (Ollama)",
+    "providerHint": "Configura ANTHROPIC_API_KEY en .env para usar Claude; sin clave, Faro usa un modelo local gratuito vía Ollama. En ningún caso hay que tocar el código.",
+    "about": "Acerca de",
+    "aboutText": "Faro es una app de análisis de portafolio de código abierto y autoalojada. Es solo educativa — nunca ejecuta operaciones, nunca se conecta a una casa de bolsa y no da asesoría de inversión personalizada.",
+    "source": "Código fuente en GitHub",
+    "website": "faroquant.com",
+    "version": "Faro v{{version}}"
   },
   "pages": {
     "dashboardTitle": "Tablero",
