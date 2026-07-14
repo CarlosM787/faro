@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://faroquant.com/sitemap.xml

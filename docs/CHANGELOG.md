@@ -6,6 +6,14 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com). Faro is p
 
 ---
 
+## 2026-07-13 — Website: SEO essentials + privacy-friendly analytics
+
+Made faroquant.com a properly discoverable, measurable live site.
+
+- **SEO/live essentials** — `robots.txt` (+ sitemap ref), `sitemap.xml`, a `<link rel="canonical">`, `robots`/`theme-color`/`author` meta, an `apple-touch-icon`, and **JSON-LD `SoftwareApplication` structured data** (name, free/MIT, category, description, EN/ES). The Pages workflow already copies `website/*`, so these deploy as-is.
+- **Cookieless analytics, guarded** — a Cloudflare Web Analytics loader that ships **inert**: it loads nothing (no third-party request, no cookies, no consent banner) until a token is pasted into `CF_BEACON_TOKEN` in `website/index.html`. One-line activation, instructions in the file. Chosen over Google Analytics to keep the privacy-first stance and avoid a consent banner.
+- **User step to go live on tracking:** enable Web Analytics for faroquant.com in the Cloudflare dashboard, paste the token, redeploy. (Consider a one-line "cookieless analytics" mention in the privacy policy.)
+
 ## 2026-07-13 — Language picker (5 UI languages)
 
 Turned the two-button EN/ES pill into a proper language dropdown and extended the app past the mandated pair.
