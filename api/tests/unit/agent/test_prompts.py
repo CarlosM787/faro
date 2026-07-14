@@ -4,8 +4,8 @@ fall back to English for the non-EN/ES languages the picker now offers."""
 import pytest
 
 from faro_api.agent.prompts import (
-    SUPPORTED_LANGUAGES,
     _CORE,
+    SUPPORTED_LANGUAGES,
     language_name,
     system_prompt,
 )
