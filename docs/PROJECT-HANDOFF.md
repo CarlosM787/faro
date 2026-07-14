@@ -9,12 +9,14 @@
 Faro is a **shipped, live MVP** plus a recruiter-grade documentation layer.
 
 - Core app (quant engine, dashboard, copilot, scenarios, digest) — **built, tested, running.**
-- App UI professionalized (2026-07-13): SVG icon set replaces emoji chrome, responsive mobile top-bar nav, skeleton/empty/error states, scenario presets, settings provider+about sections, positive "figures traced" note beside the amber grounding warning. EN/ES paired; i18n parity + build green.
-- Website [faroquant.com](https://faroquant.com) — **live, HTTPS, recruiter-facing redesign deployed** (real screenshots, "for hiring managers" section, honest two-mode eval stat). Local-only additions pending push: precise 139/139 stat, bilingual architecture section, og:image social card.
-- Docs — README rewritten recruiter-grade; this handoff + [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) + [CHANGELOG.md](CHANGELOG.md) created; [GROUNDING-CHECK.md](GROUNDING-CHECK.md) reflects the honest two-mode eval; [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) drafted and claim-checked (not yet published).
-- CI **green**; working tree expected clean on `main`.
+- App UI professionalized (2026-07-13): SVG icon set replaces emoji chrome, responsive mobile top-bar nav, skeleton/empty/error states, scenario presets, settings provider+about sections, positive "figures traced" note beside the amber grounding warning.
+- **Languages (2026-07-13): the EN/ES pill became an accessible dropdown, and the app now ships 5 UI languages** — EN/ES are the hand-maintained pair, PT (pt-BR)/FR/DE added on the same CI-enforced key set (`web/src/languages.ts` is the source of truth). The copilot's `system_prompt` is language-generic so chat + digest answer in any of the five (verified live). Number/date formatting is per-locale via `Intl`. API request models widened from `Literal["en","es"]` to a shared `Language` type (was 422'ing pt/fr/de). Marketing site stays EN/ES.
+- Website [faroquant.com](https://faroquant.com) — **live, HTTPS.** Deployed: recruiter redesign, precise 139/139 stat, bilingual architecture section, og:image. **SEO essentials live** (`robots.txt`, `sitemap.xml`, canonical, `SoftwareApplication` JSON-LD, theme-color). **Cloudflare Web Analytics ACTIVE** (cookieless, guarded loader, token `ab0fc9be…34ce` in `website/index.html`). Google Search Console + Bing verification meta slots are prepared (commented) in the `<head>`, pending the user's verification codes.
+- Legal — privacy policy updated (2026-07-13) with a website-analytics disclosure (EN/ES) distinguishing the cookieless site analytics from the App (which still has none); PDF regenerated from the docx.
+- Docs — README recruiter-grade; this handoff + [RECRUITER-BRIEF.md](RECRUITER-BRIEF.md) + [CHANGELOG.md](CHANGELOG.md); [GROUNDING-CHECK.md](GROUNDING-CHECK.md) reflects the honest two-mode eval; [SUBSTACK-ARTICLE.md](SUBSTACK-ARTICLE.md) drafted, not published.
+- CI **green** on `main` (82 pytest incl. `test_prompts.py`; ruff/mypy/i18n-parity/build).
 
-**Open user tasks (Carlos):** add `ANTHROPIC_API_KEY` and re-run the eval on Claude; publish the Substack article; optional demo GIF / OG social image.
+**Open user tasks (Carlos):** (1) finish Google Search Console + Bing: add the property, grab the verification code, paste it into the commented meta in `website/index.html`, redeploy, then submit `sitemap.xml`. (2) add `ANTHROPIC_API_KEY` and re-run the eval on Claude → record in GROUNDING-CHECK.md. (3) publish the Substack article. Optional: re-capture app screenshots (predate the icon redesign), demo GIF.
 
 ## 2. Live URLs & locations
 

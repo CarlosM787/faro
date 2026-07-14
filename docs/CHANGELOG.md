@@ -12,7 +12,9 @@ Made faroquant.com a properly discoverable, measurable live site.
 
 - **SEO/live essentials** — `robots.txt` (+ sitemap ref), `sitemap.xml`, a `<link rel="canonical">`, `robots`/`theme-color`/`author` meta, an `apple-touch-icon`, and **JSON-LD `SoftwareApplication` structured data** (name, free/MIT, category, description, EN/ES). The Pages workflow already copies `website/*`, so these deploy as-is.
 - **Cookieless analytics, guarded** — a Cloudflare Web Analytics loader that ships **inert**: it loads nothing (no third-party request, no cookies, no consent banner) until a token is pasted into `CF_BEACON_TOKEN` in `website/index.html`. One-line activation, instructions in the file. Chosen over Google Analytics to keep the privacy-first stance and avoid a consent banner.
-- **User step to go live on tracking:** enable Web Analytics for faroquant.com in the Cloudflare dashboard, paste the token, redeploy. (Consider a one-line "cookieless analytics" mention in the privacy policy.)
+- **Analytics activated** — the live Cloudflare Web Analytics token is set, so faroquant.com is now recording (cookieless).
+- **Privacy policy updated (EN/ES)** — added a "website analytics" disclosure to §3 distinguishing the cookieless site analytics (Cloudflare) from the App, which still contains none; effective date bumped to 2026-07-13. The `.docx` was edited and the served `.pdf` regenerated.
+- **Search-engine setup** — Google Search Console + Bing Webmaster verification meta slots are staged (commented) in the `<head>` with instructions; `sitemap.xml` + `robots.txt` are ready to submit. User step: add the property, paste the verification code, redeploy, submit the sitemap.
 
 ## 2026-07-13 — Language picker (5 UI languages)
 
