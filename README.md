@@ -38,7 +38,7 @@
 
 ## Why this project exists
 
-I'm an electrical engineer in aerospace and defense with an M.S. in Finance from the University of Arizona, and I built Faro as a **work sample for fintech engineering roles**. The industry is racing to put LLM chatbots in front of financial data (Robinhood's Cortex being the flagship example), and the question that kept nagging me was: *what actually stops the model from making a number up?* For most products the honest answer is "a system prompt and hope." Faro is my attempt at a better answer — built in public, with the code and the eval as the deliverable.
+I'm an electrical engineer in aerospace and defense (M.S. Finance, University of Arizona), and I built Faro as a **work sample for fintech engineering roles**. The industry is racing to put LLM chatbots in front of financial data (Robinhood's Cortex being the flagship example), and the question that kept nagging me was: *what actually stops the model from making a number up?* For most products the honest answer is "a system prompt and hope." Faro is my attempt at a better answer — built in public, with the code and the eval as the deliverable.
 
 **The repo itself is the portfolio piece.** Code quality, tests, architecture, and honest documentation are meant to matter as much as the features.
 
@@ -210,4 +210,4 @@ Fama-French 3-factor exposure (regression is one `quant/` function away) · a Cl
 
 ---
 
-Built by an engineer with an M.S. in Finance (University of Arizona) · [faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)
+Built by Carlos Morales Jr., electrical engineer · M.S. Finance, University of Arizona · [faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)

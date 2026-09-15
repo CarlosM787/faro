@@ -12,7 +12,7 @@ Faro is an **open-source, self-hosted, bilingual (English/Spanish) AI portfolio-
 
 ## Why it's relevant to fintech engineering
 
-Every fintech is now racing to put an LLM in front of financial data (Robinhood's Cortex is the flagship example). The hard part isn't the chatbot — it's **trust**: what stops the model from stating a number it made up? Faro is a concrete, working answer to exactly that problem, built with the correctness discipline of a defense-industry engineer and the domain grounding of an M.S. Finance graduate. It demonstrates the competencies these roles screen for: quantitative correctness, LLM tool-use architecture, guardrail engineering, honest evaluation, and full-stack + DevOps delivery.
+Every fintech is now racing to put an LLM in front of financial data (Robinhood's Cortex is the flagship example). The hard part isn't the chatbot — it's **trust**: what stops the model from stating a number it made up? Faro is a concrete, working answer to exactly that problem, built with the correctness discipline of a defense-industry engineer and the domain grounding of an M.S. Finance. It demonstrates the competencies these roles screen for: quantitative correctness, LLM tool-use architecture, guardrail engineering, honest evaluation, and full-stack + DevOps delivery.
 
 ## The technical problem it solves
 

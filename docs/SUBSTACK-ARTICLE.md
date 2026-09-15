@@ -24,7 +24,7 @@ The difference is: my system *caught it automatically*. That catch — and the a
 
 ## Who I am, and why I built this
 
-I'm an electrical engineer in aerospace and defense with an M.S. in Finance from the University of Arizona. My day job is a domain where "the number is probably right" doesn't fly. When I watched the industry race to put chatbots in front of financial data — Robinhood's Cortex being the flagship example — I kept asking the same question: *what stops the model from making things up?*
+I'm an electrical engineer in aerospace and defense (M.S. Finance, University of Arizona) from the University of Arizona. My day job is a domain where "the number is probably right" doesn't fly. When I watched the industry race to put chatbots in front of financial data — Robinhood's Cortex being the flagship example — I kept asking the same question: *what stops the model from making things up?*
 
 For most products, the honest answer is "a system prompt and hope." I wanted to build the better answer, in public, with receipts.
 
