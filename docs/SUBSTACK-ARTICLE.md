@@ -8,7 +8,7 @@
 
 **TITLE:** I Built an AI Portfolio Copilot That Has to Show Its Work
 
-**SUBTITLE:** A finance grad and defense engineer's answer to AI's biggest problem in fintech: a quant engine the LLM can't bypass, a grounding checker that catches invented numbers, and a public eval to prove it. Open source, bilingual, free to run.
+**SUBTITLE:** An aerospace & defense engineer's (and finance grad's) answer to AI's biggest problem in fintech: a quant engine the LLM can't bypass, a grounding checker that catches invented numbers, and a public eval to prove it. Open source, bilingual, free to run.
 
 ---
 
@@ -24,7 +24,7 @@ The difference is: my system *caught it automatically*. That catch — and the a
 
 ## Who I am, and why I built this
 
-I'm a Master of Science in Finance graduate (University of Arizona) and an engineer at Raytheon. My day job is a domain where "the number is probably right" doesn't fly. When I watched the industry race to put chatbots in front of financial data — Robinhood's Cortex being the flagship example — I kept asking the same question: *what stops the model from making things up?*
+I'm an electrical engineer in aerospace and defense with an M.S. in Finance from the University of Arizona. My day job is a domain where "the number is probably right" doesn't fly. When I watched the industry race to put chatbots in front of financial data — Robinhood's Cortex being the flagship example — I kept asking the same question: *what stops the model from making things up?*
 
 For most products, the honest answer is "a system prompt and hope." I wanted to build the better answer, in public, with receipts.
 

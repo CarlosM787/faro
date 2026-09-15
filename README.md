@@ -38,7 +38,7 @@
 
 ## Why this project exists
 
-I'm a Master of Science in Finance graduate (University of Arizona) and an engineer at Raytheon, and I built Faro as a **work sample for fintech engineering roles**. The industry is racing to put LLM chatbots in front of financial data (Robinhood's Cortex being the flagship example), and the question that kept nagging me was: *what actually stops the model from making a number up?* For most products the honest answer is "a system prompt and hope." Faro is my attempt at a better answer — built in public, with the code and the eval as the deliverable.
+I'm an electrical engineer in aerospace and defense with an M.S. in Finance from the University of Arizona, and I built Faro as a **work sample for fintech engineering roles**. The industry is racing to put LLM chatbots in front of financial data (Robinhood's Cortex being the flagship example), and the question that kept nagging me was: *what actually stops the model from making a number up?* For most products the honest answer is "a system prompt and hope." Faro is my attempt at a better answer — built in public, with the code and the eval as the deliverable.
 
 **The repo itself is the portfolio piece.** Code quality, tests, architecture, and honest documentation are meant to matter as much as the features.
 
@@ -163,7 +163,7 @@ npm run check:i18n && npm run build     # EN ⇄ ES key parity is CI-enforced
 
 Every commit is held to the same gates CI enforces:
 
-- **68 unit tests** (`pytest`) — quant metrics checked against hand-computed references *and* independent libraries; service/agent/grounding tests.
+- **70+ unit tests across 18 test files** (`pytest`) — quant metrics checked against hand-computed references *and* independent libraries; service/agent/grounding tests.
 - **`mypy --strict`** clean across the API.
 - **`ruff`** lint + format clean.
 - **i18n parity** — EN/ES locale keys must match (`npm run check:i18n`); no hardcoded UI strings.
@@ -199,7 +199,7 @@ Built as a work sample — here's where to look and what each choice demonstrate
 ## Resume-ready bullets
 
 - Built an open-source, self-hosted **AI portfolio-analytics app** (FastAPI · React/TS · Docker Compose) pairing a deterministic quant engine with an LLM copilot; **MIT-licensed, live at faroquant.com**, runs free with no API key.
-- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`, incl. an **inverse-normal CDF hand-written** (Acklam) and validated against `scipy` to 1e-8; **68 unit tests**, `mypy --strict`, CI green.
+- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`, incl. an **inverse-normal CDF hand-written** (Acklam) and validated against `scipy` to 1e-8; **70+ unit tests across 18 test files**, `mypy --strict`, CI green.
 - Engineered an **LLM grounding checker** that verifies every number in each answer against the quant engine's tool outputs and **surfaces unsupported figures as in-app warnings**; published a **two-mode bilingual eval** (18/20 answers clean in per-answer mode on a local 7B model) with committed run logs.
 - Designed a **provider-agnostic LLM layer** (Anthropic Claude primary, local Ollama fallback) switchable by a single environment variable with **zero code changes**.
 - Shipped a **fully bilingual (EN/ES)** UI + copilot with **CI-enforced locale parity**, and a live GitHub Pages landing site over HTTPS; enforced a compliance boundary (no trade execution, no brokerage linking, no personalized advice).
@@ -210,4 +210,4 @@ Fama-French 3-factor exposure (regression is one `quant/` function away) · a Cl
 
 ---
 
-Built by an MSF graduate (University of Arizona) & Raytheon engineer · [faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)
+Built by an engineer with an M.S. in Finance (University of Arizona) · [faroquant.com](https://faroquant.com) · [github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)

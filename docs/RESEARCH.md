@@ -17,8 +17,8 @@ Building a self-hosted "mini-Cortex" — **AI Portfolio Copilot** — signals: *
 
 | Credential | What the project must prove | Where it shows |
 |---|---|---|
-| **MSF, University of Arizona** | Quant finance is implemented *correctly*, from formulas, not black-box imports | `quant/` module: Sharpe, Sortino, beta, VaR, max drawdown, correlations — each documented with the formula and unit-tested against reference values |
-| **Engineer at Raytheon** | Production discipline | Typed code, tests, CI (GitHub Actions), clean layering, Docker, honest README |
+| **M.S. Finance, University of Arizona** | Quant finance is implemented *correctly*, from formulas, not black-box imports | `quant/` module: Sharpe, Sortino, beta, VaR, max drawdown, correlations — each documented with the formula and unit-tested against reference values |
+| **Engineer in aerospace & defense** | Production discipline | Typed code, tests, CI (GitHub Actions), clean layering, Docker, honest README |
 | **AI skill (the differentiator in 2026 hiring)** | Agentic tool-use, not a chat wrapper | Claude agent whose *only* source of numbers is calling the quant engine's tools — grounded, non-hallucinated answers with the metric values cited |
 
 ## Why agentic tool-use is the right AI pattern to demo
@@ -30,7 +30,7 @@ The #1 failure mode of LLM finance apps is hallucinated numbers. The architectur
 1. "I built an AI portfolio analytics copilot: FastAPI quant engine, React dashboard, Claude agent with tool-use."
 2. "Every metric is implemented from the formula and unit-tested — here's my VaR test against a known distribution." (MSF)
 3. "The agent must call the engine for every figure, and a grounding checker flags any number that does not trace to a tool result — here is the tool schema and the eval." (AI engineering)
-4. "CI runs the full test suite; it's Dockerized; here's the live demo link." (Raytheon rigor)
+4. "CI runs the full test suite; it's Dockerized; here's the live demo link." (aerospace-grade rigor)
 5. "I scoped out execution/advice deliberately — compliance boundary." (judgment)
 
 ## Constraints that shaped the plan

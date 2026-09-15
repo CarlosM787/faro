@@ -2,7 +2,7 @@
 
 **Brand:** Faro / faroquant (see [brand/BRAND.md](brand/BRAND.md) — palette, fonts, logos in brand/). Domain faroquant.com verified available 2026-07-07 (register manually). Landing page draft: [website/index.html](website/index.html). Launch article draft: [docs/SUBSTACK-ARTICLE.md](docs/SUBSTACK-ARTICLE.md). Use the brand palette/fonts for the app UI.
 
-Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first principles), React dashboard, and a Claude agent that answers portfolio questions **only** by calling the quant engine's tools. Built to showcase the owner (MSF graduate + Raytheon engineer) to fintech employers like Robinhood — **the repo is the deliverable**: code quality, tests, README, and architecture matter as much as features.
+Self-hosted AI portfolio analytics: FastAPI quant engine (metrics from first principles), React dashboard, and a Claude agent that answers portfolio questions **only** by calling the quant engine's tools. Built to showcase the owner (engineer, M.S. Finance) to fintech employers like Robinhood — **the repo is the deliverable**: code quality, tests, README, and architecture matter as much as features.
 
 ## Read these before doing anything
 
