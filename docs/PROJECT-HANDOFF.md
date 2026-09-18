@@ -68,7 +68,7 @@ The dashboard and the copilot read the **same `services/` layer**; the copilot's
 
 ## 6. Non-negotiable invariants (violating any is a regression)
 
-1. **`quant/` stays pure** numpy/pandas, no I/O; every formula documented; hand-computed **and** cross-check tests. `pytest` stays 100% (currently **68 tests**).
+1. **`quant/` stays pure** numpy/pandas, no I/O; every formula documented; hand-computed **and** cross-check tests. `pytest` stays 100% (currently **85 tests**).
 2. **The agent's only numeric source is its five tools.** The grounding checker flags unsupported numbers. Claim it as **"unsupported numbers are detected and surfaced"** — **never** "the model can't hallucinate."
 3. **Bilingual EN/ES in the same commit** — CI enforces locale key parity; no hardcoded JSX strings. (The website's `T` dict has no CI check — keep EN/ES paired manually.)
 4. **Claude primary / Ollama keyless fallback, switched by env only.** Tests/CI use a fake provider — never require a key or a running model.
