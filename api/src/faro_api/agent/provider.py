@@ -51,7 +51,10 @@ AgentEvent = TextDelta | ToolCallRequest | Done
 class ChatOptions:
     system: str = ""
     max_tokens: int = 1024  # spend cap (TECH-NOTES cost rule)
-    temperature: float = 0.2  # low: numeric fidelity over creativity
+    # Low: numeric fidelity over creativity. Honoured by the Ollama provider;
+    # the Anthropic provider ignores it (the SDK removed `temperature` from the
+    # Messages parameter surface in 1.x — see anthropic_provider.stream_chat).
+    temperature: float = 0.2
     tools: list[ToolDef] = field(default_factory=list)
 
 

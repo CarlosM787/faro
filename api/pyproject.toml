@@ -18,7 +18,11 @@ dependencies = [
     "yfinance>=0.2.43",
     "httpx>=0.27",
     "sqlalchemy>=2.0.32",
-    "anthropic>=0.40",
+    # Bounded on purpose: the Messages parameter surface changed between 0.x and
+    # 1.x (`temperature` was removed), and the unbounded ">=0.40" let a fresh CI
+    # install silently pick up 1.x and fail the mypy gate. Pin the major we test
+    # against so the next major bump is a deliberate, visible upgrade.
+    "anthropic>=1.0,<2",
 ]
 
 [project.optional-dependencies]

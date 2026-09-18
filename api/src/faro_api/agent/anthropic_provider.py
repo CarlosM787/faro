@@ -81,7 +81,14 @@ class AnthropicProvider(LLMProvider):
                 messages=_to_anthropic_messages(messages),  # type: ignore[arg-type]
                 tools=tools,  # type: ignore[arg-type]
                 max_tokens=options.max_tokens,
-                temperature=options.temperature,
+                # NOTE: `options.temperature` is deliberately NOT forwarded here.
+                # The anthropic SDK dropped `temperature` from the Messages
+                # parameter surface in 1.x, so passing it raises TypeError at
+                # call time (and mypy --strict flags it). Numeric fidelity on
+                # this path comes from the tool-only system-prompt contract and
+                # the grounding checker, not from sampling temperature.
+                # ChatOptions.temperature is still honoured by the Ollama
+                # provider, whose own API continues to accept it.
             ) as stream:
                 async for event in stream:
                     if event.type == "text":
