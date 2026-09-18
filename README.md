@@ -16,7 +16,7 @@
 | 💻 **Source** | **[github.com/CarlosM787/faro](https://github.com/CarlosM787/faro)** (MIT) |
 | 🐳 **Run it locally** | `git clone` → `docker compose up --build` → **http://localhost:3000** (seeded demo portfolio, no API key required — [full steps ↓](#run-it-locally-docker)) |
 
-**📚 Docs:** [Recruiter brief](docs/RECRUITER-BRIEF.md) · [Grounding eval (two-mode, with logs)](docs/GROUNDING-CHECK.md) · [Changelog / build diary](docs/CHANGELOG.md) · [Project handoff](docs/PROJECT-HANDOFF.md) · [Legal (EN/ES)](docs/legal/)
+**📚 Docs:** [**The demo — the whole product in one command, no API key**](docs/DEMO.md) · [Recruiter brief](docs/RECRUITER-BRIEF.md) · [Grounding eval (two-mode, with logs)](docs/GROUNDING-CHECK.md) · [Changelog / build diary](docs/CHANGELOG.md) · [Project handoff](docs/PROJECT-HANDOFF.md) · [Legal (EN/ES)](docs/legal/)
 
 > ⚠️ **Educational tool, not an investment adviser.** Faro never executes trades, never links to brokerages, and is **instructed to refuse personalized investment advice, with educational-only disclaimers throughout** — a deliberate compliance boundary. Bilingual legal docs: [docs/legal/](docs/legal/).
 
@@ -152,7 +152,8 @@ A seeded demo portfolio loads on first run. **No API key needed:** install [Olla
 ```bash
 cd api && pip install -e ".[dev]"
 uvicorn faro_api.main:app --reload      # http://localhost:8000 (OpenAPI docs at /docs)
-ruff check . && mypy && pytest          # 85 tests
+python scripts/demo_v1.py               # the whole product in one run (docs/DEMO.md)
+ruff check . && mypy && pytest          # 97 tests
 
 cd web && npm install
 npm run dev                             # http://localhost:5173 (proxies /api)
@@ -163,7 +164,7 @@ npm run check:i18n && npm run build     # EN ⇄ ES key parity is CI-enforced
 
 Every commit is held to the same gates CI enforces:
 
-- **85 unit tests across 17 test files** (`pytest`) — quant metrics checked against hand-computed references *and* independent libraries; service/agent/grounding tests.
+- **97 unit tests across 18 test files** (`pytest`) — quant metrics checked against hand-computed references *and* independent libraries; service/agent/grounding tests.
 - **`mypy --strict`** clean across the API.
 - **`ruff`** lint + format clean.
 - **i18n parity** — EN/ES locale keys must match (`npm run check:i18n`); no hardcoded UI strings.
@@ -199,7 +200,7 @@ Built as a work sample — here's where to look and what each choice demonstrate
 ## Resume-ready bullets
 
 - Built an open-source, self-hosted **AI portfolio-analytics app** (FastAPI · React/TS · Docker Compose) pairing a deterministic quant engine with an LLM copilot; **MIT-licensed, live at faroquant.com**, runs free with no API key.
-- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`, incl. an **inverse-normal CDF hand-written** (Acklam) and validated against `scipy` to 1e-8; **85 unit tests across 17 test files**, `mypy --strict`, CI green.
+- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`, incl. an **inverse-normal CDF hand-written** (Acklam) and validated against `scipy` to 1e-8; **97 unit tests across 18 test files**, `mypy --strict`, CI green.
 - Engineered an **LLM grounding checker** that verifies every number in each answer against the quant engine's tool outputs and **surfaces unsupported figures as in-app warnings**; published a **two-mode bilingual eval** (18/20 answers clean in per-answer mode on a local 7B model) with committed run logs.
 - Designed a **provider-agnostic LLM layer** (Anthropic Claude primary, local Ollama fallback) switchable by a single environment variable with **zero code changes**.
 - Shipped a **fully bilingual (EN/ES)** UI + copilot with **CI-enforced locale parity**, and a live GitHub Pages landing site over HTTPS; enforced a compliance boundary (no trade execution, no brokerage linking, no personalized advice).

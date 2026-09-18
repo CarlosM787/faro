@@ -60,7 +60,7 @@ Then, to judge the engineering:
 ## Suggested resume bullets
 
 - Built an open-source, self-hosted **AI portfolio-analytics app** (FastAPI · React/TS · Docker) pairing a deterministic quant engine with an LLM copilot; MIT-licensed, live at faroquant.com, runs free with no API key.
-- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`; **85 unit tests across 17 test files**, `mypy --strict`, CI green.
+- Implemented **8+ institutional risk metrics** (Sharpe, Sortino, beta, Jensen's alpha, historical & parametric VaR, CVaR, max drawdown, risk contributions) from first principles in pure `numpy`/`pandas`; **97 unit tests across 18 test files**, `mypy --strict`, CI green.
 - Engineered an **LLM grounding checker** that verifies every number in each answer against quant-engine tool outputs and **surfaces unsupported figures in-app**; published a **two-mode bilingual eval** with committed logs.
 - Designed a **provider-agnostic LLM layer** (Claude primary, local Ollama fallback) switchable by one env var with zero code changes.
 - Delivered a **fully bilingual (EN/ES)** product with CI-enforced locale parity and a live HTTPS landing site; enforced a compliance boundary (no trading, no brokerage linking, no personalized advice).
