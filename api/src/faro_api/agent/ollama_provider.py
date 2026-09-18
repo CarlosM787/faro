@@ -12,6 +12,7 @@ from typing import Any
 
 import httpx
 
+from faro_api.agent.errors import describe_provider_failure
 from faro_api.agent.provider import (
     AgentEvent,
     ChatOptions,
@@ -103,7 +104,10 @@ class OllamaProvider(LLMProvider):
                     if chunk.get("done"):
                         break
         except (httpx.HTTPError, json.JSONDecodeError) as exc:
-            yield Done(stop_reason="error", error=f"Ollama unavailable: {exc}")
+            yield Done(
+                stop_reason="error",
+                error=describe_provider_failure(self.name, self.model, exc),
+            )
             return
 
         for tc in tool_calls:

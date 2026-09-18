@@ -4,6 +4,7 @@ import json
 from collections.abc import AsyncIterator
 from typing import Any
 
+from faro_api.agent.errors import describe_provider_failure
 from faro_api.agent.provider import (
     AgentEvent,
     ChatOptions,
@@ -95,7 +96,13 @@ class AnthropicProvider(LLMProvider):
                         yield TextDelta(event.text)
                 final = await stream.get_final_message()
         except Exception as exc:  # provider boundary
-            yield Done(stop_reason="error", error=str(exc))
+            # This is the only thing the user sees when the copilot fails, so it
+            # names the provider, keeps the useful part of its message, redacts
+            # anything key-shaped, and says what to do. See agent/errors.py.
+            yield Done(
+                stop_reason="error",
+                error=describe_provider_failure(self.name, self.model, exc),
+            )
             return
 
         for block in final.content:
