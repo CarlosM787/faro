@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo se prueba FaroQuant: anclaje, métricas y sus límites</title>
+<meta name="description" content="Cómo FaroQuant revisa los números que dice su copiloto de IA, qué no puede detectar esa revisión, los resultados medidos (tres corridas por modo, septiembre de 2026) y qué dice y qué no dice cada métrica de riesgo.">
+<link rel="canonical" href="https://faroquant.com/es/metodologia/">
+<link rel="alternate" hreflang="en" href="https://faroquant.com/methodology/">
+<link rel="alternate" hreflang="es" href="https://faroquant.com/es/metodologia/">
+<link rel="alternate" hreflang="x-default" href="https://faroquant.com/methodology/">
+<meta property="og:title" content="Cómo se prueba FaroQuant">
+<meta property="og:description" content="Qué detecta la revisión de anclaje, qué no puede detectar y los resultados medidos.">
+<meta property="og:url" content="https://faroquant.com/es/metodologia/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_MX">
+<meta property="og:image" content="https://faroquant.com/img/og.png">
+<meta name="author" content="Carlos Morales Jr.">
+<meta name="theme-color" content="#0B1220">
+<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://faroquant.com/es/metodologia/#article",
+      "headline": "Cómo se prueba FaroQuant: anclaje, métricas y sus límites",
+      "description": "Cómo FaroQuant revisa los números que dice su copiloto de IA, qué no puede detectar esa revisión, los resultados medidos y qué dice y qué no dice cada métrica de riesgo.",
+      "inLanguage": "es",
+      "datePublished": "2026-09-24",
+      "dateModified": "2026-09-24",
+      "author": { "@type": "Person", "@id": "https://carlosmoralesjr.com/about/#person", "name": "Carlos Morales Jr.", "url": "https://carlosmoralesjr.com/about/" },
+      "mainEntityOfPage": "https://faroquant.com/es/metodologia/",
+      "isPartOf": { "@type": "WebSite", "name": "FaroQuant", "url": "https://faroquant.com/" },
+      "about": [{ "@type": "Thing", "name": "Anclaje de modelos de IA" }, { "@type": "Thing", "name": "Métricas de riesgo de portafolio" }],
+      "translationOfWork": { "@id": "https://faroquant.com/methodology/#article" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "FaroQuant", "item": "https://faroquant.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Cómo se prueba", "item": "https://faroquant.com/es/metodologia/" }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1220;--card:#111A2E;--line:#1E2A44;--beam:#FFB020;--teal:#2DD4BF;--red:#F87171;--text:#E6EDF7;--muted:#8B98AC;--dim:#7A879F}
+  *{margin:0;box-sizing:border-box}
+  body{background:var(--navy);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
+  a{color:var(--teal)}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;flex-wrap:wrap;gap:10px}
+  .logo{font-size:1.35rem;font-weight:700;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+  .logo img{width:34px;height:34px;border-radius:8px}
+  .logo span{color:var(--beam)}
+  nav .links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  nav .links a{color:var(--muted);text-decoration:none;font-size:.92rem;padding:6px 12px;border-radius:8px}
+  nav .links a:hover{color:var(--text);background:var(--card)}
+  nav .links a[aria-current]{color:var(--text)}
+  .article{max-width:46rem;margin:0 auto;padding:40px 0 24px}
+  .crumbs{font-size:.85rem;color:var(--muted)}
+  .crumbs a{color:var(--muted)}
+  .kicker{color:var(--teal);font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px}
+  h1{font-size:clamp(2rem,4.4vw,3rem);line-height:1.12;font-weight:700;letter-spacing:-.5px}
+  .dek{color:var(--muted);font-size:1.15rem;margin:16px 0 10px}
+  .byline{color:var(--dim);font-size:.88rem;margin-bottom:28px}
+  .byline a{color:var(--muted)}
+  h2{font-size:1.6rem;line-height:1.25;margin:44px 0 12px}
+  h3{font-size:1.15rem;margin:26px 0 8px}
+  p,li{color:#C9D4E3;font-size:1.02rem}
+  p+p{margin-top:12px}
+  ul,ol{padding-left:1.3rem;margin:10px 0}
+  li+li{margin-top:6px}
+  strong{color:var(--text)}
+  code{font-family:ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+  .short{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--beam);border-radius:12px;padding:18px 20px}
+  .short .label{font-size:.75rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--beam);margin-bottom:6px}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px}
+  table{width:100%;border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;color:#C9D4E3}
+  thead th{color:var(--muted);font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;background:#0E1628}
+  tr:last-child td,tr:last-child th{border-bottom:0}
+  td.n{text-align:right;white-space:nowrap}
+  .caption{font-size:.85rem;color:var(--dim);margin-top:6px}
+  .metric{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 20px 16px;margin:16px 0}
+  .metric h3{margin-top:14px}
+  .metric .how,.metric .not{font-size:.97rem}
+  .metric .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:99px;padding:1px 9px;margin-right:6px}
+  .tag.how{background:rgba(45,212,191,.12);color:var(--teal)}
+  .tag.not{background:rgba(248,113,113,.12);color:var(--red)}
+  .cite{font-size:.75em;vertical-align:super;text-decoration:none;color:var(--teal)}
+  .sources li{font-size:.9rem;color:var(--muted);overflow-wrap:anywhere}
+  .author{border-top:1px solid var(--line);margin-top:36px;padding-top:16px;color:var(--muted);font-size:.92rem}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 48px;color:var(--muted);font-size:.85rem;text-align:center}
+  footer a{color:var(--muted);margin:0 8px}
+  footer .disc{max-width:700px;margin:14px auto 0;color:var(--dim);font-size:.8rem}
+  .lang a{border:1px solid var(--line);border-radius:99px;padding:5px 12px !important}
+  @media(max-width:760px){nav .links a:not(.keep){display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="/"><img src="/logo-icon.svg" alt="">faro<span>quant</span></a>
+    <div class="links">
+      <a href="/#grounded">Anclado por diseño</a>
+      <a href="/es/metodologia/" aria-current="page" class="keep">Cómo se prueba</a>
+      <a href="https://github.com/CarlosM787/faro">GitHub</a>
+      <span class="lang"><a href="/methodology/" hreflang="en" lang="en" class="keep">EN</a></span>
+    </div>
+  </nav>
+
+  <article class="article">
+    <p class="crumbs"><a href="/">FaroQuant</a> / Cómo se prueba</p>
+    <p class="kicker">Metodología</p>
+    <h1>Cómo se prueba FaroQuant: anclaje, métricas y sus límites</h1>
+    <p class="dek">El copiloto de IA de FaroQuant tiene instrucciones de tomar cada número de un motor cuantitativo probado, y un verificador busca los números que no salieron de ahí. Esta página dice exactamente qué hace esa revisión, qué no puede hacer, qué hemos medido y qué deja fuera cada métrica.</p>
+    <p class="byline">Por <a href="https://carlosmoralesjr.com/about/" rel="author">Carlos Morales Jr.</a> · Revisado el 24 de septiembre de 2026</p>
+
+    <div class="short">
+      <p class="label">Respuesta corta</p>
+      <p>Aquí “anclaje” significa una sola cosa: <strong>cada número de una respuesta debe poder rastrearse hasta un resultado de herramienta de la misma pregunta</strong>. El verificador marca los que no, y la app muestra la marca. Sin historial de chat, las respuestas del modelo local de prueba salieron limpias 59 de 60 veces. Con historial, que es como funciona el chat real, muchas veces respondió de memoria: 24 de 60 respuestas salieron limpias y se marcaron 243 números. Un número que pasa es <strong>rastreable</strong>, que no es lo mismo que estar <strong>bien explicado</strong>.</p>
+    </div>
+
+    <h2 id="checker">Qué hace el verificador</h2>
+    <p>El copiloto tiene instrucciones de responder llamando cinco herramientas que usan el motor cuantitativo de FaroQuant: un resumen del portafolio, una métrica, el detalle de una posición, un escenario de caída de precio y una comparación con el índice de referencia. Después de que responde, el verificador:</p>
+    <ol>
+      <li>saca todos los números de la respuesta;</li>
+      <li>junta todos los números de los resultados de herramientas de ese turno;</li>
+      <li>acepta un número de la respuesta si coincide con uno de las herramientas tal cual, con el signo cambiado, o multiplicado o dividido entre 100 (así −0.1795 puede aparecer como 17.95%), con una tolerancia de 1% o 0.005;</li>
+      <li>marca todo lo demás y le muestra las marcas al usuario.</li>
+    </ol>
+    <p>Esto sigue la definición que usan los principales proveedores: anclar es ligar la respuesta a fuentes verificables, y eso reduce el contenido inventado en vez de eliminarlo.<a class="cite" href="#s-google">[1]</a><a class="cite" href="#s-anthropic-h">[2]</a> El NIST llama <em>confabulación</em> al contenido inventado y lo nombra como un riesgo de la IA generativa.<a class="cite" href="#s-nist">[3]</a></p>
+
+    <h2 id="blind-spots">Qué no puede detectar</h2>
+    <ul>
+      <li><strong>Los números cotidianos nunca se marcan.</strong> Se saltan 0, 1, 2, 3, 4, 5, 10, 20, 50, 95, 99, 100, 252 y 500, y cualquier valor entre 1900 y 2100, que se trata como un año.</li>
+      <li><strong>Coincidencia holgada.</strong> Un número inventado puede pasar si cae a menos de 1% de uno real.</li>
+      <li><strong>Número correcto, significado equivocado.</strong> El verificador no sabe a qué métrica pertenece un número. En la demostración grabada, una respuesta en español pasó la revisión llamando al Valor en Riesgo al 95% la pérdida “en el peor escenario”. Eso está mal, como explica la sección de VaR más abajo.</li>
+      <li><strong>Las palabras no se revisan.</strong> Llamar “moderado” a un Sharpe pasa, porque solo se comparan números.</li>
+      <li><strong>Las llamadas a herramientas no son obligatorias.</strong> El copiloto tiene instrucciones de llamar las herramientas en cada turno, pero el código no lo obliga; con la configuración por defecto decide el modelo.<a class="cite" href="#s-anthropic-t">[4]</a> El verificador atrapa las fallas después.</li>
+    </ul>
+
+    <h2 id="results">Qué hemos medido</h2>
+    <p>La evaluación hace 20 preguntas fijas, 14 en inglés y 6 en español, incluidas dos de “¿compro o vendo?” que deben rechazarse, sobre un portafolio de demostración. Corre en dos modos: <strong>independiente</strong>, donde cada pregunta va sola, y <strong>con historial</strong>, que es como el chat real envía las preguntas. El 24 de septiembre de 2026 corrimos cada modo tres veces con el modelo local <code>qwen2.5:7b</code>, a la temperatura por defecto del código, 0.2.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Corrida</th><th scope="col">Independiente: respuestas limpias</th><th scope="col">Independiente: números marcados</th><th scope="col">Con historial: respuestas limpias</th><th scope="col">Con historial: números marcados</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1</th><td class="n">20 / 20</td><td class="n">0</td><td class="n">7 / 20</td><td class="n">59</td></tr>
+        <tr><th scope="row">2</th><td class="n">19 / 20</td><td class="n">1</td><td class="n">8 / 20</td><td class="n">87</td></tr>
+        <tr><th scope="row">3</th><td class="n">20 / 20</td><td class="n">0</td><td class="n">9 / 20</td><td class="n">97</td></tr>
+        <tr><th scope="row">Total</th><td class="n"><strong>59 / 60</strong></td><td class="n"><strong>1</strong></td><td class="n"><strong>24 / 60</strong></td><td class="n"><strong>243</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p class="caption">Registros crudos: <a href="https://github.com/CarlosM787/faro/tree/main/docs/eval-logs">docs/eval-logs</a> en el repositorio (los archivos que empiezan con <code>run7-2026-09-24</code>).</p>
+    <p>Con historial, 33 de las 60 respuestas no usaron ninguna herramienta, y 32 de esas se marcaron. El historial del chat guarda las respuestas anteriores pero no sus resultados de herramientas, así que un número repetido sin una nueva llamada solo pudo salir de una respuesta anterior. De los 243 números marcados, el 26% coincidía con una respuesta anterior que había pasado la revisión, el 27% solo con una respuesta anterior marcada, y <strong>el 47% no aparecía en ninguna parte de la conversación que el modelo podía ver</strong>.</p>
+    <p>Una corrida de julio de 2026 de la misma evaluación dio 3 de 20 limpias con historial. No leemos los números de hoy como una mejora: las instrucciones en inglés y español no han cambiado desde entonces, y tres corridas de 20 preguntas son una muestra pequeña.</p>
+
+    <h2 id="not-measured">Qué no se ha medido</h2>
+    <ul>
+      <li><strong>Claude.</strong> FaroQuant usa Claude cuando hay una clave de API configurada, y ese camino nunca ha pasado por esta evaluación. No se ha probado si vuelve a llamar las herramientas con más constancia.</li>
+      <li><strong>Otros idiomas.</strong> La app también habla portugués, francés y alemán; solo se probaron preguntas en inglés y español.</li>
+      <li><strong>Otros portafolios y preguntas.</strong> Un portafolio de demostración y 20 preguntas no son una tasa general de precisión.</li>
+      <li><strong>Si las explicaciones son correctas.</strong> Nada automático lo revisa.</li>
+    </ul>
+
+    <h2 id="metrics">Las métricas, y lo que cada una no te dice</h2>
+    <p>Cada métrica de abajo la calcula el motor de FaroQuant a partir de unos dos años de precios de cierre diarios, contra SPY como índice de referencia y con una tasa libre de riesgo fija de 4.3%. Las pruebas unitarias comparan la aritmética con bibliotecas independientes. No demuestran que ninguna métrica prediga nada.</p>
+
+    <div class="metric">
+      <h3>Razón de Sharpe</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>El rendimiento diario promedio por encima de la tasa libre de riesgo, dividido entre su desviación estándar, y multiplicado por √252 para anualizarlo.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>Cómo encaja una inversión con el resto de tu portafolio, ni cuál será la razón en el futuro. El propio Sharpe advirtió contra tratar las razones históricas como pronósticos.<a class="cite" href="#s-sharpe">[5]</a> El número también es una estimación con su propio error, y el escalamiento por √252 supone que los rendimientos de un día a otro son independientes, lo que no siempre se cumple.<a class="cite" href="#s-lo">[6]</a> FaroQuant no reporta un intervalo de confianza.</p>
+    </div>
+    <div class="metric">
+      <h3>Razón de Sortino</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>Como Sharpe, pero solo cuenta la volatilidad por debajo de un rendimiento mínimo aceptable, aquí la tasa libre de riesgo, medida sobre todos los días y anualizada por √252.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>El riesgo total. El resultado depende del rendimiento mínimo que elijas y de qué versión de la fórmula se use, y cuando pocos días quedan por debajo del objetivo puede subestimar mucho el riesgo. El documento del CFA Institute en el que nos basamos también señala, citando a Sortino y Forsey, que anualizar así una desviación a la baja construida con rendimientos históricos es incorrecto.<a class="cite" href="#s-kidd">[7]</a></p>
+    </div>
+    <div class="metric">
+      <h3>Beta y alfa de Jensen</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>La beta es la covarianza de los rendimientos del portafolio con los de SPY, dividida entre la varianza de SPY. La alfa es el rendimiento anualizado que queda después de tomar en cuenta esa beta.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>Un número estable y preciso. La beta mide solo el riesgo de mercado, frente al índice que elegiste, y las estimaciones cambian con la ventana de tiempo, el índice y si los rendimientos son diarios, semanales o mensuales; errores estándar de 0.5 o más son comunes.<a class="cite" href="#s-damodaran">[8]</a> FaroQuant no reporta un error estándar.</p>
+    </div>
+    <div class="metric">
+      <h3>Valor en Riesgo (VaR)</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>El VaR histórico es la pérdida en el percentil 5 (o 1) de los rendimientos diarios pasados. El VaR paramétrico supone que los rendimientos tienen una distribución normal. Como los datos son rendimientos diarios, los dos son cifras <strong>de un día</strong>.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>El peor caso. El VaR es una estimación de la pérdida potencial a cierto nivel de confianza.<a class="cite" href="#s-sec">[9]</a> En el VaR histórico al 95%, por construcción, cerca de 1 de cada 20 días de la muestra perdió más que la cifra de VaR. Por eso “la pérdida en el peor escenario” es la forma equivocada de describirlo.</p>
+    </div>
+    <div class="metric">
+      <h3>CVaR (pérdida esperada en la cola)</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>El promedio de las pérdidas más allá del VaR histórico al 95%.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>Cómo será el próximo mal día. Describe la cola de una muestra pasada. Los reguladores bancarios pasaron del VaR a la pérdida esperada (expected shortfall) porque capta mejor el riesgo de cola, lo que dice algo sobre el punto ciego del VaR, no sobre la precisión del CVaR.<a class="cite" href="#s-bis">[10]</a></p>
+    </div>
+    <div class="metric">
+      <h3>Caída máxima (drawdown)</h3>
+      <p class="how"><span class="tag how">Cómo se calcula</span>La mayor caída desde un máximo del valor del portafolio hasta un mínimo posterior, en la ventana de dos años.</p>
+      <p class="not"><span class="tag not">Lo que no te dice</span>Una cifra que puedas comparar entre ventanas distintas. Mientras más largo el periodo medido, mayor la caída máxima que cabe esperar,<a class="cite" href="#s-magdon">[11]</a> y los datos diarios pueden mostrar mínimos más profundos que los de fin de mes. Tampoco dice cuánto tardó la recuperación; los reguladores que la definen para fondos de materias primas piden las fechas por separado.<a class="cite" href="#s-cftc">[12]</a></p>
+    </div>
+
+    <h2 id="data">De dónde vienen los datos</h2>
+    <p>Los precios de cierre diarios llegan a través de <strong>yfinance</strong>, una biblioteca de código abierto que no está afiliada ni avalada por Yahoo; su documentación dice que está pensada para investigación y educación y remite a los términos de Yahoo, que restringen la recolección automatizada de datos.<a class="cite" href="#s-yf">[13]</a><a class="cite" href="#s-yahoo">[14]</a> Así que los datos no son oficiales, ni con licencia, ni en tiempo real. Los precios se guardan en caché 24 horas, un caché vencido se marca como vencido, y si se usa un proveedor de respaldo, sus precios vienen ajustados por divisiones de acciones pero no por dividendos.</p>
+
+    <h2 id="not-this">Lo que FaroQuant no hace</h2>
+    <p>No hay modelos de valuación ni de flujo de caja descontado, ni precios objetivo, ni pronósticos, ni ejecución de operaciones, ni conexión con tu casa de bolsa, ni asesoría personalizada. El copiloto tiene instrucciones de rechazar preguntas de “¿compro?” y explicar las métricas relevantes; es una instrucción, no una garantía, y por eso la evaluación la pone a prueba. FaroQuant es una herramienta educativa, no un asesor de inversiones registrado.</p>
+
+    <h2 id="sources">Fuentes</h2>
+    <ol class="sources">
+      <li id="s-google">Google Cloud, “Grounding overview”, documentación de Vertex AI. <a href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/overview">docs.cloud.google.com</a></li>
+      <li id="s-anthropic-h">Anthropic, “Reduce hallucinations”, documentación de Claude. <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">platform.claude.com</a></li>
+      <li id="s-nist">NIST, <em>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</em> (NIST AI 600-1), julio de 2024. <a href="https://doi.org/10.6028/NIST.AI.600-1">doi.org/10.6028/NIST.AI.600-1</a></li>
+      <li id="s-anthropic-t">Anthropic, “Tool use with Claude”, documentación de Claude. <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview">platform.claude.com</a></li>
+      <li id="s-sharpe">William F. Sharpe, “The Sharpe Ratio”, <em>Journal of Portfolio Management</em> 21(1), 1994. <a href="https://web.stanford.edu/~wfsharpe/art/sr/sr.htm">Copia del autor</a></li>
+      <li id="s-lo">Andrew W. Lo, “The Statistics of Sharpe Ratios”, <em>Financial Analysts Journal</em> 58(4), 2002. <a href="https://doi.org/10.2469/faj.v58.n4.2453">doi.org/10.2469/faj.v58.n4.2453</a></li>
+      <li id="s-kidd">Deborah Kidd, “The Sortino Ratio: Is Downside Risk the Only Risk that Matters?”, CFA Institute, 2012. <a href="https://rpc.cfainstitute.org/sites/default/files/-/media/documents/code/gips/the-sortino-ratio.pdf">PDF</a></li>
+      <li id="s-damodaran">Aswath Damodaran, “Estimating Risk Parameters”, documento de trabajo, NYU Stern. <a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/beta.pdf">PDF</a></li>
+      <li id="s-sec">Regla 18f-4 de la SEC, 17 CFR 270.18f-4(a), definición de valor en riesgo. <a href="https://www.ecfr.gov/current/title-17/chapter-II/part-270/section-270.18f-4">eCFR</a></li>
+      <li id="s-bis">Comité de Supervisión Bancaria de Basilea, “Minimum capital requirements for market risk”, enero de 2019. <a href="https://www.bis.org/publications/201901-standards-minimum-capital-requirements-market-risk">bis.org</a></li>
+      <li id="s-magdon">Malik Magdon-Ismail, Amir F. Atiya, Amrit Pratap y Yaser S. Abu-Mostafa, “On the Maximum Drawdown of a Brownian Motion”, <em>Journal of Applied Probability</em> 41(1), 2004. <a href="https://doi.org/10.1239/jap/1077134674">doi.org/10.1239/jap/1077134674</a></li>
+      <li id="s-cftc">Regla de la CFTC, 17 CFR 4.10(k)–(l), definiciones de drawdown y de la peor caída de máximo a mínimo. <a href="https://www.ecfr.gov/current/title-17/chapter-I/part-4/subpart-A/section-4.10">eCFR</a></li>
+      <li id="s-yf">README de yfinance, GitHub. <a href="https://github.com/ranaroussi/yfinance">github.com/ranaroussi/yfinance</a></li>
+      <li id="s-yahoo">Términos de servicio de Yahoo. <a href="https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html">legal.yahoo.com</a></li>
+    </ol>
+    <p class="author">Escrito por <a href="https://carlosmoralesjr.com/about/" rel="author">Carlos Morales Jr.</a>, quien construyó FaroQuant. Los resultados de esta página tienen la fecha de las corridas que los produjeron. Nada de lo que hay aquí es asesoría de inversión.</p>
+  </article>
+
+  <footer>
+    <p><a href="/">Inicio de FaroQuant</a> · <a href="https://github.com/CarlosM787/faro">GitHub</a> · <a href="/methodology/" hreflang="en">English</a></p>
+    <p class="disc">FaroQuant es una herramienta educativa de análisis, no un asesor de inversiones. Nada de lo que produce es asesoría de inversión ni una recomendación de comprar o vender ningún valor. Los mercados implican riesgo, incluida la posible pérdida del capital.</p>
+  </footer>
+</div>
+</body>
+</html>
