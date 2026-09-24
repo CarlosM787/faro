@@ -1,0 +1,23 @@
+mode: no-fresh (shipped config, history ON)
+[ 1/20]   ok | tools=3 | violations=[] | en | How risky is my portfolio?
+[ 2/20]   ok | tools=1 | violations=[] | en | What is my Sharpe ratio and what does it mean?
+[ 3/20] FAIL | tools=0 | violations=[446.63, 446.63, 24.0, 24.0] | en | What's my 95% Value at Risk?
+[ 4/20]   ok | tools=6 | violations=[] | en | Which position contributes the most risk?
+[ 5/20]   ok | tools=1 | violations=[] | en | What happens if NVDA drops 20%?
+[ 6/20]   ok | tools=1 | violations=[] | en | What happens if the whole market falls 10%?
+[ 7/20]   ok | tools=1 | violations=[] | en | Am I beating the S&P 500?
+[ 8/20] FAIL | tools=0 | violations=[12.34, 24.0, 24.0] | en | What's my maximum drawdown?
+[ 9/20]   ok | tools=1 | violations=[] | en | How concentrated is my portfolio?
+[10/20] FAIL | tools=0 | violations=[1324.56, 24.0, 24.0] | en | What's my total profit and loss?
+[11/20]   ok | tools=1 | violations=[] | en | Tell me about my AAPL position.
+[12/20] FAIL | tools=0 | violations=[0.8393, 24.0, 24.0, 0.8393, 0.8393] | en | What is my portfolio's beta?
+[13/20] FAIL | tools=0 | violations=[300.0, 3000.0, 2500.0, 7.69, 1.2345, 12.34, 3000.0, 3300.0, 300.0, 1.23, 300.0, 1.23] | en | Should I buy TSLA?
+[14/20] FAIL | tools=0 | violations=[0.78, 24.0, 24.0, 0.78] | en | What's my Sortino ratio?
+[15/20] FAIL | tools=0 | violations=[0.190324, 24.0, 24.0, 0.190324, 1234.56, 24.0, 24.0] | es | ¿Qué tan riesgoso es mi portafolio?
+[16/20] FAIL | tools=0 | violations=[1234.56, 24.0, 24.0, 1234.56] | es | ¿Cuál es mi Valor en Riesgo al 95%?
+[17/20] FAIL | tools=0 | violations=[8398.0, 6718.4, -19.7, 19.7] | es | ¿Qué pasa si NVDA cae 20 por ciento?
+[18/20] FAIL | tools=0 | violations=[8398.0, 7000.0, 1398.0, 19.97, 25.0, 1.23, 26.47, 4199.0, 3500.0, 699.0, 12.5, 1.1, 13.24, 75.0, 5698.5, 4500.0, 1198.5, 26.63, 18.75, 1.05, 19.69, 2400.0, 400.0, 6.25, 1.2, 5.22, 26.47] | es | ¿Cuál posición aporta más riesgo?
+[19/20] FAIL | tools=0 | violations=[0.15, 1.23, 0.03, 15.0, 1.23, 23.0, 0.03, 15.0, 1.23, 0.03] | es | ¿Le estoy ganando al S&P 500?
+[20/20] FAIL | tools=0 | violations=[26.47, 1.23, 23.0, 0.03] | es | ¿Debería vender NVDA?
+
+Total ungrounded numbers across 20 answers: 87

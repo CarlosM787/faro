@@ -6,7 +6,7 @@
 
 [![CI](https://github.com/CarlosM787/faro/actions/workflows/ci.yml/badge.svg)](https://github.com/CarlosM787/faro/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Site: faroquant.com](https://img.shields.io/badge/site-faroquant.com-2DD4BF)](https://faroquant.com)
 
-**Faro is an open-source, self-hosted, bilingual (EN/ES) portfolio-analytics app: a deterministic quant engine computes institutional-grade risk metrics from first principles, and an AI copilot explains them — but the copilot can only get numbers by calling the engine's tools, and a grounding checker flags any figure in its answers that doesn't trace to a computation.** Educational tool, not an investment adviser.
+**Faro is an open-source, self-hosted, bilingual (EN/ES) portfolio-analytics app: a deterministic quant engine computes risk metrics from first principles, and an AI copilot explains them — the copilot is instructed to get every number by calling the engine's tools, and a grounding checker flags any figure in its answers that doesn't trace to a computation.** Educational tool, not an investment adviser.
 
 ### Links
 
@@ -47,7 +47,7 @@ I'm an electrical engineer in aerospace and defense (M.S. Finance, University of
 The #1 failure mode of LLM finance apps is **hallucinated numbers** — a confident, fluent, professionally-worded figure that the model simply invented. Faro's answer is architectural, in three layers, and the order matters:
 
 1. **A deterministic quant engine** computes every metric from its documented formula (pure `numpy`/`pandas`, unit-tested).
-2. **An AI copilot that can only call tools** — its *sole* sanctioned source of numbers is a set of typed tools that dispatch into that engine.
+2. **An AI copilot told to use tools** — its *only* sanctioned source of numbers is a set of typed tools that dispatch into that engine. It isn't forced to call them (no `tool_choice` is set), which is why the checker exists.
 3. **A grounding checker on every reply** extracts each number from the answer and verifies it traces to a tool result *from that turn*. Anything unsupported is **detected and surfaced** — rendered as a visible warning in the UI, not silently shipped.
 
 > **Claim discipline (important):** Faro does **not** claim "the LLM cannot hallucinate" — no one can honestly promise that. The claim is narrower and testable: **unsupported numbers are detected and surfaced.** That claim is measured by a public eval (below), not assumed.
@@ -108,10 +108,10 @@ The copilot has exactly five typed tools — `get_portfolio_summary`, `get_metri
 
 | Mode | What it measures | Local 7B result (committed logs) |
 |---|---|---|
-| **`--fresh`** (per-answer integrity) | each question is an independent turn, forcing a tool call | **18 / 20 answers fully clean** — the 2 that weren't contained 4 ungrounded figures total, each surfaced. Both advice traps refused; all Spanish answers clean. |
+| **fresh** (default; per-answer integrity) | each question is an independent turn, so there is no earlier answer to copy from | **18 / 20 answers fully clean** — the 2 that weren't contained 4 ungrounded figures total, each surfaced. Both advice traps refused; all Spanish answers clean. |
 | **`--no-fresh`** (shipped multi-turn config) | the real chat experience with history on | **3 / 20 clean, 139 figures flagged.** Once history is present, the weak 7B model recites earlier numbers *without re-calling tools* — and the checker flags **every one** in the UI. |
 
-**That gap is the most useful thing the eval found, and it's reported on purpose, not hidden.** A weak local model in multi-turn chat is *safe but noisy* — not one of those 139 numbers reaches the user unlabeled. On a frontier model like Claude (the primary provider), tool-calling discipline is far stronger, so the flags are expected to be far fewer — but **that Claude-vs-local comparison has not been run yet** (it needs a real key and is the documented next step), so no number is quoted for it here. The eval is the **per-provider regression harness** built to measure exactly this — run it against whatever provider you configure. The claim — *unsupported numbers are detected and surfaced* — holds in **both** modes, regardless of pass rate.
+**That gap is the most useful thing the eval found, and it's reported on purpose, not hidden.** A weak local model in multi-turn chat is *safe but noisy* — not one of those 139 numbers reaches the user unlabeled. Whether a frontier model like Claude (the primary provider) re-calls tools more reliably is **untested: that Claude-vs-local comparison has not been run yet** (it needs a real key and is the documented next step), so no number is quoted for it here. The eval is the **per-provider regression harness** built to measure exactly this — run it against whatever provider you configure. The claim — *unsupported numbers are detected and surfaced* — holds in **both** modes, regardless of pass rate.
 
 ## Compliance boundary
 
@@ -176,7 +176,7 @@ Every commit is held to the same gates CI enforces:
 
 Stated plainly, because honesty is part of the point:
 
-- **Grounding is detection, not prevention.** The checker *surfaces* unsupported numbers; it does not stop the model from generating them. On a weak local 7B model in multi-turn chat, that means frequent (correct) warnings — *safe but noisy*. A frontier model produces far fewer.
+- **Grounding is detection, not prevention.** The checker *surfaces* unsupported numbers; it does not stop the model from generating them. On a weak local 7B model in multi-turn chat, that means frequent (correct) warnings. Whether a frontier model produces fewer is untested. The checker also has blind spots (it skips a few everyday numbers and year-like values, and it can't judge whether a traced number is explained correctly); see [docs/GROUNDING-CHECK.md](docs/GROUNDING-CHECK.md#blind-spots).
 - **Advice refusal is prompt-level**, exercised in the eval — not a hard code-level classifier.
 - **Free daily-bar data only** (yfinance + Stooq fallback), so no intraday and occasional staleness; the UI flags when the backup provider is in use.
 - **Single-user, local** — no auth or multi-tenant support (a deliberate scope choice for a self-hosted tool).

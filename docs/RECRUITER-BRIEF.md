@@ -8,7 +8,7 @@
 
 ## What Faro is
 
-Faro is an **open-source, self-hosted, bilingual (English/Spanish) AI portfolio-analytics app.** You enter your holdings; a deterministic quant engine computes institutional-grade risk metrics (Sharpe, Value-at-Risk, beta, drawdown, and more), and an AI copilot lets you ask about them in plain English or Spanish. It runs free on your own machine, with or without an API key. It is an **educational tool** — no trade execution, no brokerage linking, no personalized investment advice.
+Faro is an **open-source, self-hosted, bilingual (English/Spanish) AI portfolio-analytics app.** You enter your holdings; a deterministic quant engine computes risk metrics from their published formulas (Sharpe, Value-at-Risk, beta, drawdown, and more), and an AI copilot lets you ask about them in plain English or Spanish. It runs free on your own machine, with or without an API key. It is an **educational tool** — no trade execution, no brokerage linking, no personalized investment advice.
 
 ## Why it's relevant to fintech engineering
 

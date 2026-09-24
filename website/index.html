@@ -6,7 +6,7 @@
 <title>Faro — AI Portfolio Copilot</title>
 <meta name="description" content="Open-source bilingual portfolio analytics. A first-principles quant engine plus an AI copilot that shows its work — unsupported numbers are detected and flagged. English y español.">
 <meta property="og:title" content="Faro — AI Portfolio Copilot">
-<meta property="og:description" content="Institutional-grade risk analytics from first principles, explained by an AI that shows its work. Open source, bilingual, runs free on your machine.">
+<meta property="og:description" content="Risk analytics from first principles, explained by an AI whose numbers are checked against the engine. Open source, bilingual, runs free on your machine.">
 <meta property="og:url" content="https://faroquant.com">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Faro">
@@ -28,7 +28,7 @@
 <!-- <meta name="google-site-verification" content="PASTE_GOOGLE_TOKEN"> -->
 <!-- <meta name="msvalidate.01" content="PASTE_BING_TOKEN"> -->
 <meta name="theme-color" content="#0B1220">
-<meta name="author" content="Carlos M.">
+<meta name="author" content="Carlos Morales Jr.">
 <link rel="icon" type="image/svg+xml" href="logo-icon.svg">
 <link rel="apple-touch-icon" href="logo-icon.svg">
 <script type="application/ld+json">
@@ -41,11 +41,11 @@
   "operatingSystem": "Web, Docker, Linux, macOS, Windows",
   "url": "https://faroquant.com/",
   "sameAs": ["https://github.com/CarlosM787/faro"],
-  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes institutional-grade risk metrics, and an AI copilot explains them — every number it states is verified against the engine and unsupported figures are flagged. Educational tool, not investment advice.",
+  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. Every number in an answer is checked against the engine's results, and numbers that can't be traced are flagged. Educational tool, not investment advice.",
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "author": { "@type": "Person", "name": "Carlos M." },
+  "author": { "@type": "Person", "@id": "https://carlosmoralesjr.com/about/#person", "name": "Carlos Morales Jr.", "url": "https://carlosmoralesjr.com/about/" },
   "inLanguage": ["en", "es"]
 }
 </script>
@@ -182,6 +182,7 @@
       <a href="#how" data-i18n="nav.how"></a>
       <a href="#architecture" data-i18n="nav.arch"></a>
       <a href="#evaluate" data-i18n="nav.evaluate"></a>
+      <a href="/methodology/" data-i18n="nav.method"></a>
       <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
     </div>
@@ -347,6 +348,7 @@ tool result → flagged if not</code></div>
     <p style="margin-top:6px" data-i18n="foot.by"></p>
     <p class="legal" style="margin-top:12px">
       <a href="https://github.com/CarlosM787/faro">GitHub</a> ·
+      <a href="/methodology/" data-i18n="nav.method"></a> ·
       <a href="legal/Faro-Privacy-Policy.pdf" data-i18n="foot.privacy"></a> ·
       <a href="legal/Faro-Terms-of-Use.pdf" data-i18n="foot.terms"></a> ·
       <a href="legal/Faro-Investment-Disclaimer.pdf" data-i18n="foot.disclaimer"></a>
@@ -358,10 +360,10 @@ tool result → flagged if not</code></div>
 <script>
 const T = {
   en: {
-    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works","nav.arch":"Architecture","nav.see":"See it work","nav.evaluate":"Evaluate",
+    "nav.features":"Features","nav.grounded":"Grounded by design","nav.how":"How it works","nav.arch":"Architecture","nav.see":"See it work","nav.evaluate":"Evaluate","nav.method":"How it's tested",
     "hero.badge":"OPEN SOURCE · SELF-HOSTED · ENGLISH & ESPAÑOL",
     "hero.h1":'Portfolio analytics where the AI <em>shows its work</em>.',
-    "hero.sub":"Faro computes institutional-grade risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from first principles, then an AI copilot explains them in plain English or Spanish. Every number it states is verified against the tested quant engine; unsupported figures are flagged.",
+    "hero.sub":"Faro computes risk metrics — Sharpe, Value-at-Risk, beta, drawdown — from their published formulas, then an AI copilot explains them in plain English or Spanish. Every number in an answer is checked against the engine's results; numbers it can't trace are flagged.",
     "hero.cta1":"Get it on GitHub","hero.cta2":"See how grounding works",
     "hero.trust":"MIT licensed · No bank logins · No cloud required · Educational tool, not investment advice",
     "mock.value":"PORTFOLIO VALUE","mock.note":"Illustrative demo data","mock.q":"What happens if NVDA drops 20%?",
@@ -382,16 +384,16 @@ const T = {
     "feat.kicker":"Why Faro","feat.title":"Serious analytics. Honest AI. Your machine.",
     "feat.lead":"Most AI finance tools ask you to trust a chatbot. Faro is built the other way around: deterministic math first, language model second, verification always.",
     "f1.h":"First-principles quant engine","f1.p":"Every metric implemented from the documented formula and unit-tested against independently computed references — Sharpe, Sortino, alpha/beta, historical & parametric VaR, CVaR, max drawdown, correlations, concentration, risk contributions.",
-    "f2.h":"A copilot that shows its work","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent answers only by calling the quant engine's tools — every figure is checked against a computation, and unsupported numbers are flagged.",
+    "f2.h":"A copilot that shows its work","f2.p":"Ask \"how risky am I?\" or \"what if NVDA drops 20%?\" The agent is instructed to answer by calling the quant engine's tools. Every figure in its reply is checked against those computations, and numbers it can't trace are flagged.",
     "f3.h":"Truly bilingual","f3.p":"Dashboard, copilot, scenarios, digests — everything works in English and Spanish with one tap. Ask in either language; get answers, number formatting and legal docs in yours.",
     "f4.h":"Scenario lab & daily digest","f4.p":"Stress-test instant price shocks with per-position impact, and generate a one-click daily brief: movers, risk contributors, upcoming earnings — narrated from computed facts only.",
     "f5.h":"Private & replicable","f5.p":"Your data lives in a local database on your machine. Clone → docker compose up → running in 5 minutes. Claude-powered when you add a key; free local model otherwise.",
     "f6.h":"Compliance-aware by design","f6.p":"Educational analytics, not advice. Faro never executes trades, never touches your brokerage, and is instructed to refuse \"should I buy?\" (a behavior exercised in the public eval) — showing you how to evaluate it yourself instead.",
-    "gr.kicker":"The core idea","gr.title":"Hallucination isn't prompted away. It's engineered away.",
+    "gr.kicker":"The core idea","gr.title":"Invented numbers aren't prompted away. They're caught and shown.",
     "gr.lead":"The #1 failure mode of LLM finance apps is invented numbers. Faro's answer is architectural — and it's measured, not assumed.",
     "gr1.h":"Deterministic engine underneath","gr1.p":"Pure numpy/pandas implementations of every formula, documented and cross-checked against independent libraries in 97 tests.",
-    "gr2.h":"The AI can only call tools","gr2.p":"The copilot's sole source of numbers is five typed tools that dispatch into the same service layer the dashboard uses — one engine, two consumers, zero disagreement.",
-    "gr3.h":"Every reply is verified","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything unsupported is detected and surfaced — measured by a public, two-mode bilingual eval with raw logs committed to the repo.",
+    "gr2.h":"The engine is the only approved source","gr2.p":"The copilot is instructed to take every number from five typed tools that call the same service layer the dashboard uses: one engine, two consumers. Nothing forces it to, which is why the next step exists.",
+    "gr3.h":"Every reply is checked","gr3.p":"A grounding checker extracts each number from the answer and matches it to this turn's tool results. Anything it can't trace is flagged in the app. It has blind spots, listed on the methodology page, and it's measured by a public two-mode bilingual eval with raw logs in the repo.",
     "ar.kicker":"Under the hood","ar.title":"One engine, two consumers",
     "ar.lead":"The dashboard and the copilot read the same service layer, so the charts and the chat can never disagree — and the copilot's replies are grounding-checked on top.",
     "ar.web.h":"React dashboard",
@@ -412,10 +414,10 @@ const T = {
     "foot.disc":"Faro is an educational analytics tool, not an investment adviser. Nothing it produces is investment advice or a recommendation to buy or sell any security. Markets involve risk, including possible loss of principal."
   },
   es: {
-    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona","nav.arch":"Arquitectura","nav.see":"Míralo funcionar","nav.evaluate":"Evalúalo",
+    "nav.features":"Funciones","nav.grounded":"Anclado por diseño","nav.how":"Cómo funciona","nav.arch":"Arquitectura","nav.see":"Míralo funcionar","nav.evaluate":"Evalúalo","nav.method":"Cómo se prueba",
     "hero.badge":"CÓDIGO ABIERTO · AUTOALOJADO · ENGLISH & ESPAÑOL",
     "hero.h1":'Análisis de portafolio donde la IA <em>muestra su trabajo</em>.',
-    "hero.sub":"Faro calcula métricas de riesgo de nivel institucional — Sharpe, Valor en Riesgo, beta, drawdown — desde las fórmulas, y un copiloto de IA te las explica en español o inglés. Cada número que dice se verifica contra el motor cuantitativo probado; las cifras sin respaldo se marcan.",
+    "hero.sub":"Faro calcula métricas de riesgo — Sharpe, Valor en Riesgo, beta, drawdown — desde sus fórmulas publicadas, y un copiloto de IA te las explica en español o inglés. Cada número de una respuesta se compara con los resultados del motor; los que no se pueden rastrear se marcan.",
     "hero.cta1":"Descárgalo en GitHub","hero.cta2":"Mira cómo funciona el anclaje",
     "hero.trust":"Licencia MIT · Sin conectar tu banco · Sin nube obligatoria · Herramienta educativa, no asesoría de inversión",
     "mock.value":"VALOR DEL PORTAFOLIO","mock.note":"Datos ilustrativos de demostración","mock.q":"¿Qué pasa si NVDA cae 20%?",
@@ -436,16 +438,16 @@ const T = {
     "feat.kicker":"Por qué Faro","feat.title":"Análisis serio. IA honesta. Tu computadora.",
     "feat.lead":"La mayoría de las herramientas financieras con IA te piden confiar en un chatbot. Faro está construido al revés: primero matemáticas deterministas, luego el modelo de lenguaje, y verificación siempre.",
     "f1.h":"Motor cuantitativo desde las fórmulas","f1.p":"Cada métrica implementada desde su fórmula documentada y verificada contra referencias independientes — Sharpe, Sortino, alfa/beta, VaR histórico y paramétrico, CVaR, drawdown máximo, correlaciones, concentración, contribuciones al riesgo.",
-    "f2.h":"Un copiloto que muestra su trabajo","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente responde únicamente llamando las herramientas del motor cuantitativo — cada cifra se verifica contra un cálculo y los números sin respaldo se marcan.",
+    "f2.h":"Un copiloto que muestra su trabajo","f2.p":"Pregunta \"¿qué tan riesgoso es mi portafolio?\" o \"¿qué pasa si NVDA cae 20%?\" El agente tiene instrucciones de responder llamando las herramientas del motor cuantitativo. Cada cifra de su respuesta se compara con esos cálculos, y los números que no se pueden rastrear se marcan.",
     "f3.h":"Verdaderamente bilingüe","f3.p":"Tablero, copiloto, escenarios, resúmenes — todo funciona en español e inglés con un toque. Pregunta en cualquier idioma; recibe respuestas, formatos numéricos y documentos legales en el tuyo.",
     "f4.h":"Laboratorio de escenarios y resumen diario","f4.p":"Simula caídas de precio instantáneas con impacto por posición, y genera un resumen diario con un clic: movimientos, fuentes de riesgo y próximos reportes — narrado solo a partir de datos calculados.",
     "f5.h":"Privado y replicable","f5.p":"Tus datos viven en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Con Claude si agregas una clave; con un modelo local gratuito si no.",
     "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar \"¿debería comprar?\" (comportamiento verificado en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.",
-    "gr.kicker":"La idea central","gr.title":"La alucinación no se elimina con prompts. Se elimina con ingeniería.",
+    "gr.kicker":"La idea central","gr.title":"Los números inventados no se corrigen con prompts. Se detectan y se muestran.",
     "gr.lead":"El principal defecto de las apps financieras con IA son los números inventados. La respuesta de Faro es arquitectónica — y se mide, no se asume.",
     "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 97 pruebas.",
-    "gr2.h":"La IA solo puede llamar herramientas","gr2.p":"La única fuente de números del copiloto son cinco herramientas tipadas que llegan a la misma capa de servicios que usa el tablero — un motor, dos consumidores, cero desacuerdos.",
-    "gr3.h":"Cada respuesta se verifica","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no tenga respaldo se detecta y se señala — medido con una evaluación pública bilingüe de dos modos, con registros crudos incluidos en el repositorio.",
+    "gr2.h":"El motor es la única fuente aprobada","gr2.p":"El copiloto tiene instrucciones de tomar cada número de cinco herramientas tipadas que llegan a la misma capa de servicios que usa el tablero: un motor, dos consumidores. Nada lo obliga a hacerlo, y por eso existe el siguiente paso.",
+    "gr3.h":"Cada respuesta se revisa","gr3.p":"Un verificador de anclaje extrae cada número de la respuesta y lo compara con los resultados de las herramientas de ese turno. Lo que no se puede rastrear se marca en la app. Tiene puntos ciegos, que la página de metodología enumera, y se mide con una evaluación pública bilingüe de dos modos, con registros crudos en el repositorio.",
     "ar.kicker":"Por dentro","ar.title":"Un motor, dos consumidores",
     "ar.lead":"El tablero y el copiloto leen la misma capa de servicios, así que las gráficas y el chat nunca se contradicen — y además cada respuesta del copiloto pasa por el verificador de anclaje.",
     "ar.web.h":"Tablero en React",
