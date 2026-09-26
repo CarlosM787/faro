@@ -47,7 +47,7 @@ Optional `ANTHROPIC_API_KEY` in `.env` selects Claude; unset → local Ollama (`
 
 - **Website:** push to `main` touching `website/**` (or legal PDFs / the workflow) → `.github/workflows/pages.yml` copies `website/*` + `docs/legal/*.pdf` into `_site/` and deploys to GitHub Pages (~17s). **Push = live deploy to faroquant.com.** There is no staging — verify locally first (`site` launch config, :4173).
 - **CI:** `.github/workflows/ci.yml` runs on every push to `main` (api: ruff + mypy + pytest; web: i18n parity + build). Keep it green.
-- The site copy is a **single self-contained file** `website/index.html` with a JS `T = { en, es }` dictionary injected at runtime — WebFetch (no JS) can't see the rendered text; verify with a JS-capable browser.
+- *(2026-09-25, branch `authority/ssr-home`)* The homepage source is now `website-src/home.template.html` (markup + the `T = { en, es }` dictionary). `node scripts/bake-home-i18n.mjs` writes the static `website/index.html` (EN) and `website/es/index.html` (ES), so crawlers and no-JS readers see the text. **Edit the template, then re-run the bake; never edit the two generated files by hand.**
 
 ## 5. Core architecture
 
