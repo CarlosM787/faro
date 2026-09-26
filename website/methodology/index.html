@@ -140,7 +140,7 @@
     <h2 id="blind-spots">What it can't catch</h2>
     <ul>
       <li><strong>Everyday numbers are never flagged.</strong> 0, 1, 2, 3, 4, 5, 10, 20, 50, 95, 99, 100, 252 and 500 are skipped, as is anything from 1900 to 2100, which is treated as a year.</li>
-      <li><strong>Loose matching.</strong> An invented number can pass by landing within 1% of a real one.</li>
+      <li><strong>Loose matching.</strong> An invented number can pass by landing within 1% of a real one, or within 0.005 of it, whichever is larger. When the engine stores a figure as a fraction and the answer quotes it as a percentage, that 0.005 is half a percentage point: a one-day 95% VaR of 1.41% passes if quoted anywhere from 0.91% to 1.91%.</li>
       <li><strong>Right number, wrong meaning.</strong> The checker doesn't know which metric a number belongs to. In the recorded demo, a Spanish answer passed while calling a 95% Value at Risk the loss “in the worst scenario”. That's wrong, as the VaR section below explains.</li>
       <li><strong>Words aren't checked.</strong> Calling a Sharpe ratio “moderate” passes, because only numbers are compared.</li>
       <li><strong>Tool calls aren't forced.</strong> The copilot is instructed to call the tools every turn, but the code doesn't force a call; under the default setting the model decides.<a class="cite" href="#s-anthropic-t">[4]</a> The checker catches the misses afterwards.</li>

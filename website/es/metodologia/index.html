@@ -141,7 +141,7 @@
     <h2 id="blind-spots">Qué no puede detectar</h2>
     <ul>
       <li><strong>Los números cotidianos nunca se marcan.</strong> Se saltan 0, 1, 2, 3, 4, 5, 10, 20, 50, 95, 99, 100, 252 y 500, y cualquier valor entre 1900 y 2100, que se trata como un año.</li>
-      <li><strong>Coincidencia holgada.</strong> Un número inventado puede pasar si cae a menos de 1% de uno real.</li>
+      <li><strong>Coincidencia holgada.</strong> Un número inventado puede pasar si cae a menos de 1% de uno real, o a menos de 0.005, lo que sea mayor. Cuando el motor guarda una cifra como fracción y la respuesta la da como porcentaje, ese 0.005 equivale a medio punto porcentual: un VaR de un día al 95% de 1.41% pasa si se cita como cualquier valor entre 0.91% y 1.91%.</li>
       <li><strong>Número correcto, significado equivocado.</strong> El verificador no sabe a qué métrica pertenece un número. En la demostración grabada, una respuesta en español pasó la revisión llamando al Valor en Riesgo al 95% la pérdida “en el peor escenario”. Eso está mal, como explica la sección de VaR más abajo.</li>
       <li><strong>Las palabras no se revisan.</strong> Llamar “moderado” a un Sharpe pasa, porque solo se comparan números.</li>
       <li><strong>Las llamadas a herramientas no son obligatorias.</strong> El copiloto tiene instrucciones de llamar las herramientas en cada turno, pero el código no lo obliga; con la configuración por defecto decide el modelo.<a class="cite" href="#s-anthropic-t">[4]</a> El verificador atrapa las fallas después.</li>
