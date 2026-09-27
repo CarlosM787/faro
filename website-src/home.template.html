@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faro — AI Portfolio Copilot</title>
-<meta name="description" content="Open-source bilingual portfolio analytics. A first-principles quant engine plus an AI copilot that shows its work — unsupported numbers are detected and flagged. English y español.">
+<meta name="description" content="Open-source EN/ES portfolio analytics: a quant engine plus an AI copilot. A checker flags answer numbers that don't match the engine; its limits are published.">
 <meta property="og:title" content="Faro — AI Portfolio Copilot">
-<meta property="og:description" content="Risk analytics from first principles, explained by an AI whose numbers are checked against the engine. Open source, bilingual, runs free on your machine.">
-<meta property="og:url" content="https://faroquant.com">
+<meta property="og:description" content="Risk analytics from first principles, explained by an AI copilot. A checker flags numbers that don't match the engine, and its limits are published. Open source, bilingual.">
+<meta property="og:url" content="https://faroquant.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Faro">
 <meta property="og:image" content="https://faroquant.com/img/og.png">
@@ -35,13 +35,14 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://faroquant.com/#app",
   "name": "Faro",
   "alternateName": "faroquant",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web, Docker, Linux, macOS, Windows",
   "url": "https://faroquant.com/",
   "sameAs": ["https://github.com/CarlosM787/faro"],
-  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. Every number in an answer is checked against the engine's results, and numbers that can't be traced are flagged. Educational tool, not investment advice.",
+  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. A checker compares the numbers in each answer with the engine's results and flags the ones it can't match; what it can't catch is documented on the methodology page. Educational tool, not investment advice.",
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -235,7 +236,7 @@
 
   <div class="stats">
     <div class="stat"><div class="n">97</div><div class="l" data-i18n="stats.tests"></div></div>
-    <div class="stat"><div class="n">139/139</div><div class="l" data-i18n="stats.eval"></div></div>
+    <div class="stat"><div class="n">24/60</div><div class="l" data-i18n="stats.eval"></div></div>
     <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs"></div></div>
     <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost"></div></div>
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license"></div></div>
@@ -291,8 +292,8 @@ tool result → flagged if not</code></div>
       <h3 data-i18n="two.h"></h3>
       <p data-i18n="two.p"></p>
       <div class="two">
-        <div class="m"><div class="big">18/20</div><div class="lil" data-i18n="two.m1"></div></div>
-        <div class="m"><div class="big">139/139</div><div class="lil" data-i18n="two.m2"></div></div>
+        <div class="m"><div class="big">59/60</div><div class="lil" data-i18n="two.m1"></div></div>
+        <div class="m"><div class="big">24/60</div><div class="lil" data-i18n="two.m2"></div></div>
       </div>
     </div>
   </section>
@@ -373,14 +374,14 @@ const T = {
     "hero.trust":"MIT licensed · No bank logins · No cloud required · Educational tool, not investment advice",
     "mock.value":"PORTFOLIO VALUE","mock.note":"Illustrative demo data","mock.q":"What happens if NVDA drops 20%?",
     "mock.a":"If NVDA fell 20%, your portfolio would decline <b>$710.61 (−2.3%)</b> to <b>$29,542.69</b>. NVDA is 11.7% of your holdings but contributes <b>23.6% of your risk</b> — every number above comes from the scenario tool call shown.",
-    "stats.tests":"unit tests on the quant engine","stats.eval":"figures flagged in the multi-turn eval — every one surfaced in-app","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
+    "stats.tests":"unit tests on the quant engine","stats.eval":"answers fully grounded with chat history on · 59/60 asked fresh (local 7B model, 3 runs, Sept 24, 2026)","stats.langs":"fully bilingual, one tap","stats.cost":"to run — free data, local AI","stats.license":"open source, self-hosted",
     "see.kicker":"See it work","see.title":"Real screens, real numbers","see.lead":"Not mockups — the actual app running the seeded demo portfolio.",
     "see.dashAlt":"Faro dashboard showing portfolio value, risk metric cards, performance vs SPY, allocation and a correlation matrix",
     "see.dashCap":"The <b>dashboard</b> — value & P/L, Sharpe · VaR · beta · drawdown, performance vs SPY, allocation, drawdown and a correlation matrix. The copilot calls the <b>same engine</b>, so the chat and the charts can never disagree.",
     "see.groundAlt":"Faro copilot in Spanish with an amber warning that three figures could not be traced to a tool result",
     "see.groundCap":"<b>Caught in the act.</b> Asked its beta again mid-conversation, the local model recited “1.35” from earlier in the chat instead of re-calling the tool — and Faro flagged it in-app: <b>“3 figures … could not be traced to a tool result.”</b> That's the grounding checker working — here, in Spanish.",
-    "two.h":"Honest by two measures, not one flattering number","two.p":"The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Claude, the primary provider, adheres far more tightly.",
-    "two.m1":"answers fully grounded — asked fresh, on a local 7B model","two.m2":"figures flagged in multi-turn use, every one surfaced in-app — detection, not hope",
+    "two.h":"Honest by two measures, not one flattering number","two.p":"The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Whether Claude does better is untested.",
+    "two.m1":"answers fully grounded, asked fresh — local 7B model, 3 runs, Sept 24, 2026","two.m2":"answers fully grounded, with chat history on as the shipped chat works — same model, 3 runs, Sept 24, 2026",
     "ev.kicker":"For hiring managers","ev.title":"How to evaluate this in five minutes","ev.lead":"Built as a work sample. Here's where to look, and what each choice is meant to demonstrate.",
     "ev1.h":"The quant is from first principles","ev1.p":"Every metric implemented from its documented formula in pure numpy/pandas — no black-box libraries — tested against hand-computed references plus independent cross-checks.","ev1.a":"Read the engine →",
     "ev2.h":"The guardrail is code, not vibes","ev2.p":"The grounding checker that extracts every number and matches it to a tool result — the mechanism that makes “detected and surfaced” a testable claim.","ev2.a":"Read the checker →",
@@ -427,14 +428,14 @@ const T = {
     "hero.trust":"Licencia MIT · Sin conectar tu banco · Sin nube obligatoria · Herramienta educativa, no asesoría de inversión",
     "mock.value":"VALOR DEL PORTAFOLIO","mock.note":"Datos ilustrativos de demostración","mock.q":"¿Qué pasa si NVDA cae 20%?",
     "mock.a":"Si NVDA cayera 20%, tu portafolio bajaría <b>$710.61 (−2.3%)</b> hasta <b>$29,542.69</b>. NVDA es el 11.7% de tus posiciones pero aporta el <b>23.6% de tu riesgo</b> — cada número viene de la llamada a la herramienta de escenarios mostrada.",
-    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"cifras marcadas en la evaluación multi-turno — todas señaladas en la app","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
+    "stats.tests":"pruebas unitarias del motor cuantitativo","stats.eval":"respuestas totalmente ancladas con historial de chat · 59/60 preguntadas en fresco (modelo local 7B, 3 corridas, 24 de septiembre de 2026)","stats.langs":"totalmente bilingüe, un toque","stats.cost":"para usarlo — datos gratis, IA local","stats.license":"código abierto, autoalojado",
     "see.kicker":"Míralo funcionar","see.title":"Pantallas reales, números reales","see.lead":"No son mockups — es la app real corriendo el portafolio de demostración.",
     "see.dashAlt":"Tablero de Faro con el valor del portafolio, tarjetas de métricas de riesgo, rendimiento vs SPY, asignación y una matriz de correlación",
     "see.dashCap":"El <b>tablero</b> — valor y P/G, Sharpe · VaR · beta · drawdown, rendimiento vs SPY, asignación, drawdown y una matriz de correlación. El copiloto llama al <b>mismo motor</b>, así que el chat y las gráficas nunca se contradicen.",
     "see.groundAlt":"Copiloto de Faro en español con una advertencia ámbar de que tres cifras no pudieron rastrearse a un resultado de herramienta",
     "see.groundCap":"<b>Atrapado en el acto.</b> Al preguntarle de nuevo su beta a mitad de la conversación, el modelo local recitó “1.35” de un mensaje anterior en vez de volver a llamar la herramienta — y Faro lo marcó en la app: <b>“3 cifras … no pudieron rastrearse a un resultado de herramienta.”</b> Así funciona el verificador de anclaje — aquí, en español.",
-    "two.h":"Honesto con dos medidas, no con un solo número halagador","two.p":"La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. Claude, el proveedor principal, se apega mucho más.",
-    "two.m1":"respuestas totalmente ancladas — preguntadas en fresco, en un modelo local 7B","two.m2":"cifras marcadas en uso multi-turno, todas señaladas en la app — detección, no confianza ciega",
+    "two.h":"Honesto con dos medidas, no con un solo número halagador","two.p":"La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. No se ha probado si Claude lo hace mejor.",
+    "two.m1":"respuestas totalmente ancladas, preguntadas en fresco — modelo local 7B, 3 corridas, 24 de septiembre de 2026","two.m2":"respuestas totalmente ancladas, con historial de chat como funciona el chat real — mismo modelo, 3 corridas, 24 de septiembre de 2026",
     "ev.kicker":"Para reclutadores","ev.title":"Cómo evaluarlo en cinco minutos","ev.lead":"Hecho como muestra de trabajo. Aquí está dónde mirar, y qué busca demostrar cada decisión.",
     "ev1.h":"El motor cuantitativo es desde las fórmulas","ev1.p":"Cada métrica implementada desde su fórmula documentada en numpy/pandas puro — sin bibliotecas caja-negra — probada contra referencias calculadas a mano más verificaciones independientes.","ev1.a":"Ver el motor →",
     "ev2.h":"La protección es código, no confianza","ev2.p":"El verificador de anclaje que extrae cada número y lo compara con un resultado de herramienta — el mecanismo que hace de “detectado y señalado” una afirmación comprobable.","ev2.a":"Ver el verificador →",
@@ -447,7 +448,7 @@ const T = {
     "f3.h":"Verdaderamente bilingüe","f3.p":"Tablero, copiloto, escenarios, resúmenes — todo funciona en español e inglés con un toque. Pregunta en cualquier idioma; recibe respuestas, formatos numéricos y documentos legales en el tuyo.",
     "f4.h":"Laboratorio de escenarios y resumen diario","f4.p":"Simula caídas de precio instantáneas con impacto por posición, y genera un resumen diario con un clic: movimientos, fuentes de riesgo y próximos reportes — narrado solo a partir de datos calculados.",
     "f5.h":"Privado y replicable","f5.p":"Tus datos viven en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Con Claude si agregas una clave; con un modelo local gratuito si no.",
-    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar \"¿debería comprar?\" (comportamiento verificado en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.",
+    "f6.h":"Consciente del cumplimiento","f6.p":"Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar \"¿debería comprar?\" (comportamiento puesto a prueba en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.",
     "gr.kicker":"La idea central","gr.title":"Los números inventados no se corrigen con prompts. Se detectan y se muestran.",
     "gr.lead":"El principal defecto de las apps financieras con IA son los números inventados. La respuesta de Faro es arquitectónica — y se mide, no se asume.",
     "gr1.h":"Motor determinista debajo","gr1.p":"Implementaciones puras en numpy/pandas de cada fórmula, documentadas y contrastadas con bibliotecas independientes en 97 pruebas.",

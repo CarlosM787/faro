@@ -3,9 +3,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faro — AI Portfolio Copilot</title>
-<meta name="description" content="Open-source bilingual portfolio analytics. A first-principles quant engine plus an AI copilot that shows its work — unsupported numbers are detected and flagged. English y español.">
+<meta name="description" content="Open-source EN/ES portfolio analytics: a quant engine plus an AI copilot. A checker flags answer numbers that don't match the engine; its limits are published.">
 <meta property="og:title" content="Faro — AI Portfolio Copilot">
-<meta property="og:description" content="Risk analytics from first principles, explained by an AI whose numbers are checked against the engine. Open source, bilingual, runs free on your machine.">
+<meta property="og:description" content="Risk analytics from first principles, explained by an AI copilot. A checker flags numbers that don't match the engine, and its limits are published. Open source, bilingual.">
 <meta property="og:url" content="https://faroquant.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Faro">
@@ -34,13 +34,14 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://faroquant.com/#app",
   "name": "Faro",
   "alternateName": "faroquant",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web, Docker, Linux, macOS, Windows",
   "url": "https://faroquant.com/",
   "sameAs": ["https://github.com/CarlosM787/faro"],
-  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. Every number in an answer is checked against the engine's results, and numbers that can't be traced are flagged. Educational tool, not investment advice.",
+  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. A checker compares the numbers in each answer with the engine's results and flags the ones it can't match; what it can't catch is documented on the methodology page. Educational tool, not investment advice.",
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -234,7 +235,7 @@
 
   <div class="stats">
     <div class="stat"><div class="n">97</div><div class="l" data-i18n="stats.tests">unit tests on the quant engine</div></div>
-    <div class="stat"><div class="n">139/139</div><div class="l" data-i18n="stats.eval">figures flagged in the multi-turn eval — every one surfaced in-app</div></div>
+    <div class="stat"><div class="n">24/60</div><div class="l" data-i18n="stats.eval">answers fully grounded with chat history on · 59/60 asked fresh (local 7B model, 3 runs, Sept 24, 2026)</div></div>
     <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs">fully bilingual, one tap</div></div>
     <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost">to run — free data, local AI</div></div>
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license">open source, self-hosted</div></div>
@@ -288,10 +289,10 @@ tool result → flagged if not</code></div>
     </figure>
     <div class="callout">
       <h3 data-i18n="two.h">Honest by two measures, not one flattering number</h3>
-      <p data-i18n="two.p">The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Claude, the primary provider, adheres far more tightly.</p>
+      <p data-i18n="two.p">The eval runs two ways, and the repo publishes both with raw logs. Asked fresh, each answer's numbers trace to that turn's tools. In free-flowing multi-turn chat a small local model will recite earlier figures from memory — and every one is flagged in-app rather than hidden. Whether Claude does better is untested.</p>
       <div class="two">
-        <div class="m"><div class="big">18/20</div><div class="lil" data-i18n="two.m1">answers fully grounded — asked fresh, on a local 7B model</div></div>
-        <div class="m"><div class="big">139/139</div><div class="lil" data-i18n="two.m2">figures flagged in multi-turn use, every one surfaced in-app — detection, not hope</div></div>
+        <div class="m"><div class="big">59/60</div><div class="lil" data-i18n="two.m1">answers fully grounded, asked fresh — local 7B model, 3 runs, Sept 24, 2026</div></div>
+        <div class="m"><div class="big">24/60</div><div class="lil" data-i18n="two.m2">answers fully grounded, with chat history on as the shipped chat works — same model, 3 runs, Sept 24, 2026</div></div>
       </div>
     </div>
   </section>

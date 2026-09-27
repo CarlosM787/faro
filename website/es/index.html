@@ -3,9 +3,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faro — Copiloto de portafolio con IA</title>
-<meta name="description" content="Análisis de portafolio bilingüe y de código abierto. Un motor cuantitativo desde primeros principios y un copiloto de IA que muestra su trabajo: las cifras sin respaldo se detectan y se marcan. English y español.">
+<meta name="description" content="Análisis de portafolio de código abierto en EN/ES: un motor cuantitativo y un copiloto de IA. Un verificador marca las cifras de las respuestas que no coinciden con el motor; sus límites están publicados.">
 <meta property="og:title" content="Faro — Copiloto de portafolio con IA">
-<meta property="og:description" content="Métricas de riesgo desde primeros principios, explicadas por una IA cuyas cifras se comparan con las del motor. Código abierto, bilingüe, corre gratis en tu computadora.">
+<meta property="og:description" content="Métricas de riesgo desde primeros principios, explicadas por un copiloto de IA. Un verificador marca las cifras que no coinciden con el motor, y sus límites están publicados. Código abierto, bilingüe.">
 <meta property="og:url" content="https://faroquant.com/es/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Faro">
@@ -34,13 +34,14 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://faroquant.com/#app",
   "name": "Faro",
   "alternateName": "faroquant",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web, Docker, Linux, macOS, Windows",
   "url": "https://faroquant.com/",
   "sameAs": ["https://github.com/CarlosM787/faro"],
-  "description": "Open-source, self-hosted, bilingual portfolio-analytics app: a first-principles quant engine computes risk metrics, and an AI copilot explains them. Every number in an answer is checked against the engine's results, and numbers that can't be traced are flagged. Educational tool, not investment advice.",
+  "description": "Aplicación de análisis de portafolio de código abierto, autoalojada y bilingüe: un motor cuantitativo desde primeros principios calcula métricas de riesgo y un copiloto de IA las explica. Un verificador compara las cifras de cada respuesta con los resultados del motor y marca las que no puede emparejar; lo que no puede detectar está documentado en la página de metodología. Herramienta educativa, no asesoría de inversión.",
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -234,7 +235,7 @@
 
   <div class="stats">
     <div class="stat"><div class="n">97</div><div class="l" data-i18n="stats.tests">pruebas unitarias del motor cuantitativo</div></div>
-    <div class="stat"><div class="n">139/139</div><div class="l" data-i18n="stats.eval">cifras marcadas en la evaluación multi-turno — todas señaladas en la app</div></div>
+    <div class="stat"><div class="n">24/60</div><div class="l" data-i18n="stats.eval">respuestas totalmente ancladas con historial de chat · 59/60 preguntadas en fresco (modelo local 7B, 3 corridas, 24 de septiembre de 2026)</div></div>
     <div class="stat"><div class="n">EN·ES</div><div class="l" data-i18n="stats.langs">totalmente bilingüe, un toque</div></div>
     <div class="stat"><div class="n">$0</div><div class="l" data-i18n="stats.cost">para usarlo — datos gratis, IA local</div></div>
     <div class="stat"><div class="n">MIT</div><div class="l" data-i18n="stats.license">código abierto, autoalojado</div></div>
@@ -262,7 +263,7 @@
       <div class="card"><span class="ic">🌎</span><h3 data-i18n="f3.h">Verdaderamente bilingüe</h3><p data-i18n="f3.p">Tablero, copiloto, escenarios, resúmenes — todo funciona en español e inglés con un toque. Pregunta en cualquier idioma; recibe respuestas, formatos numéricos y documentos legales en el tuyo.</p></div>
       <div class="card"><span class="ic">⚡</span><h3 data-i18n="f4.h">Laboratorio de escenarios y resumen diario</h3><p data-i18n="f4.p">Simula caídas de precio instantáneas con impacto por posición, y genera un resumen diario con un clic: movimientos, fuentes de riesgo y próximos reportes — narrado solo a partir de datos calculados.</p></div>
       <div class="card"><span class="ic">🔒</span><h3 data-i18n="f5.h">Privado y replicable</h3><p data-i18n="f5.p">Tus datos viven en una base de datos local en tu máquina. Clonar → docker compose up → funcionando en 5 minutos. Con Claude si agregas una clave; con un modelo local gratuito si no.</p></div>
-      <div class="card"><span class="ic">⚖️</span><h3 data-i18n="f6.h">Consciente del cumplimiento</h3><p data-i18n="f6.p">Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar "¿debería comprar?" (comportamiento verificado en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.</p></div>
+      <div class="card"><span class="ic">⚖️</span><h3 data-i18n="f6.h">Consciente del cumplimiento</h3><p data-i18n="f6.p">Análisis educativo, no asesoría. Faro nunca ejecuta operaciones, nunca toca tu casa de bolsa, y está instruido para rechazar "¿debería comprar?" (comportamiento puesto a prueba en la evaluación pública) — mostrándote cómo evaluarlo tú mismo.</p></div>
     </div>
   </section>
 
@@ -288,10 +289,10 @@ tool result → flagged if not</code></div>
     </figure>
     <div class="callout">
       <h3 data-i18n="two.h">Honesto con dos medidas, no con un solo número halagador</h3>
-      <p data-i18n="two.p">La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. Claude, el proveedor principal, se apega mucho más.</p>
+      <p data-i18n="two.p">La evaluación corre de dos formas, y el repositorio publica ambas con registros crudos. Preguntada en fresco, cada número de la respuesta se rastrea a las herramientas de ese turno. En una conversación libre de varios turnos, un modelo local pequeño recita cifras anteriores de memoria — y cada una se marca en la app en vez de ocultarse. No se ha probado si Claude lo hace mejor.</p>
       <div class="two">
-        <div class="m"><div class="big">18/20</div><div class="lil" data-i18n="two.m1">respuestas totalmente ancladas — preguntadas en fresco, en un modelo local 7B</div></div>
-        <div class="m"><div class="big">139/139</div><div class="lil" data-i18n="two.m2">cifras marcadas en uso multi-turno, todas señaladas en la app — detección, no confianza ciega</div></div>
+        <div class="m"><div class="big">59/60</div><div class="lil" data-i18n="two.m1">respuestas totalmente ancladas, preguntadas en fresco — modelo local 7B, 3 corridas, 24 de septiembre de 2026</div></div>
+        <div class="m"><div class="big">24/60</div><div class="lil" data-i18n="two.m2">respuestas totalmente ancladas, con historial de chat como funciona el chat real — mismo modelo, 3 corridas, 24 de septiembre de 2026</div></div>
       </div>
     </div>
   </section>
