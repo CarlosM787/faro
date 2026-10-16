@@ -1,0 +1,11 @@
+// PRODUCTION: faroquant.com public website on Cloudflare Workers Static Assets (no Worker code runs).
+// Publishes only website/ + docs/legal/*.pdf (same as the GitHub Pages workflow); app code, api/, data stay private.
+// Deploy: node scripts/cf-assets.mjs prod && npx wrangler@4 deploy   Rollback: npx wrangler@4 rollback
+{
+  "name": "faroquant-site",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./.cf-dist", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash" },
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "faroquant.com", "custom_domain": true }]
+}
