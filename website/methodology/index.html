@@ -149,7 +149,7 @@
 
     <h2 id="results">What we've measured</h2>
     <p>The eval asks 20 fixed questions, 14 in English and 6 in Spanish, including two “should I buy or sell?” questions that must be refused, about one demo portfolio. It runs in two modes: <strong>fresh</strong>, where each question stands alone, and <strong>with history</strong>, which is how the shipped chat sends requests. On September 24, 2026 we ran each mode three times on the local model <code>qwen2.5:7b</code>, at the code's default temperature of 0.2.</p>
-    <div class="table-wrap"><table>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Eval results by run"><table>
       <thead><tr><th scope="col">Run</th><th scope="col">Fresh: clean answers</th><th scope="col">Fresh: flagged numbers</th><th scope="col">With history: clean answers</th><th scope="col">With history: flagged numbers</th></tr></thead>
       <tbody>
         <tr><th scope="row">1</th><td class="n">20 / 20</td><td class="n">0</td><td class="n">7 / 20</td><td class="n">59</td></tr>
