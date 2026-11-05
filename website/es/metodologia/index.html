@@ -100,7 +100,11 @@
   footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 48px;color:var(--muted);font-size:.85rem;text-align:center}
   footer a{color:var(--muted);margin:0 8px}
   footer .disc{max-width:700px;margin:14px auto 0;color:var(--dim);font-size:.8rem}
-  .lang a{border:1px solid var(--line);border-radius:99px;padding:5px 12px !important}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+  .lang a{padding:6px 13px !important;font-weight:600;text-decoration:none}
+  .lang a.on{background:var(--beam);color:var(--navy)}
+  footer .sig{margin-top:8px}
+  footer .sig a{display:inline-block;padding:12px 4px;margin:-8px 0}
   @media(max-width:760px){nav .links a:not(.keep){display:none}}
 </style>
 </head>
@@ -112,7 +116,7 @@
       <a href="/#grounded">Anclado por diseño</a>
       <a href="/es/metodologia/" aria-current="page" class="keep">Cómo se prueba</a>
       <a href="https://github.com/CarlosM787/faro">GitHub</a>
-      <span class="lang"><a href="/methodology/" hreflang="en" lang="en" class="keep">EN</a></span>
+      <span class="lang"><a href="/methodology/" hreflang="en" lang="en" class="keep">EN</a><a href="/es/metodologia/" hreflang="es" lang="es" class="keep on" aria-current="page">ES</a></span>
     </div>
   </nav>
 
@@ -234,6 +238,7 @@
 
   <footer>
     <p><a href="/">Inicio de FaroQuant</a> · <a href="https://github.com/CarlosM787/faro">GitHub</a> · <a href="/methodology/" hreflang="en">English</a></p>
+    <p class="sig"><a href="https://moraleslabs.com/es/">Un producto de Morales Labs</a></p>
     <p class="disc">FaroQuant es una herramienta educativa de análisis, no un asesor de inversiones. Nada de lo que produce es asesoría de inversión ni una recomendación de comprar o vender ningún valor. Los mercados implican riesgo, incluida la posible pérdida del capital.</p>
   </footer>
 </div>
