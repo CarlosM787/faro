@@ -7,6 +7,7 @@
 //   node scripts/indexnow.mjs send <host>   AFTER the deploy and its live check, and only on a release
 //        Carlos approved. POSTs the planned URLs once to api.indexnow.org and prints the HTTP status
 //        (200/202 = accepted) for the receipt. Refuses if the plan is empty, stale (>6 h) or for another host.
+//   node scripts/indexnow.mjs plan <host> --list <file>   one-off: plan an explicit URL list (must be in the sitemap).
 //   add --dry-run to `send` to print the request without sending it.
 //
 // The key is public by design (served at /<key>.txt by cf-assets prod); it is not a secret.
@@ -31,6 +32,15 @@ function fileFor(url) {
   return c.map((x) => path.join(OUT, x)).find((f) => existsSync(f) && statSync(f).isFile());
 }
 
+if (cmd === 'plan' && flags[0] === '--list') {
+  // One-off: plan an explicit list (one URL per line), e.g. pages a release already took live. Each must be in the sitemap.
+  const next = locs(readFileSync(path.join(OUT, 'sitemap.xml'), 'utf8'));
+  const list = readFileSync(flags[1], 'utf8').split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+  const bad = list.filter((u) => !next.includes(u) || new URL(u).host !== host);
+  if (bad.length) { console.error('not in the sitemap or not this host:\n  ' + bad.join('\n  ')); process.exit(1); }
+  writeFileSync(PLAN, JSON.stringify({ host, at: new Date().toISOString(), listed: list, urlList: list }, null, 2) + '\n');
+  console.log(`indexnow plan ${host}: ${list.length} listed URL(s)`); process.exit(0);
+}
 if (cmd === 'plan') {
   const next = locs(readFileSync(path.join(OUT, 'sitemap.xml'), 'utf8')).filter((u) => new URL(u).host === host);
   const liveRes = await fetch(`${origin}/sitemap.xml`);
