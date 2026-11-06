@@ -15,3 +15,9 @@ const base = existsSync('website/_headers') ? readFileSync('website/_headers', '
 writeFileSync(hp, base + (mode === 'staging' ? '\n/*\n  X-Robots-Tag: noindex, nofollow\n' : ''));
 if (mode === 'staging') writeFileSync(path.join(OUT, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 console.log(`cf-assets: ${mode} -> ${OUT}`);
+
+// IndexNow key file (prod only; WO-20261106-08 E4). The key is public by design. See scripts/indexnow.mjs.
+if (mode === 'prod' && existsSync('indexnow-key.txt')) {
+  const indexNowKey = readFileSync('indexnow-key.txt', 'utf8').trim();
+  writeFileSync(path.join(OUT, `${indexNowKey}.txt`), indexNowKey);
+}

@@ -38,3 +38,5 @@ Thumbs.db
 .cf-dist/
 .cf-staging/
 .wrangler/
+
+.indexnow-plan.json
