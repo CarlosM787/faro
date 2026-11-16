@@ -80,7 +80,7 @@
   .menu-btn i,.menu-btn i::before,.menu-btn i::after{display:block;width:15px;height:2px;border-radius:2px;background:currentColor;position:relative}
   .menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0}
   .menu-btn i::before{top:-5px}.menu-btn i::after{top:5px}
-  .nav-pop{margin:0;inset:72px 12px auto 12px;width:auto;max-width:420px;margin-left:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .nav-pop{margin:0;inset:72px 12px auto 12px;width:auto;max-width:420px;max-height:calc(100dvh - 84px);overflow:auto;margin-left:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
   .nav-pop:popover-open{display:grid;gap:2px}
   .nav-pop a{color:var(--text);text-decoration:none;padding:12px 14px;border-radius:10px;font-size:1rem;min-height:44px}
   .nav-pop a:hover,.nav-pop a:focus-visible{background:var(--navy);color:var(--beam)}
@@ -89,8 +89,9 @@
   @media(max-width:760px){.menu-btn{display:inline-flex}}
   .nav-pop .pop-gh{display:none}
   @media(max-width:520px){nav .links > a.ghbtn{display:none}.nav-pop .pop-gh{display:block}}
+  @media(max-width:380px){nav .links .lang{margin-left:0}nav .links{gap:4px}} /* specific enough to beat the later .lang rule */
   @media(max-width:420px){.menu-btn{padding:0;width:44px;justify-content:center}.menu-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
-  @supports not selector(:popover-open){.menu-btn{display:none !important}@media(max-width:760px){nav .links > a:not(.ghbtn){display:inline-block}}}
+  @supports not selector(:popover-open){.menu-btn{display:none !important}.nav-pop{display:none}@media(max-width:760px){nav .links > a:not(.ghbtn){display:inline-block}}@media(max-width:520px){nav .links > a.ghbtn{display:inline-block}}}
   .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-left:8px}
   /* hero mock: assembles once (wide screens, on load) or as it scrolls into view (phones); static with reduced motion */
   @keyframes m-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
