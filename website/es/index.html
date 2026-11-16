@@ -75,8 +75,39 @@
   nav .links a{color:var(--muted);text-decoration:none;font-size:.92rem;padding:6px 12px;border-radius:8px}
   nav .links a:hover{color:var(--text);background:var(--card)}
   .ghbtn{border:1px solid var(--line);border-radius:8px;padding:6px 14px !important;color:var(--text) !important}
-  @media(max-width:760px){nav .links a:not(.ghbtn){display:none}}
+  @media(max-width:760px){nav .links > a:not(.ghbtn){display:none}} /* direct links only: the EN/ES pair inside .lang stays visible */
+  .menu-btn{display:none;align-items:center;gap:8px;background:none;border:1px solid var(--line);border-radius:8px;color:var(--text);font:600 .92rem Inter,sans-serif;padding:0 14px;min-height:44px;cursor:pointer}
+  .menu-btn i,.menu-btn i::before,.menu-btn i::after{display:block;width:15px;height:2px;border-radius:2px;background:currentColor;position:relative}
+  .menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0}
+  .menu-btn i::before{top:-5px}.menu-btn i::after{top:5px}
+  .nav-pop{margin:0;inset:72px 12px auto 12px;width:auto;max-width:420px;margin-left:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .nav-pop:popover-open{display:grid;gap:2px}
+  .nav-pop a{color:var(--text);text-decoration:none;padding:12px 14px;border-radius:10px;font-size:1rem;min-height:44px}
+  .nav-pop a:hover,.nav-pop a:focus-visible{background:var(--navy);color:var(--beam)}
+  .nav-pop .pop-close{justify-self:end;background:none;border:1px solid var(--line);border-radius:8px;color:var(--muted);font:600 .85rem Inter,sans-serif;padding:0 12px;min-height:40px;cursor:pointer;margin-bottom:4px}
+  .nav-pop::backdrop{background:rgba(5,9,18,.55)}
+  @media(max-width:760px){.menu-btn{display:inline-flex}}
+  @supports not selector(:popover-open){.menu-btn{display:none !important}@media(max-width:760px){nav .links > a:not(.ghbtn){display:inline-block}}}
   .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-left:8px}
+  /* hero mock: assembles once (wide screens, on load) or as it scrolls into view (phones); static with reduced motion */
+  @keyframes m-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  @keyframes m-fade{from{opacity:0}to{opacity:1}}
+  @keyframes m-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:no-preference){
+    .mock .m-line{stroke-dasharray:1;animation:m-draw 1.4s cubic-bezier(.3,.7,.2,1) .2s both}
+    .mock .m-area{animation:m-fade .8s ease 1s both}
+    .mock .mchat .q{animation:m-rise .45s ease 1.2s both}
+    .mock .mchat .chip{animation:m-rise .45s ease 1.75s both}
+    .mock .mchat .bubble{animation:m-rise .5s ease 2.3s both}
+    @supports (animation-timeline:view()){@media (max-width:900px){
+      .mock .m-line,.mock .m-area,.mock .mchat .q,.mock .mchat .chip,.mock .mchat .bubble{animation-timeline:view();animation-duration:auto;animation-delay:0s}
+      .mock .m-line{animation-range:entry 5% cover 35%}
+      .mock .m-area{animation-range:entry 20% cover 40%}
+      .mock .mchat .q{animation-range:entry 30% cover 45%}
+      .mock .mchat .chip{animation-range:entry 40% cover 52%}
+      .mock .mchat .bubble{animation-range:entry 50% cover 60%}
+    }}
+  }
   .lang button{background:none;border:0;color:var(--muted);padding:6px 13px;font:600 .82rem Inter,sans-serif;cursor:pointer}
   .lang button.on{background:var(--beam);color:var(--navy)}
 .lang a{display:inline-block;color:var(--muted);padding:6px 13px;font:600 .82rem Inter,sans-serif;text-decoration:none}
@@ -195,8 +226,19 @@
       <a href="/methodology/" data-i18n="nav.method">Cómo se prueba</a>
       <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><a id="btn-en" href="/" hreflang="en" lang="en">EN</a><a id="btn-es" href="/es/" hreflang="es" lang="es" class="on" aria-current="page">ES</a></span>
+      <button class="menu-btn" type="button" popovertarget="nav-menu" aria-haspopup="true"><i aria-hidden="true"></i><span data-i18n="nav.menu">Menú</span></button>
     </div>
   </nav>
+  <div class="nav-pop" id="nav-menu" popover="">
+    <button class="pop-close" type="button" popovertarget="nav-menu" popovertargetaction="hide" data-i18n="nav.close">Cerrar</button>
+    <a href="#see" data-i18n="nav.see">Míralo funcionar</a>
+    <a href="#features" data-i18n="nav.features">Funciones</a>
+    <a href="#grounded" data-i18n="nav.grounded">Anclado por diseño</a>
+    <a href="#how" data-i18n="nav.how">Cómo funciona</a>
+    <a href="#architecture" data-i18n="nav.arch">Arquitectura</a>
+    <a href="#evaluate" data-i18n="nav.evaluate">Evalúalo</a>
+    <a href="/methodology/" data-i18n="nav.method">Cómo se prueba</a>
+  </div>
 
   <main>
 <section class="hero">
@@ -227,8 +269,8 @@
           <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#FFB020" stop-opacity=".35"></stop><stop offset="1" stop-color="#FFB020" stop-opacity="0"></stop>
           </linearGradient></defs>
-          <path d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14 L320,70 L0,70 Z" fill="url(#g)"></path>
-          <path d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14" fill="none" stroke="#FFB020" stroke-width="2"></path>
+          <path class="m-area" d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14 L320,70 L0,70 Z" fill="url(#g)"></path>
+          <path class="m-line" pathLength="1" d="M0,55 C30,50 45,58 70,48 S110,30 140,36 S190,18 220,24 S280,8 320,14" fill="none" stroke="#FFB020" stroke-width="2"></path>
           <path d="M0,58 C40,56 80,50 120,46 S220,34 320,30" fill="none" stroke="#8B98AC" stroke-width="1.4" stroke-dasharray="5 4"></path>
         </svg>
       </div>
@@ -395,6 +437,7 @@ tool result → flagged if not</code></div>
     document.head.appendChild(s);
   })();
 </script>
+<script>document.querySelectorAll("#nav-menu a").forEach(function(a){a.addEventListener("click",function(){var m=document.getElementById("nav-menu");if(m&&m.hidePopover)m.hidePopover();});});</script>
 
 
 </body></html>

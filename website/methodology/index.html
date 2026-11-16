@@ -107,7 +107,7 @@
   footer .disc{max-width:700px;margin:14px auto 0;color:var(--dim);font-size:.8rem}
   .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
   .lang a{padding:6px 13px !important;font-weight:600;text-decoration:none}
-  .lang a.on{background:var(--beam);color:var(--navy)}
+  .lang a.on,nav .links .lang a.on{background:var(--beam);color:var(--navy)} /* beats nav .links a[aria-current]: 1.55:1 -> 9.6:1 */
   footer .sig{margin-top:8px}
   footer .sig a{display:inline-block;padding:12px 4px;margin:-8px 0}
   @media(max-width:760px){nav .links a:not(.keep){display:none}}
