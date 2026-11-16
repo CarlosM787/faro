@@ -88,6 +88,9 @@
   .nav-pop .pop-close{justify-self:end;background:none;border:1px solid var(--line);border-radius:8px;color:var(--muted);font:600 .85rem Inter,sans-serif;padding:0 12px;min-height:40px;cursor:pointer;margin-bottom:4px}
   .nav-pop::backdrop{background:rgba(5,9,18,.55)}
   @media(max-width:760px){.menu-btn{display:inline-flex}}
+  .nav-pop .pop-gh{display:none}
+  @media(max-width:520px){nav .links > a.ghbtn{display:none}.nav-pop .pop-gh{display:block}}
+  @media(max-width:420px){.menu-btn{padding:0;width:44px;justify-content:center}.menu-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
   @supports not selector(:popover-open){.menu-btn{display:none !important}@media(max-width:760px){nav .links > a:not(.ghbtn){display:inline-block}}}
   .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-left:8px}
   /* hero mock: assembles once (wide screens, on load) or as it scrolls into view (phones); static with reduced motion */
@@ -102,11 +105,11 @@
     .mock .mchat .bubble{animation:m-rise .5s ease 2.3s both}
     @supports (animation-timeline:view()){@media (max-width:900px){
       .mock .m-line,.mock .m-area,.mock .mchat .q,.mock .mchat .chip,.mock .mchat .bubble{animation-timeline:view();animation-duration:auto;animation-delay:0s}
-      .mock .m-line{animation-range:entry 5% cover 35%}
-      .mock .m-area{animation-range:entry 20% cover 40%}
-      .mock .mchat .q{animation-range:entry 30% cover 45%}
-      .mock .mchat .chip{animation-range:entry 40% cover 52%}
-      .mock .mchat .bubble{animation-range:entry 50% cover 60%}
+      .mock .m-line{animation-range:entry 0% entry 55%}
+      .mock .m-area{animation-range:entry 20% entry 70%}
+      .mock .mchat .q{animation-range:entry 40% entry 75%}
+      .mock .mchat .chip{animation-range:entry 55% entry 88%}
+      .mock .mchat .bubble{animation-range:entry 70% entry 100%}
     }}
   }
   .lang button{background:none;border:0;color:var(--muted);padding:6px 13px;font:600 .82rem Inter,sans-serif;cursor:pointer}
@@ -227,7 +230,7 @@
       <a href="/methodology/" data-i18n="nav.method"></a>
       <a class="ghbtn" href="https://github.com/CarlosM787/faro">GitHub ★</a>
       <span class="lang"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-es" onclick="setLang('es')">ES</button></span>
-      <button class="menu-btn" type="button" popovertarget="nav-menu" aria-haspopup="true"><i aria-hidden="true"></i><span data-i18n="nav.menu"></span></button>
+      <button class="menu-btn" type="button" popovertarget="nav-menu"><i aria-hidden="true"></i><span data-i18n="nav.menu"></span></button>
     </div>
   </nav>
   <div class="nav-pop" id="nav-menu" popover>
@@ -239,6 +242,7 @@
     <a href="#architecture" data-i18n="nav.arch"></a>
     <a href="#evaluate" data-i18n="nav.evaluate"></a>
     <a href="/methodology/" data-i18n="nav.method"></a>
+    <a class="pop-gh" href="https://github.com/CarlosM787/faro">GitHub ★</a>
   </div>
 
   <main>
